@@ -1,257 +1,276 @@
-1. The “Living Counter”
+This is powerful material. Let’s turn it into a **Press Memorial** that’s consistent with your data-first, white-background, bilingual design — and reuse the same **rules/benchmark** pattern you’re using elsewhere.
+
+---
+
+# 🎯 Goal
+
+A solemn, searchable wall for **journalists and media workers killed**, with:
+
+* bilingual names,
+* clear roles/outlets,
+* respectful, auto-generated **context chips** from the long “notes,”
+* filters (role, outlet, circumstance),
+* and no images.
+
+---
+
+# 1) Data model (normalize once, render everywhere)
+
+Create a tiny normalizer that turns each raw record into a strict shape:
+
+```ts
+// /js/types/press.ts (TS optional; JS JSDoc works too)
+export type PressPerson = {
+  id: string;              // slug from Arabic+EN name
+  name_ar: string;         // "سلام ميمة"
+  name_en: string;         // "Salam Mema"
+  role: string | null;     // "journalist" | "photojournalist" | "editor" | "presenter" | "media worker" | null
+  outlet: string[];        // ["Palestine TV", "Press House-Palestine"]
+  organization: string[];  // umbrella orgs (IFJ, Syndicate) if found
+  location: string | null; // "Jabalia", "Khan Yunis", "Gaza City", etc.
+  date: string | null;     // ISO if you have it; else null
+  circumstance: string | null; // "airstrike_on_home", "killed_while_covering", etc.
+  family_killed_count: number | null; // 11, 42, 25... if extractable
+  notes: string;           // original notes (untouched)
+  sources: string[];       // urls in notes if present (optional)
+};
+```
+
+**Normalizer responsibilities** (pure functions, <200 lines total):
+
+* `makeId(name_ar, name_en)`
+* `extractRole(notes)` → “journalist” / “photojournalist” / “media worker” / “editor” / “presenter”
+* `extractOutlets(notes)` → array (Palestine TV, Al Jazeera, Al-Quds TV, …)
+* `extractLocation(notes)` → “Jabalia”, “Rafah”, …
+* `extractCircumstance(notes)` → enum (airstrike\_on\_home / airstrike\_in\_car / killed\_while\_covering / drone\_strike / siege\_hospital / with\_family / unknown)
+* `extractFamilyCount(notes)` → number if “with X family members”
+* `extractDate(notes)` (if dates appear; otherwise you’ll merge this later from the press dataset if it has explicit `date`)
+
+Store normalized array to `/data/press_normalized.json` at build-time or on first load + cache.
+
+---
+
+# 2) Context rules (like your memorial rules)
+
+Create `/data/press_rules.json`. Each rule declares how to turn fields into **short context chips**.
+
+```json
+[
+  {
+    "id": "role_outlet",
+    "requires": ["role", "outlet"],
+    "context": {
+      "en": "{{role_en}} at {{outlet_en}}",
+      "ar": "{{role_ar}} في {{outlet_ar}}"
+    }
+  },
+  {
+    "id": "circumstance_covering",
+    "when": { "circumstance": "killed_while_covering" },
+    "context": {
+      "en": "Killed while covering the aftermath of strikes.",
+      "ar": "قُتل أثناء تغطية آثار القصف."
+    }
+  },
+  {
+    "id": "circumstance_home",
+    "when": { "circumstance": "airstrike_on_home" },
+    "context": {
+      "en": "Killed in an airstrike on the family home.",
+      "ar": "قُتل في قصف على منزل الأسرة."
+    }
+  },
+  {
+    "id": "with_family",
+    "requires": ["family_killed_count"],
+    "context": {
+      "en": "Family killed with them: {{family_killed_count}}.",
+      "ar": "قُتل معهم من الأسرة: {{family_killed_count}}."
+    }
+  },
+  {
+    "id": "location_tag",
+    "requires": ["location"],
+    "context": {
+      "en": "Location: {{location}}.",
+      "ar": "الموقع: {{location}}."
+    }
+  }
+]
+```
+
+> Keep each chip **short**, solemn, and factual. Avoid adjectives beyond what’s necessary.
 
-Numbers aren’t static. They tick upward while you’re on the page.
+---
 
-Instead of “60,199 killed”, it animates like a metronome of loss.
+# 3) Rendering (white, typographic, fast)
 
-Even if estimates aren’t live per second, the effect drives home “this is ongoing.”
+**Card layout (list or grid with 2 columns on desktop):**
 
-🔹 2. Relatability Engine as a Narrative
+* **Name (AR)** — Amiri, 18px, bold
+* **Name (EN)** — Playfair/EB Garamond, 15px
+* **Context chips** — small neutral pills (Inter/Noto Sans Arabic, 12–13px)
+* **Notes** — collapsed (2–3 lines, ellipsis); “Read more” expands
+* **Sources** — if you add URLs later, show tiny external-link icon (SVG)
 
-Not just random fact cards → but progressive storytelling.
+Example card (English + Arabic stacked, white background, hairline dividers):
 
-Example flow:
+```
+سلام ميمة   ·  Salam Mema
+[ Journalist · Palestine Media Assembly ] [ Location: Jabalia ]
+Killed in an airstrike on the family home.
+Her body was recovered three days after the strike…  [Read more]
+```
 
-“Yesterday: 412 killed = 8 school buses of children.”
+---
 
-“Cumulatively: More than 20× 9/11.”
+# 4) Filters & search (Alpine/vanilla)
 
-“Generationally: 1 in 3 were children.”
+* Chips: **Role**, **Outlet**, **Circumstance**, **Location** (autocomplete)
+* Search across `name_ar`, `name_en`, and `notes` (diacritics-insensitive for Arabic)
+* Sorting: **Default = A→Z (Arabic)**; options: by outlet, by circumstance
 
-Feels like a guided memorial, not a dashboard.
+**Circumstance enums** you can support out of the box:
 
-🔹 3. Daily Diary Mode
+* `airstrike_on_home`
+* `airstrike_in_car`
+* `killed_while_covering`
+* `siege_hospital`
+* `drone_strike`
+* `unknown`
 
-A page where you scroll through each day of the war like a calendar of grief:
+---
 
-“Day 127 — 302 killed, including 112 children.”
+# 5) Example: normalization of one record
 
-Each day annotated with relatability facts.
+Input (your sample, abbreviated):
 
-Feels like turning the pages of history.
-
-🔹 4. The Namescape
-
-Instead of a flat list of names → imagine an infinite grid or stream of names, drifting upward like a tide.
-
-Filter: children, women, journalists.
-
-User can hover → card expands with age, context.
-
-Think: digital “Vietnam Memorial Wall.”
-
-🔹 5. Global Mirror
-
-Benchmarks aren’t just global tragedies — also local mirrors:
-
-For a user in London → “This equals the entire O2 Arena.”
-
-For a user in Doha → “This equals Education City Stadium.”
-
-Could auto-detect visitor’s country and rotate benchmarks relevant to them.
-
-🔹 6. Generational Visualization
-
-Instead of just pie charts:
-
-Rows of child silhouettes → each = 10 children killed.
-
-Fades in as you scroll.
-
-Subtle, symbolic, non-graphic.
-
-🔹 7. Bilingual Poetry Layer
-
-Pair numbers with a line of poetry (Arabic + English).
-
-E.g., after a counter: “Every number is a face, every name a story.”
-
-Could use lines from Mahmoud Darwish or other public-domain Palestinian poets.
-
-Adds literary gravitas → makes the site feel like an art installation.
-
-🔹 8. Social Memory Engine
-
-Each fact card → one-click “share as card” to Twitter/Instagram.
-
-Generates a clean white image with the fact + logo.
-
-Turns the site into a fact amplifier.
-
-🔹 9. Future-Facing Tracker
-
-A module that doesn’t just say what happened → but projects:
-
-“If deaths continue at the current rate, by Day 500 there will be X.”
-
-Solemn, but it shows scale beyond the present.
-
-🔹 10. Silent Mode
-
-The site loads in silence.
-
-A small toggle → plays whispered names (synthesized voice reading memorial list).
-
-Emotional, optional, deeply powerful.
-
-
-------
-
-a calendar-style lens on the data:
-
-“On this day (13th)” → aggregate every 13th across all months/years.
-
-“This week” → aggregate by a weekly lens without caring about the month.
-
-Here’s a clean way to build both (JS-only, fast, no new APIs).
-
-How to do “On this day (13th)”
-What it shows
-
-Total killed on all 13ths since Oct 7, 2023
-
-Average / median per 13th
-
-Deadliest 13th (date + value)
-
-Last 13th (date + value)
-
-Optional: children share on 13ths (avg / last / worst)
-
-Algorithm (JS)
-
-Load casualties-daily JSON.
-
-For each report_date, parse the day of month: d = new Date(report_date).getDate().
-
-Keep rows where d === targetDay (e.g., 13).
-
-From those rows, compute:
-
-sum, average, median of killed
-
-max (and keep its date)
-
-last occurrence (max date ≤ today)
-
-if available: use killed_children (or derive from killed_children_cum diff).
-
-Minimal pseudo-code
-function lensByDayOfMonth(rows, day=13) {
-  const sameDay = rows.filter(r => new Date(r.report_date).getDate() === day);
-  const vals = sameDay.map(r => r.killed).filter(Number.isFinite);
-  vals.sort((a,b)=>a-b);
-  const sum = vals.reduce((a,b)=>a+b, 0);
-  const avg = sum / vals.length;
-  const median = vals.length % 2 ? vals[(vals.length-1)/2]
-                                 : (vals[vals.length/2-1] + vals[vals.length/2]) / 2;
-  const maxRow = sameDay.reduce((best, r) => r.killed > (best?.killed ?? -1) ? r : best, null);
-  const lastRow = sameDay.reduce((best, r) => new Date(r.report_date) > new Date(best?.report_date ?? 0) ? r : best, null);
-  return { count: vals.length, sum, avg, median, max: maxRow, last: lastRow };
+```json
+{
+  "name": "سلام ميمة",
+  "name_en": "Salam Mema",
+  "notes": "The death of Mema, a freelance journalist ... head of the Women Journalists Committee ... body was recovered from the rubble three days after her home in the Jabalia refugee camp ... hit by an Israeli airstrike ..."
 }
+```
 
-UI ideas
+Output:
 
-Headline: “On every 13th: avg X killed · worst Y on DATE”
+```json
+{
+  "id": "salam-mema",
+  "name_ar": "سلام ميمة",
+  "name_en": "Salam Mema",
+  "role": "journalist",
+  "outlet": ["Palestinian Media Assembly"],
+  "organization": ["Women Journalists Committee"],
+  "location": "Jabalia",
+  "date": null,
+  "circumstance": "airstrike_on_home",
+  "family_killed_count": null,
+  "notes": "The death of Mema, a freelance journalist ...",
+  "sources": []
+}
+```
 
-Mini-timeline: only the points that are 13ths (dots), with hover tooltips.
+Generated context chips (from `press_rules.json`):
 
-Fact card: “All 13ths combined = Z → equals N school buses” (use your relatability engine).
+* “Journalist at Palestinian Media Assembly” · “Location: Jabalia” · “Killed in an airstrike on the family home.”
 
-How to do “This week” (no months)
+---
 
-You can mean two useful things. Pick one (or support both):
+# 6) Components (keep under 300 lines each)
 
-A) Weekday lens (all Mondays, all Tuesdays, …)
+```
+/js/api/press.js
+  - normalizePress(raw) -> PressPerson
+  - loadPress() -> PressPerson[] (with caching)
 
-Answers: “What does a Thursday look like on average?”
+/js/logic/pressContext.js
+  - applyPressRules(person, rules) -> string[] // small chips (en/ar pair)
 
-Good for: spotting weekday patterns (aid days, ceasefires, etc.)
+ /js/components/pressCard.js
+  - renderPressCard(person, chips) -> HTMLElement
 
-Algorithm
+/js/components/pressFilters.js
+  - render + emits {role, outlet, circumstance, location}
+```
 
-For each row, compute weekday = new Date(report_date).getDay() (0=Sun…6=Sat).
+---
 
-Group by weekday; compute avg/median/max the same way.
+# 7) Respectful tone polish (Arabic)
 
-UI
+Use **neutral, solemn** Arabic across chips:
 
-A 7-bar strip (Sun→Sat) with average killed per weekday.
+* Journalist → **صحفي/ـة** (use neutral noun “صحفي/ـة” if you want inclusive, or just “صحفي” as generic role label)
+* Photojournalist → **مصوّر صحفي**
+* Media worker → **عامل في المجال الإعلامي**
+* Killed while covering → **قُتل أثناء التغطية**
+* Airstrike on home → **قُتل في قصفٍ على المنزل**
+* Location → **الموقع**
+* Family killed → **قُتل من الأسرة: {{n}}**
 
-Tap a bar → shows “all Thursdays” sparkline (only Thursday points).
+If you want strictly neutral chips without gender marks, prefer profession nouns without suffixes (e.g., **صحافة** as sector tag + “مراسل”/“مراسلة” only when dataset provides gender).
 
-B) War-week lens (week 1, week 2, … from Oct 7, 2023)
+---
 
-Answers: “In Week 38 of the war, what happened (on average across years)?”
+# 8) Optional: “Press Roll” mode
 
-Good for: “seasonality” across long conflicts.
+A separate page (or toggle) that **scrolls the names like film credits**, sorted by date (if/when you have it).
 
-Algorithm
+* Header counter: “Journalists and media workers killed: **N**”
+* A slow, continuous vertical roll; hover pauses; spacebar toggle pause/play.
+* Chips are hidden in roll mode; focus is on names + outlets only.
 
-Define warStart = 2023-10-07.
+---
 
-For each row, weekIndex = Math.floor((date - warStart) / (1000*60*60*24*7)) + 1.
+# 9) Quality & safety guardrails
 
-Group by weekIndex (1..N). Compute totals/averages.
+* **No inference** beyond what’s in text (don’t guess dates, roles, or outlets).
+* If multiple outlets appear, show up to **2** and add “+ more”.
+* If notes include graphic detail, keep snippets minimal; **never** sensationalize.
+* Unknowns are fine: show “—” or skip the chip.
+* Provide a **methodology** link: “Circumstances and roles are parsed from public notes; errors? Contact us.”
 
-UI
+---
 
-A compact sparkline of weeks with peaks annotated.
+# 10) Tiny regex helpers (pseudo)
 
-Card: “This week of the war (W = N) averaged X killed; worst Y on DATE”.
+```js
+const ROLE_PATTERNS = [
+  [/photo ?journalist|cameraperson|camera operator/i, "photojournalist"],
+  [/presenter|anchor|broadcaster/i, "presenter"],
+  [/editor/i, "editor"],
+  [/journalist|reporter/i, "journalist"],
+  [/media worker|media professional/i, "media worker"]
+];
 
-Children-only and other variants
+const CIRCUM_PATTERNS = [
+  [/airstrike (on|at) (his|her|the) home|strike on (his|her|the) home/i, "airstrike_on_home"],
+  [/drone strike/i, "drone_strike"],
+  [/killed while covering|while covering/i, "killed_while_covering"],
+  [/siege of .*hospital|storming .*hospital/i, "siege_hospital"],
+  [/airstrike|strike/i, "airstrike_other"]
+];
 
-For any lens above, you can run the same math on:
+const FAMILY_COUNT = /with (\d{1,3}) (?:members of (?:his|her) family|family members)/i;
+```
 
-Children (if you have daily killed_children, or compute from cumulative daily diff)
+Keep them in `/js/logic/extractors.js`. Start simple, expand as you see recurring phrases.
 
-Women (killed_women / diff)
+---
 
-Press / Medical / Aid-seeking deaths if daily fields exist
+## TL;DR plan
 
-Presentation: toggle chips — All · Children · Women · Press.
+* Normalize → **PressPerson** shape
+* Generate **short, factual chips** via `press_rules.json`
+* Render **clean cards** on a **white page** with bilingual names
+* Filters + search, no images
+* Optional rolling “Press Roll” page
 
-Tie-in with the Relatability Engine
+If you want, I can package:
 
-After you compute a number (sum/avg/max for the lens), pass it to the benchmark:
-
-On this 13th (last occurrence): fact = mapToBenchmark(lastRow.killed)
-
-All 13ths combined: mapToBenchmark(sum)
-
-Average 13th: mapToBenchmark(avg) → round nicely, pick best-fit benchmark
-
-Example card:
-
-“Across all 13ths since Oct 2023, Z people were killed — that’s N school buses.”
-
-Performance & UX notes (GitHub Pages friendly)
-
-One fetch of casualties-daily.json → cache in memory (and in localStorage with lastUpdated).
-
-All lenses are pure array ops (fast).
-
-Keep each module <300 lines:
-
-/logic/lenses.js → lensByDayOfMonth, lensByWeekday, lensByWarWeek
-
-/components/onThisDay.js → renders the 1-day lens section
-
-/components/thisWeek.js → renders weekday/war-week
-
-Arabic/English:
-
-Format dates with Intl.DateTimeFormat respecting RTL.
-
-Keep labels short; numbers heavy; no images needed.
-
-Edge cases
-
-If no data yet for a given day-of-month (e.g., 31st) → show a gentle “No data points yet.”
-
-Timezone: compute dates in UTC to match dataset (avoid off-by-one).
-
-Children fields missing daily? Use cumulative diffs:
-
-children_today = max(0, killed_children_cum[t] - killed_children_cum[t-1]).
+* `press_rules.json` (like above),
+* `extractors.js` (regex helpers),
+* `pressCard.js` (render),
+* and a tiny `press.html` skeleton
+  so you can paste into Cursor and be running in minutes.

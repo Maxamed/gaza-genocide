@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorial Wall — Names in Memoriam | Gaza Genocide Memorial - Human Scale</title>
+    
+    <!-- Meta tags for social sharing -->
+    <meta name="description" content="A bilingual roll of names — searchable and filterable — honoring every life lost in Gaza. Numbers become human through names and relatable context." />
+    <meta name="keywords" content="Gaza, genocide, memorial, names, casualties, martyrs, Palestine, searchable, filterable, bilingual">
+    <meta name="author" content="Gaza Genocide Memorial Project">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://maxamed.github.io/gaza-genocide/memorial.html" />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Gaza Genocide Memorial - Human Scale" />
+    <meta property="og:title" content="Memorial Wall — Names in Memoriam" />
+    <meta property="og:description" content="A bilingual roll of names — searchable and filterable — honoring every life lost in Gaza. Numbers become human through names and relatable context." />
+    <meta property="og:url" content="https://maxamed.github.io/gaza-genocide/memorial.html" />
+    <meta property="og:image" content="https://maxamed.github.io/gaza-genocide/og/og-memorial-1200x630.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ar_AR" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Memorial Wall — Names in Memoriam" />
+    <meta name="twitter:description" content="A bilingual roll of names — searchable and filterable — honoring every life lost in Gaza. Numbers become human through names and relatable context." />
+    <meta name="twitter:image" content="https://maxamed.github.io/gaza-genocide/og/og-memorial-1200x630.png" />
+    
+    <!-- Preload fonts for performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/theme.css">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"WebPage",
+      "name":"Memorial Wall — Names in Memoriam",
+      "url":"https://maxamed.github.io/gaza-genocide/memorial.html",
+      "inLanguage":["en","ar"],
+      "description":"A bilingual roll of names — searchable and filterable — honoring every life lost in Gaza. Numbers become human through names and relatable context.",
+      "isPartOf":{
+        "@type":"WebSite",
+        "name":"Gaza Genocide Memorial - Human Scale",
+        "url":"https://maxamed.github.io/gaza-genocide/"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Floating Navigation -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="./index.html" class="nav-link">
+                        <span class="en">Home</span>
+                        <span class="ar" style="display: none;">الرئيسية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./memorial.html" class="nav-link active">
+                        <span class="en">Memorial Wall</span>
+                        <span class="ar" style="display: none;">جدار الذكرى</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./journalists.html" class="nav-link">
+                        <span class="en">Journalists</span>
+                        <span class="ar" style="display: none;">الصحفيون</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="./about.html" class="nav-link">
+                        <span class="en">About</span>
+                        <span class="ar" style="display: none;">حول</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Language Toggle in Nav -->
+            <button class="nav-language-toggle" id="nav-language-toggle">
+                <span class="en">العربية</span>
+                <span class="ar" style="display: none;">English</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-header">
+                <h1 class="en">Memorial Wall</h1>
+                <h1 class="ar" style="display: none;">جدار الذكرى</h1>
+            </div>
+            
+            <!-- Memorial Controls -->
+            <div class="memorial-controls">
+                <div class="control-group">
+                    <button class="control-btn" data-filter="all" data-en="All" data-ar="الكل">All</button>
+                    <button class="control-btn" data-filter="children" data-en="Children" data-ar="الأطفال">Children</button>
+                    <button class="control-btn" data-filter="adults" data-en="Adults" data-ar="البالغون">Adults</button>
+                    <button class="control-btn" data-filter="elders" data-en="Elders" data-ar="كبار السن">Elders</button>
+                </div>
+            </div>
+
+            <!-- Memorial Wall Container -->
+            <div class="memorial-container">
+                <!-- Paginated List View -->
+                <div class="memorial-view list-view active">
+                    <div class="list-controls">
+                        <div class="pagination-info">
+                            <span data-en="Showing" data-ar="عرض">Showing</span>
+                            <span id="currentRange">1-500</span>
+                            <span data-en="of" data-ar="من">of</span>
+                            <span id="totalRecords">0</span>
+                            <span data-en="names" data-ar="أسماء">names</span>
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="page-btn" id="prevPage" data-en="Previous" data-ar="السابق">Previous</button>
+                            <span class="page-info" id="pageInfo" data-en="Page 1" data-ar="الصفحة 1">Page 1</span>
+                            <button class="page-btn" id="nextPage" data-en="Next" data-ar="التالي">Next</button>
+                        </div>
+                    </div>
+                    <div class="memorial-list" id="memorialList">
+                        <!-- Names will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Indicator -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text" data-en="Loading memorial data..." data-ar="جاري تحميل بيانات النصب...">Loading memorial data...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./js/logic/languageManager.js"></script>
+    <script src="./js/logic/memorial_context.js"></script>
+    <script src="./js/logic/formatters.js"></script>
+    <script src="./js/components/memorial.js"></script>
+    <script>
+        // Initialize memorial wall
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Initialize language manager first
+            window.languageManager = new LanguageManager();
+            
+            // Initialize memorial wall
+            await initializeMemorialWall();
+        });
+    </script>
+</body>
+</html> 

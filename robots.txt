@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://maxamed.github.io/gaza-genocide/sitemap.xml 

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "role_outlet",
+    "requires": ["role", "outlet"],
+    "context": {
+      "en": "{{role_en}} at {{outlet_en}}",
+      "ar": "{{role_ar}} في {{outlet_ar}}"
+    }
+  },
+  {
+    "id": "role_only",
+    "requires": ["role"],
+    "when": { "outlet": [] },
+    "context": {
+      "en": "{{role_en}}",
+      "ar": "{{role_ar}}"
+    }
+  },
+  {
+    "id": "outlet_only",
+    "requires": ["outlet"],
+    "when": { "role": null },
+    "context": {
+      "en": "{{outlet_en}}",
+      "ar": "{{outlet_ar}}"
+    }
+  },
+  {
+    "id": "circumstance_covering",
+    "when": { "circumstance": "killed_while_covering" },
+    "context": {
+      "en": "Killed while covering",
+      "ar": "قُتل أثناء التغطية"
+    }
+  },
+  {
+    "id": "circumstance_home",
+    "when": { "circumstance": "airstrike_on_home" },
+    "context": {
+      "en": "Killed in home airstrike",
+      "ar": "قُتل في قصف على المنزل"
+    }
+  },
+  {
+    "id": "circumstance_drone",
+    "when": { "circumstance": "drone_strike" },
+    "context": {
+      "en": "Killed in drone strike",
+      "ar": "قُتل في ضربة طائرة مسيرة"
+    }
+  },
+  {
+    "id": "circumstance_hospital",
+    "when": { "circumstance": "siege_hospital" },
+    "context": {
+      "en": "Killed in hospital siege",
+      "ar": "قُتل في حصار المستشفى"
+    }
+  },
+  {
+    "id": "circumstance_gunfire",
+    "when": { "circumstance": "gunfire" },
+    "context": {
+      "en": "Killed by gunfire",
+      "ar": "قُتل برصاص"
+    }
+  },
+  {
+    "id": "with_family",
+    "requires": ["family_killed_count"],
+    "context": {
+      "en": "Family killed: {{family_killed_count}}",
+      "ar": "قُتل من الأسرة: {{family_killed_count}}"
+    }
+  },
+  {
+    "id": "location_tag",
+    "requires": ["location"],
+    "context": {
+      "en": "Location: {{location}}",
+      "ar": "الموقع: {{location}}"
+    }
+  },
+  {
+    "id": "freelance",
+    "when": { "role": "media_worker" },
+    "context": {
+      "en": "Freelance media worker",
+      "ar": "عامل إعلامي مستقل"
+    }
+  }
+] 

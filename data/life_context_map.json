@@ -1,0 +1,41 @@
+{
+  "id": "life_context_map",
+  "source": "Comprehensive life-context mapping for the memorial wall (school years, life stages, seasons).",
+  "assumptions": {
+    "school_start_month": 9,
+    "bounds": "min inclusive, max exclusive",
+    "months_index": "1-12 (Jan=1)",
+    "language_style": "Arabic contexts are phrased neutrally without gendered verbs."
+  },
+  "notes": "Adjust grade bands or start month per local education policy if needed.",
+  "school_years": [
+    { "min": 0,  "max": 3.99,  "en": "Pre-school age",                         "ar": "سن ما قبل المدرسة",                 "context_en": "At the very start of their educational journey.",           "context_ar": "في بداية الرحلة التعليمية." },
+    { "min": 4,  "max": 4.99,  "en": "KG1",                                     "ar": "روضة 1",                                "context_en": "Would have been in kindergarten (KG1).",                    "context_ar": "في سن الروضة (روضة 1)." },
+    { "min": 5,  "max": 5.99,  "en": "KG2",                                     "ar": "روضة 2",                                "context_en": "Would have been completing kindergarten (KG2).",            "context_ar": "في ختام مرحلة الروضة (روضة 2)." },
+    { "min": 6,  "max": 6.99,  "en": "Grade 1",                                 "ar": "الصف الأول",                            "context_en": "Would have been starting primary school.",                  "context_ar": "في بداية المرحلة الابتدائية." },
+    { "min": 7,  "max": 7.99,  "en": "Grade 2",                                 "ar": "الصف الثاني",                           "context_en": "In Grade 2 this academic year.",                             "context_ar": "في الصف الثاني لهذا العام الدراسي." },
+    { "min": 8,  "max": 8.99,  "en": "Grade 3",                                 "ar": "الصف الثالث",                           "context_en": "In Grade 3 this academic year.",                             "context_ar": "في الصف الثالث لهذا العام الدراسي." },
+    { "min": 9,  "max": 9.99,  "en": "Grade 4",                                 "ar": "الصف الرابع",                           "context_en": "In Grade 4 this academic year.",                             "context_ar": "في الصف الرابع لهذا العام الدراسي." },
+    { "min": 10, "max": 10.99, "en": "Grade 5",                                 "ar": "الصف الخامس",                           "context_en": "In Grade 5 this academic year.",                             "context_ar": "في الصف الخامس لهذا العام الدراسي." },
+    { "min": 11, "max": 11.99, "en": "Grade 6",                                 "ar": "الصف السادس",                           "context_en": "Completing primary school.",                                 "context_ar": "في ختام المرحلة الابتدائية." },
+    { "min": 12, "max": 12.99, "en": "Grade 7",                                 "ar": "الصف السابع",                           "context_en": "Starting middle school.",                                    "context_ar": "بداية المرحلة الإعدادية." },
+    { "min": 13, "max": 13.99, "en": "Grade 8",                                 "ar": "الصف الثامن",                           "context_en": "In Grade 8 this academic year.",                             "context_ar": "في الصف الثامن لهذا العام الدراسي." },
+    { "min": 14, "max": 14.99, "en": "Grade 9",                                 "ar": "الصف التاسع",                           "context_en": "Completing middle school.",                                  "context_ar": "في ختام المرحلة الإعدادية." },
+    { "min": 15, "max": 15.99, "en": "Grade 10",                                "ar": "الصف العاشر",                           "context_en": "Starting high school.",                                      "context_ar": "بداية المرحلة الثانوية." },
+    { "min": 16, "max": 16.99, "en": "Grade 11",                                "ar": "الصف الحادي عشر",                       "context_en": "In Grade 11 this academic year.",                            "context_ar": "في الصف الحادي عشر لهذا العام الدراسي." },
+    { "min": 17, "max": 17.99, "en": "Grade 12",                                "ar": "الصف الثاني عشر",                       "context_en": "Graduating high school.",                                    "context_ar": "في عام التخرج من المرحلة الثانوية." }
+  ],
+  "life_stages": [
+    { "min": 18, "max": 22.99, "en": "University/TVET age",                     "ar": "سن الجامعة/التدريب المهني",            "context_en": "Typical age for university or vocational training.",         "context_ar": "سنّ معتاد للدراسة الجامعية أو التدريب المهني." },
+    { "min": 23, "max": 29.99, "en": "Early career / young adult",              "ar": "بداية المسار المهني / شاب",            "context_en": "Building a life and career.",                                "context_ar": "في طور بناء الحياة والمسار المهني." },
+    { "min": 30, "max": 39.99, "en": "Working-age adult / many parents",        "ar": "بالغ في سن العمل / كثير منهم آباء",    "context_en": "Prime working years; many are parents at this age.",         "context_ar": "سنّ العمل في أوجه؛ كثيرون آباء في هذا العمر." },
+    { "min": 40, "max": 59.99, "en": "Experienced adult",                       "ar": "بالغ ذو خبرة",                          "context_en": "Experienced, often supporting families and communities.",    "context_ar": "في عمر دعم الأسرة ورعاية المجتمع." },
+    { "min": 60, "max": 200,   "en": "Elder / grandparent age",                  "ar": "كبير السن / سن الأجداد",               "context_en": "A respected elder in the community.",                        "context_ar": "مكانة مُوقَّرة في المجتمع." }
+  ],
+  "seasons": [
+    { "months": [3, 4, 5],     "en": "spring",  "ar": "الربيع",  "context_en": "Born in the season of new beginnings.", "context_ar": "من مواليد فصل البدايات الجديدة." },
+    { "months": [6, 7, 8],     "en": "summer",  "ar": "الصيف",   "context_en": "Born in the warm summer months.",       "context_ar": "من مواليد أشهر الصيف الدافئة." },
+    { "months": [9, 10, 11],   "en": "autumn",  "ar": "الخريف",  "context_en": "Born in the autumn season.",            "context_ar": "من مواليد فصل الخريف." },
+    { "months": [12, 1, 2],    "en": "winter",  "ar": "الشتاء",  "context_en": "Born in the quiet winter months.",      "context_ar": "من مواليد أشهر الشتاء الهادئة." }
+  ]
+}

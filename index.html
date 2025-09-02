@@ -3,26 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaza Genocide - Memorial & Tracker</title>
+    <title>Gaza Genocide Memorial - Human Scale</title>
     
     <!-- Meta tags for sharing -->
-    <meta name="description" content="Gaza Genocide Memorial & Tracker - Honoring every life lost with comprehensive data and relatability comparisons">
-    <meta name="keywords" content="Gaza, genocide, memorial, tracker, casualties, martyrs, Palestine">
-    <meta name="author" content="Gaza Memorial Project">
+    <meta name="description" content="Numbers become human through names and relatable context. A bilingual memorial and data project: names, timelines, and human-scale context for lives lost in Gaza.">
+    <meta name="keywords" content="Gaza, genocide, memorial, human scale, casualties, martyrs, Palestine, journalists, data, context">
+    <meta name="author" content="Gaza Genocide Memorial Project">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://maxamed.github.io/gaza-genocide/" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://your-domain.github.io/">
-    <meta property="og:title" content="Gaza Genocide - Memorial & Tracker">
-    <meta property="og:description" content="Honoring every life lost with comprehensive data and relatability comparisons">
-    <meta property="og:image" content="https://your-domain.github.io/og-image.jpg">
+    <meta property="og:site_name" content="Gaza Genocide Memorial - Human Scale">
+    <meta property="og:url" content="https://maxamed.github.io/gaza-genocide/">
+    <meta property="og:title" content="Gaza Genocide Memorial - Human Scale">
+    <meta property="og:description" content="Numbers become human through names and relatable context. A bilingual memorial and data project: names, timelines, and human-scale context for lives lost in Gaza.">
+    <meta property="og:image" content="https://maxamed.github.io/gaza-genocide/og/og-home-1200x630.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ar_AR">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://your-domain.github.io/">
-    <meta property="twitter:title" content="Gaza Genocide - Memorial & Tracker">
-    <meta property="twitter:description" content="Honoring every life lost with comprehensive data and relatability comparisons">
-    <meta property="twitter:image" content="https://your-domain.github.io/og-image.jpg">
+    <meta property="twitter:url" content="https://maxamed.github.io/gaza-genocide/">
+    <meta property="twitter:title" content="Gaza Genocide Memorial - Human Scale">
+    <meta property="twitter:description" content="Numbers become human through names and relatable context. A bilingual memorial and data project: names, timelines, and human-scale context for lives lost in Gaza.">
+    <meta property="twitter:image" content="https://maxamed.github.io/gaza-genocide/og/og-home-1200x630.png">
     
     <!-- Preload fonts for performance -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style">
@@ -32,6 +40,18 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="css/theme.css">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"WebSite",
+      "name":"Gaza Genocide Memorial - Human Scale",
+      "url":"https://maxamed.github.io/gaza-genocide/",
+      "inLanguage":["en","ar"],
+      "description":"Numbers become human through names and relatable context. A bilingual memorial and data project: names, timelines, and human-scale context for lives lost in Gaza."
+    }
+    </script>
 </head>
 <body>
     <!-- Floating Navigation -->
@@ -45,25 +65,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="./memorial.html" class="nav-link">
                         <span class="en">Memorial Wall</span>
                         <span class="ar" style="display: none;">جدار الذكرى</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="./journalists.html" class="nav-link">
                         <span class="en">Journalists</span>
                         <span class="ar" style="display: none;">الصحفيون</span>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <span class="en">Timeline</span>
-                        <span class="ar" style="display: none;">الجدول الزمني</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="./about.html" class="nav-link">
                         <span class="en">About</span>
                         <span class="ar" style="display: none;">حول</span>
                     </a>
@@ -168,6 +183,7 @@
     </main>
     
     <!-- Scripts -->
+    <script src="js/logic/languageManager.js"></script>
     <script src="logic/relatability.js"></script>
     <script src="logic/formatters.js"></script>
     <script src="logic/calculations.js"></script>
@@ -508,7 +524,13 @@
         });
         
         // Initialize the app when page loads
-        document.addEventListener('DOMContentLoaded', initializeApp);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize language manager first
+            window.languageManager = new LanguageManager();
+            
+            // Initialize the app
+            initializeApp();
+        });
     </script>
 </body>
 </html> 
