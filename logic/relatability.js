@@ -49,21 +49,21 @@ class RelatabilityEngine {
 
         // Filter by scale (daily vs cumulative)
         if (scale === 'daily') {
-            // For daily numbers, prefer smaller benchmarks
-            filteredBenchmarks = filteredBenchmarks.filter(b => 
-                b.value <= 2000 && ['transport', 'education'].includes(b.category)
-            );
+            // For daily numbers, prefer smaller benchmarks but don't restrict categories
+            filteredBenchmarks = filteredBenchmarks.filter(b => b.value <= 5000);
             console.log(`After daily scale filter: ${filteredBenchmarks.length} benchmarks`);
         } else {
-            // For cumulative numbers, prefer larger benchmarks
-            filteredBenchmarks = filteredBenchmarks.filter(b => 
-                b.value >= 1000 && ['cities', 'venues', 'transport'].includes(b.category)
-            );
-            console.log(`After cumulative scale filter: ${filteredBenchmarks.length} benchmarks`);
+            // For cumulative numbers, use ALL benchmarks - don't restrict categories
+            console.log(`Using all ${filteredBenchmarks.length} benchmarks for cumulative comparison`);
         }
         
+        console.log('=== BENCHMARK DEBUG INFO ===');
         console.log('Available categories:', [...new Set(this.benchmarks.map(b => b.category))]);
-        console.log('Filtered benchmarks:', filteredBenchmarks.map(b => ({ id: b.id, category: b.category, value: b.value })));
+        console.log('Total benchmarks available:', this.benchmarks.length);
+        console.log('Benchmarks being considered:', filteredBenchmarks.length);
+        console.log('All benchmark values:', this.benchmarks.map(b => b.value).sort((a, b) => a - b));
+        console.log('Sample benchmarks:', filteredBenchmarks.slice(0, 5).map(b => ({ id: b.id, category: b.category, value: b.value })));
+        console.log('============================');
 
         // Calculate equivalents and find best fit
         let bestBenchmark = null;
@@ -72,35 +72,29 @@ class RelatabilityEngine {
         filteredBenchmarks.forEach(benchmark => {
             const equivalent = casualtyNumber / benchmark.value;
             
-            // Consider both cases: casualty >= benchmark (equivalent >= 1) and casualty < benchmark (equivalent < 1)
+            // Score benchmarks - skip those that would give very small percentages
+            let score = 0;
+            
             if (equivalent >= 1) {
                 // Casualty number is larger than benchmark (e.g., 63,633 vs 50,000 stadium)
                 const wholeNumber = Math.round(equivalent);
-                const score = 1 / Math.abs(equivalent - wholeNumber);
-                
-                if (score > bestScore) {
-                    bestScore = score;
-                    bestBenchmark = {
-                        ...benchmark,
-                        equivalent: wholeNumber,
-                        exactEquivalent: equivalent,
-                        comparisonType: 'multiple'
-                    };
-                }
-            } else if (equivalent > 0.1) {
-                // Casualty number is smaller than benchmark but still significant (e.g., 63,633 vs 145,000 Cambridge)
-                const percentage = Math.round(equivalent * 100);
-                const score = equivalent; // Higher score for closer to 1
-                
-                if (score > bestScore) {
-                    bestScore = score;
-                    bestBenchmark = {
-                        ...benchmark,
-                        equivalent: percentage,
-                        exactEquivalent: equivalent,
-                        comparisonType: 'percentage'
-                    };
-                }
+                score = 1 / Math.abs(equivalent - wholeNumber);
+            } else if (equivalent > 0.05) { // Only include benchmarks that give at least 5%
+                // Casualty number is smaller than benchmark (e.g., 63,633 vs 145,000 Cambridge)
+                score = equivalent; // Higher score for closer to 1
+            } else {
+                // Skip benchmarks that would give very small percentages
+                return; // Use return instead of continue in forEach
+            }
+            
+            if (score > bestScore) {
+                bestScore = score;
+                bestBenchmark = {
+                    ...benchmark,
+                    equivalent: equivalent >= 1 ? Math.round(equivalent) : Math.max(1, Math.round(equivalent * 100)),
+                    exactEquivalent: equivalent,
+                    comparisonType: equivalent >= 1 ? 'multiple' : 'percentage'
+                };
             }
         });
 
@@ -142,17 +136,27 @@ class RelatabilityEngine {
      */
     getMultipleComparisons(casualtyNumber, count = 3) {
         const comparisons = [];
-        const usedCategories = new Set();
-
-        // Get best comparison for each category
-        const categories = ['education', 'transport', 'cities', 'historic_events'];
         
-        categories.forEach(category => {
+        // Use ALL benchmarks, not just specific categories
+        const allBenchmarks = [...this.benchmarks];
+        
+        // Shuffle to get variety
+        for (let i = allBenchmarks.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [allBenchmarks[i], allBenchmarks[j]] = [allBenchmarks[j], allBenchmarks[i]];
+        }
+        
+        // Take the first 'count' benchmarks and find best comparisons
+        allBenchmarks.slice(0, count * 2).forEach(benchmark => {
             if (comparisons.length < count) {
-                const comparison = this.findBestComparison(casualtyNumber, category);
-                if (comparison && !usedCategories.has(category)) {
-                    comparisons.push(comparison);
-                    usedCategories.add(category);
+                const equivalent = casualtyNumber / benchmark.value;
+                if (equivalent > 0.1) { // Only include meaningful comparisons
+                    comparisons.push({
+                        ...benchmark,
+                        equivalent: equivalent >= 1 ? Math.round(equivalent) : Math.max(1, Math.round(equivalent * 100)),
+                        exactEquivalent: equivalent,
+                        comparisonType: equivalent >= 1 ? 'multiple' : 'percentage'
+                    });
                 }
             }
         });
@@ -169,32 +173,15 @@ class RelatabilityEngine {
         console.log(`Getting random comparison for ${casualtyNumber}`);
         console.log(`Total benchmarks: ${this.benchmarks.length}`);
         
-        const validBenchmarks = this.benchmarks.filter(b => 
-            casualtyNumber / b.value >= 1
-        );
-        
-        console.log(`Valid benchmarks: ${validBenchmarks.length}`);
-        
-        if (validBenchmarks.length === 0) return null;
-        
-        const randomIndex = Math.floor(Math.random() * validBenchmarks.length);
-        const benchmark = validBenchmarks[randomIndex];
+        // Use ALL benchmarks, not just ones where casualty >= benchmark
+        const randomIndex = Math.floor(Math.random() * this.benchmarks.length);
+        const benchmark = this.benchmarks[randomIndex];
         
         console.log(`Selected benchmark:`, benchmark);
         
         const equivalent = casualtyNumber / benchmark.value;
-        let comparisonType, finalEquivalent;
-        
-        if (equivalent >= 1) {
-            comparisonType = 'multiple';
-            finalEquivalent = Math.round(equivalent);
-        } else if (equivalent > 0.1) {
-            comparisonType = 'percentage';
-            finalEquivalent = Math.round(equivalent * 100);
-        } else {
-            comparisonType = 'percentage';
-            finalEquivalent = Math.round(equivalent * 100);
-        }
+        const comparisonType = equivalent >= 1 ? 'multiple' : 'percentage';
+        const finalEquivalent = equivalent >= 1 ? Math.round(equivalent) : Math.max(1, Math.round(equivalent * 100));
         
         return {
             ...benchmark,

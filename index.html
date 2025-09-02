@@ -87,23 +87,76 @@
                 <h1 class="ar" style="display: none;">إبادة غزة</h1>
             </div>
             
-            <!-- Big Relatability Card -->
-            <div class="hero-comparison fact-card fact-card-animate">
-                <div class="fact-card-quote en" id="fact-quote-en">63,633 martyred = nearly half the population of Cambridge, UK</div>
-                <div class="fact-card-quote ar" style="display: none;" id="fact-quote-ar">٦٣٬٦٣٣ شهيد = ما يقرب من نصف سكان كامبريدج، المملكة المتحدة</div>
-                <div class="fact-card-context en" id="fact-context-en">The entire population of Cambridge, UK is about 145,000 people. This means the number of people martyred in Gaza represents nearly half of Cambridge's population.</div>
-                <div class="fact-card-context ar" style="display: none;" id="fact-context-ar">إجمالي سكان كامبريدج، المملكة المتحدة حوالي 145,000 شخص. هذا يعني أن عدد الشهداء في غزة يمثل ما يقرب من نصف سكان كامبريدج.</div>
-
+            <!-- Statistics Tabs -->
+            <div class="stats-tabs">
+                <button class="tab-btn active" data-tab="total" data-stat="total" data-value="63633">
+                    <span class="en">Total</span>
+                    <span class="ar" style="display: none;">الإجمالي</span>
+                </button>
+                <button class="tab-btn" data-tab="children" data-stat="children" data-value="19000">
+                    <span class="en">Children</span>
+                    <span class="ar" style="display: none;">الأطفال</span>
+                </button>
+                <button class="tab-btn" data-tab="women" data-stat="women" data-value="12500">
+                    <span class="en">Women</span>
+                    <span class="ar" style="display: none;">النساء</span>
+                </button>
+                <button class="tab-btn" data-tab="press" data-stat="press" data-value="246">
+                    <span class="en">Press</span>
+                    <span class="ar" style="display: none;">الصحفيون</span>
+                </button>
+                <button class="tab-btn" data-tab="medical" data-stat="medical" data-value="1590">
+                    <span class="en">Medical</span>
+                    <span class="ar" style="display: none;">الطبي</span>
+                </button>
+                <button class="tab-btn" data-tab="context" data-stat="injured" data-value="160914">
+                    <span class="en">Context</span>
+                    <span class="ar" style="display: none;">السياق</span>
+                </button>
             </div>
             
-            <div class="hero-controls">
-                <button class="btn btn-secondary" id="learn-more-btn" style="display: none;">
-                    <span class="en">Learn more about this comparison</span>
-                    <span class="ar" style="display: none;">اعرف المزيد عن هذه المقارنة</span>
+            <!-- Big Relatability Card -->
+            <div class="hero-comparison fact-card fact-card-animate">
+                <!-- Fixed 3-Line Layout -->
+                <div class="fact-card-layout">
+                    <!-- Line 1: Number + Statistic Type -->
+                    <div class="fact-line fact-line-1">
+                        <div class="fact-number en" id="fact-number-en">63,633</div>
+                        <div class="fact-number ar" style="display: none;" id="fact-number-ar">٦٣٬٦٣٣</div>
+                        <div class="fact-stat en" id="fact-stat-en">total martyred</div>
+                        <div class="fact-stat ar" style="display: none;" id="fact-stat-ar">إجمالي الشهداء</div>
+                    </div>
+                    
+                    <!-- Line 2: Equals Sign -->
+                    <div class="fact-line fact-line-2">
+                        <div class="fact-equals en" id="fact-equals-en">=</div>
+                        <div class="fact-equals ar" style="display: none;" id="fact-equals-ar">=</div>
+                    </div>
+                    
+                    <!-- Line 3: Comparison -->
+                    <div class="fact-line fact-line-3">
+                        <div class="fact-comparison en" id="fact-comparison-en">nearly half the population of Cambridge, UK</div>
+                        <div class="fact-comparison ar" style="display: none;" id="fact-comparison-ar">ما يقرب من نصف سكان كامبريدج، المملكة المتحدة</div>
+                    </div>
+                </div>
+                
+                <div class="fact-card-context en" id="fact-context-en">The entire population of Cambridge, UK is about 145,000 people. This means the number of people martyred in Gaza represents nearly half of Cambridge's population.</div>
+                <div class="fact-card-context ar" style="display: none;" id="fact-context-ar">إجمالي سكان كامبريدج، المملكة المتحدة حوالي 145,000 شخص. هذا يعني أن عدد الشهداء في غزة يمثل ما يقرب من نصف سكان كامبريدج.</div>
+            </div>
+            
+            <!-- Action Buttons - COMPLETELY OUTSIDE AND UNDERNEATH the card -->
+            <div class="action-buttons">
+                <button class="action-btn learn-btn" id="learn-more-btn">
+                    <span class="en">Learn</span>
+                    <span class="ar" style="display: none;">اعرف</span>
                 </button>
-                <button class="btn btn-primary" id="see-another-btn">
-                    <span class="en">See Another</span>
-                    <span class="ar" style="display: none;">شاهد آخر</span>
+                <button class="action-btn more-btn" id="see-another-btn">
+                    <span class="en">More</span>
+                    <span class="ar" style="display: none;">أكثر</span>
+                </button>
+                <button class="action-btn share-btn" id="share-btn">
+                    <span class="en">Share</span>
+                    <span class="ar" style="display: none;">شارك</span>
                 </button>
             </div>
             
@@ -127,6 +180,9 @@
         // Initialize language state
         window.currentLanguage = 'en';
         
+        // Store current tab state
+        window.currentTab = 'total';
+        
         // Load data and display comparison
         async function initializeApp() {
             try {
@@ -140,15 +196,15 @@
                 // Get total killed from Gaza
                 const totalKilled = summaryData.gaza.killed.total;
                 
-                // Find best comparison using the engine
-                const comparison = relatabilityEngine.findBestComparison(totalKilled, 'cities', 'cumulative');
+                // Find best comparison using ALL benchmarks (no category restriction)
+                const comparison = relatabilityEngine.findBestComparison(totalKilled, null, 'cumulative');
                 
                                 if (comparison) {
                     // Convert benchmark numbers to Arabic numerals when in Arabic
                     const benchmarkNumberEn = comparison.equivalent.toLocaleString();
                     const benchmarkNumberAr = comparison.equivalent.toLocaleString('ar-EG');
                     
-                    // Format the comparison based on type
+                    // Simple comparison format
                     let quoteEn, quoteAr;
                     
                     if (comparison.comparisonType === 'percentage') {
@@ -161,16 +217,24 @@
                         quoteAr = `<span class="number">٦٣٬٦٣٣</span><span class="equals">شهيد =</span><span class="comparison">${benchmarkNumberAr} ${comparison.label.ar}</span>`;
                     }
                     
-                    // Update the fact card
-                    document.getElementById('fact-quote-en').innerHTML = quoteEn;
-                    document.getElementById('fact-quote-ar').innerHTML = quoteAr;
+                    // Update the fact card with 3-line layout
+                    // Line 1: Number + Statistic Type
+                    document.getElementById('fact-number-en').textContent = '63,633';
+                    document.getElementById('fact-number-ar').textContent = '٦٣٬٦٣٣';
+                    document.getElementById('fact-stat-en').textContent = 'total martyred';
+                    document.getElementById('fact-stat-ar').textContent = 'إجمالي الشهداء';
+                    
+                    // Line 3: Comparison
+                    document.getElementById('fact-comparison-en').textContent = comparisonEn;
+                    document.getElementById('fact-comparison-ar').textContent = comparisonAr;
+                    
+                    // Context
                     document.getElementById('fact-context-en').textContent = comparison.context.en;
                     document.getElementById('fact-context-ar').textContent = comparison.context.ar;
                     
-                    // Show and configure learn more button
+                    // Configure learn more button
                     const learnMoreBtn = document.getElementById('learn-more-btn');
-                    if (comparison.source && learnMoreBtn) {
-                        learnMoreBtn.style.display = 'inline-block';
+                    if (learnMoreBtn) {
                         learnMoreBtn.onclick = () => window.open(comparison.source, '_blank');
                         
                         // Update button text based on current language
@@ -181,8 +245,6 @@
                             learnMoreEn.style.display = currentLang === 'en' ? 'inline' : 'none';
                             learnMoreAr.style.display = currentLang === 'ar' ? 'inline' : 'none';
                         }
-                    } else if (learnMoreBtn) {
-                        learnMoreBtn.style.display = 'none';
                     }
                 }
                 
@@ -193,79 +255,31 @@
                 document.getElementById('fact-quote-ar').innerHTML = '<span class="number">٦٣٬٦٣٣</span><span class="equals">شهيد</span><span class="comparison">خطأ في تحميل المقارنة</span>';
                 document.getElementById('fact-context-en').textContent = 'Please refresh the page to try again.';
                 document.getElementById('fact-context-ar').textContent = 'يرجى تحديث الصفحة والمحاولة مرة أخرى.';
-                
-                // Hide learn more button on error
-                const learnMoreBtn = document.getElementById('learn-more-btn');
-                if (learnMoreBtn) {
-                    learnMoreBtn.style.display = 'none';
-                }
             }
         }
         
         // See Another button functionality
         document.getElementById('see-another-btn').addEventListener('click', async function() {
             try {
-                const response = await fetch('data/summary.json');
-                const summaryData = await response.json();
-                const totalKilled = summaryData.gaza.killed.total;
+                // Get current tab data
+                const activeTab = document.querySelector('.tab-btn.active');
+                const statValue = parseInt(activeTab.dataset.value);
+                const statType = activeTab.dataset.stat;
                 
-                // Get a random comparison
-                const comparison = relatabilityEngine.getRandomComparison(totalKilled);
+                // Get a random comparison using ALL benchmarks (no category restriction)
+                const comparison = relatabilityEngine.getRandomComparison(statValue);
                 
-                                if (comparison) {
-                    // Convert benchmark numbers to Arabic numerals when in Arabic
-                    const benchmarkNumberEn = comparison.equivalent.toLocaleString();
-                    const benchmarkNumberAr = comparison.equivalent.toLocaleString('ar-EG');
-                    
-                    // Format the comparison based on type
-                    let quoteEn, quoteAr;
-                    
-                    if (comparison.comparisonType === 'percentage') {
-                        // Percentage comparison (e.g., "44% of Cambridge, UK")
-                        quoteEn = `<span class="number">63,633</span><span class="equals">martyred =</span><span class="comparison">${comparison.equivalent}% of ${comparison.label.en}</span>`;
-                        quoteAr = `<span class="number">٦٣٬٦٣٣</span><span class="equals">شهيد =</span><span class="comparison">${comparison.equivalent}% من ${comparison.label.ar}</span>`;
-                    } else {
-                        // Multiple comparison (e.g., "1 Boeing 737")
-                        quoteEn = `<span class="number">63,633</span><span class="equals">martyred =</span><span class="comparison">${benchmarkNumberEn} ${comparison.label.en}${comparison.equivalent > 1 ? 's' : ''}</span>`;
-                        quoteAr = `<span class="number">٦٣٬٦٣٣</span><span class="equals">شهيد =</span><span class="comparison">${benchmarkNumberAr} ${comparison.label.ar}</span>`;
-                    }
-                    
-                    document.getElementById('fact-quote-en').innerHTML = quoteEn;
-                    document.getElementById('fact-quote-ar').innerHTML = quoteAr;
-                    document.getElementById('fact-context-ar').textContent = comparison.context.ar;
-                    document.getElementById('fact-context-en').textContent = comparison.context.en;
-                    
-                    // Show and configure learn more button
-                    const learnMoreBtn = document.getElementById('learn-more-btn');
-                    if (comparison.source && learnMoreBtn) {
-                        learnMoreBtn.style.display = 'inline-block';
-                        learnMoreBtn.onclick = () => window.open(comparison.source, '_blank');
-                        
-                        // Update button text based on current language
-                        const currentLang = window.currentLanguage || 'en';
-                        const learnMoreEn = learnMoreBtn.querySelector('.en');
-                        const learnMoreAr = learnMoreBtn.querySelector('.ar');
-                        if (learnMoreEn && learnMoreAr) {
-                            learnMoreEn.style.display = currentLang === 'en' ? 'inline' : 'none';
-                            learnMoreAr.style.display = currentLang === 'ar' ? 'inline' : 'none';
-                        }
-                    } else if (learnMoreBtn) {
-                        learnMoreBtn.style.display = 'none';
-                    }
+                if (comparison) {
+                    // Update the fact card with new comparison
+                    updateFactCard(comparison, statValue, statType);
                 }
             } catch (error) {
                 console.error('Failed to get new comparison:', error);
                 // Show error message to user
-                document.getElementById('fact-quote-ar').innerHTML = '<span class="number">٦٣٬٦٣٣</span><span class="equals">شهيد</span><span class="comparison">خطأ في تحميل المقارنة</span>';
-                document.getElementById('fact-quote-en').innerHTML = '<span class="number">63,633</span><span class="equals">martyred</span><span class="comparison">Error loading comparison</span>';
+                document.getElementById('fact-comparison-ar').textContent = 'خطأ في تحميل المقارنة';
+                document.getElementById('fact-comparison-en').textContent = 'Error loading comparison';
                 document.getElementById('fact-context-ar').textContent = 'يرجى تحديث الصفحة والمحاولة مرة أخرى.';
                 document.getElementById('fact-context-en').textContent = 'Please refresh the page to try again.';
-                
-                // Hide learn more button on error
-                const learnMoreBtn = document.getElementById('learn-more-btn');
-                if (learnMoreBtn) {
-                    learnMoreBtn.style.display = 'none';
-                }
             }
         });
         
@@ -326,12 +340,171 @@
                 }
             }
             
+            // Update share button text
+            const shareBtn = document.getElementById('share-btn');
+            if (shareBtn) {
+                const shareEn = shareBtn.querySelector('.en');
+                const shareAr = shareBtn.querySelector('.ar');
+                if (shareEn && shareAr) {
+                    shareEn.style.display = isCurrentlyEnglish ? 'inline' : 'none';
+                    shareAr.style.display = isCurrentlyEnglish ? 'none' : 'inline';
+                }
+            }
+            
+            // Update see another button text
+            const seeAnotherBtn = document.getElementById('see-another-btn');
+            if (seeAnotherBtn) {
+                const seeAnotherEn = seeAnotherBtn.querySelector('.en');
+                const seeAnotherAr = seeAnotherBtn.querySelector('.ar');
+                if (seeAnotherEn && seeAnotherAr) {
+                    seeAnotherEn.style.display = isCurrentlyEnglish ? 'inline' : 'none';
+                    seeAnotherAr.style.display = isCurrentlyEnglish ? 'none' : 'inline';
+                }
+            }
+            
             // Also update the learn more button text when it becomes visible later
             // Store the current language state for when the button appears
             window.currentLanguage = isCurrentlyEnglish ? 'en' : 'ar';
             
             // Force reflow for RTL/LTR changes
             document.body.offsetHeight;
+        });
+        
+        // Tab switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', async function() {
+                    // Remove active class from all tabs
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Update current tab state
+                    window.currentTab = this.dataset.tab;
+                    
+                    // Get the statistic value and type
+                    const statValue = parseInt(this.dataset.value);
+                    const statType = this.dataset.stat;
+                    
+                    // Find best comparison using ALL benchmarks (no category restriction)
+                    let comparison = relatabilityEngine.findBestComparison(statValue, null, 'cumulative');
+                    
+                    if (comparison) {
+                        // Update the fact card with new comparison
+                        updateFactCard(comparison, statValue, statType);
+                    }
+                });
+            });
+        });
+        
+        // Function to update fact card with 3-line layout
+        function updateFactCard(comparison, statValue, statType) {
+            // Convert benchmark numbers to Arabic numerals when in Arabic
+            const benchmarkNumberEn = comparison.equivalent.toLocaleString();
+            const benchmarkNumberAr = comparison.equivalent.toLocaleString('ar-EG');
+            
+            // Update Line 1: Number + Statistic Type
+            document.getElementById('fact-number-en').textContent = statValue.toLocaleString();
+            document.getElementById('fact-number-ar').textContent = statValue.toLocaleString('ar-EG');
+            document.getElementById('fact-stat-en').textContent = getStatLabel(statType, 'en');
+            document.getElementById('fact-stat-ar').textContent = getStatLabel(statType, 'ar');
+            
+            // Update Line 3: Comparison
+            let comparisonEn, comparisonAr;
+            
+            if (comparison.comparisonType === 'percentage') {
+                // Percentage comparison (e.g., "44% of Cambridge, UK")
+                comparisonEn = `${comparison.equivalent}% of ${comparison.label.en}`;
+                comparisonAr = `${comparison.equivalent}% من ${comparison.label.ar}`;
+            } else {
+                // Multiple comparison (e.g., "1 Boeing 737")
+                comparisonEn = `${benchmarkNumberEn} ${comparison.label.en}${comparison.equivalent > 1 ? 's' : ''}`;
+                comparisonAr = `${benchmarkNumberAr} ${comparison.label.ar}`;
+            }
+            
+            document.getElementById('fact-comparison-en').textContent = comparisonEn;
+            document.getElementById('fact-comparison-ar').textContent = comparisonAr;
+            
+            // Update context
+            document.getElementById('fact-context-en').textContent = comparison.context.en;
+            document.getElementById('fact-context-ar').textContent = comparison.context.ar;
+            
+            // Update learn more button
+            const learnMoreBtn = document.getElementById('learn-more-btn');
+            if (learnMoreBtn) {
+                learnMoreBtn.onclick = () => window.open(comparison.source, '_blank');
+                
+                // Update button text based on current language
+                const currentLang = window.currentLanguage || 'en';
+                const learnMoreEn = learnMoreBtn.querySelector('.en');
+                const learnMoreAr = learnMoreBtn.querySelector('.ar');
+                if (learnMoreEn && learnMoreAr) {
+                    learnMoreEn.style.display = currentLang === 'en' ? 'inline' : 'none';
+                    learnMoreAr.style.display = currentLang === 'ar' ? 'inline' : 'none';
+                }
+            }
+        }
+        
+        // Helper function to get appropriate labels for different statistics
+        function getStatLabel(statType, language) {
+            const labels = {
+                total: { en: 'total martyred', ar: 'إجمالي الشهداء' },
+                children: { en: 'children martyred', ar: 'أطفال استشهدوا' },
+                women: { en: 'women martyred', ar: 'نساء استشهدن' },
+                press: { en: 'journalists martyred', ar: 'صحفيون استشهدوا' },
+                medical: { en: 'medical personnel martyred', ar: 'طاقم طبي استشهد' },
+                injured: { en: 'injured', ar: 'مصابون' }
+            };
+            
+            return labels[statType] ? labels[statType][language] : labels.total[language];
+        }
+        
+        // Share button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const shareBtn = document.getElementById('share-btn');
+            if (shareBtn) {
+                shareBtn.addEventListener('click', function() {
+                    // Get current tab and comparison data
+                    const activeTab = document.querySelector('.tab-btn.active');
+                    const tabName = activeTab ? activeTab.querySelector('.en').textContent : 'Total';
+                    // Get the current fact card content
+                    const factNumber = document.getElementById('fact-number-en').textContent;
+                    const factStat = document.getElementById('fact-stat-en').textContent;
+                    const factComparison = document.getElementById('fact-comparison-en').textContent;
+                    
+                    // Create shareable text
+                    const shareText = `Gaza Memorial: ${factNumber} ${factStat} = ${factComparison} - ${tabName} Statistics`;
+                    const shareUrl = window.location.href;
+                    
+                    // Try to use native sharing if available
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Gaza Memorial Statistics',
+                            text: shareText,
+                            url: shareUrl
+                        });
+                    } else {
+                        // Fallback: copy to clipboard
+                        const fullShareText = `${shareText}\n\n${shareUrl}`;
+                        navigator.clipboard.writeText(fullShareText).then(() => {
+                            // Show feedback
+                            const originalText = shareBtn.querySelector('.en').textContent;
+                            const originalTextAr = shareBtn.querySelector('.ar').textContent;
+                            
+                            shareBtn.querySelector('.en').textContent = 'Copied!';
+                            shareBtn.querySelector('.ar').textContent = 'تم النسخ!';
+                            
+                            setTimeout(() => {
+                                shareBtn.querySelector('.en').textContent = originalText;
+                                shareBtn.querySelector('.ar').textContent = originalTextAr;
+                            }, 2000);
+                        });
+                    }
+                });
+            }
         });
         
         // Initialize the app when page loads

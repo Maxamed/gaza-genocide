@@ -1,0 +1,663 @@
+[
+    {
+      "id": "airbus_a320",
+      "label": { "en": "Airbus A320", "ar": "إيرباص A320" },
+      "value": 180,
+      "unit": "passengers",
+      "category": "transport",
+      "context": {
+        "en": "An Airbus A320 typically seats about 180 passengers depending on configuration.",
+        "ar": "تتسع طائرة إيرباص A320 عادةً لحوالي 180 راكبًا حسب التهيئة."
+      },
+      "source": "https://www.google.com/search?q=Airbus+A320+seating+capacity"
+    },
+    {
+      "id": "airbus_a380",
+      "label": { "en": "Airbus A380", "ar": "إيرباص A380" },
+      "value": 850,
+      "unit": "passengers",
+      "category": "transport",
+      "context": {
+        "en": "The Airbus A380, the largest passenger plane, can seat up to around 850 in all-economy layouts.",
+        "ar": "تستوعب طائرة إيرباص A380، وهي أكبر طائرة ركاب، ما يصل إلى حوالي 850 راكبًا في تهيئة الدرجة الاقتصادية بالكامل."
+      },
+      "source": "https://www.google.com/search?q=Airbus+A380+maximum+seating+capacity"
+    },
+    {
+      "id": "boeing_747",
+      "label": { "en": "Boeing 747", "ar": "بوينغ 747" },
+      "value": 416,
+      "unit": "passengers",
+      "category": "transport",
+      "context": {
+        "en": "A typical Boeing 747-400 seats about 416 passengers in a three-class layout.",
+        "ar": "تتسع بوينغ 747-400 عادةً لحوالي 416 راكبًا ضمن تهيئة ثلاثية الدرجات."
+      },
+      "source": "https://www.google.com/search?q=Boeing+747-400+seating+capacity"
+    },
+    {
+      "id": "boeing_777",
+      "label": { "en": "Boeing 777", "ar": "بوينغ 777" },
+      "value": 396,
+      "unit": "passengers",
+      "category": "transport",
+      "context": {
+        "en": "A high-density Boeing 777 configuration can carry around 396 passengers.",
+        "ar": "يمكن لتهيئة عالية الكثافة لطائرة بوينغ 777 أن تحمل حوالي 396 راكبًا."
+      },
+      "source": "https://www.google.com/search?q=Boeing+777+seating+capacity"
+    },
+    {
+      "id": "boeing_787",
+      "label": { "en": "Boeing 787 Dreamliner", "ar": "بوينغ 787 دريملاينر" },
+      "value": 330,
+      "unit": "passengers",
+      "category": "transport",
+      "context": {
+        "en": "A Boeing 787 in high-density layouts can carry about 300–330 passengers.",
+        "ar": "يمكن لطائرة بوينغ 787 في التهيئات عالية الكثافة أن تحمل نحو 300–330 راكبًا."
+      },
+      "source": "https://www.google.com/search?q=Boeing+787+seating+capacity"
+    },
+    {
+      "id": "double_decker_bus_uk",
+      "label": { "en": "UK Double-Decker Bus", "ar": "حافلة طابقين (المملكة المتحدة)" },
+      "value": 80,
+      "unit": "passengers",
+      "category": "transport",
+      "context": {
+        "en": "A typical UK double-decker bus carries around 80 passengers (seated + standing).",
+        "ar": "تحمل حافلة الطابقين في المملكة المتحدة عادةً حوالي 80 راكبًا (جلوسًا ووقوفًا)."
+      },
+      "source": "https://www.google.com/search?q=double+decker+bus+capacity+UK"
+    },
+    {
+      "id": "city_bus",
+      "label": { "en": "City Bus", "ar": "حافلة نقل عام" },
+      "value": 55,
+      "unit": "passengers",
+      "category": "transport",
+      "context": {
+        "en": "A standard city bus carries about 50–60 passengers.",
+        "ar": "تحمل حافلة النقل العام القياسية حوالي 50–60 راكبًا."
+      },
+      "source": "https://www.google.com/search?q=city+bus+passenger+capacity"
+    },
+    {
+      "id": "eurostar_train",
+      "label": { "en": "Eurostar Train", "ar": "قطار يوروستار" },
+      "value": 750,
+      "unit": "passengers",
+      "category": "transport",
+      "context": {
+        "en": "A Eurostar trainset typically carries around 750 passengers.",
+        "ar": "يحمل قطار يوروستار عادة نحو 750 راكبًا."
+      },
+      "source": "https://www.google.com/search?q=Eurostar+train+capacity+passengers"
+    },
+    {
+      "id": "shinkansen_16car",
+      "label": { "en": "Shinkansen (16-car)", "ar": "شينكانسن (16 عربة)" },
+      "value": 1323,
+      "unit": "passengers",
+      "category": "transport",
+      "context": {
+        "en": "A 16-car Shinkansen set can seat roughly 1,300+ passengers depending on series.",
+        "ar": "يمكن لقطار شينكانسن المكون من 16 عربة أن يتسع لنحو 1300+ راكب حسب الطراز."
+      },
+      "source": "https://www.google.com/search?q=Shinkansen+16+car+seating+capacity"
+    },
+    {
+      "id": "tgv_duplex",
+      "label": { "en": "TGV Duplex", "ar": "تي جي في ديوبلكس" },
+      "value": 1020,
+      "unit": "passengers",
+      "category": "transport",
+      "context": {
+        "en": "A full TGV Duplex set can accommodate roughly 1,000 passengers.",
+        "ar": "يمكن لقطار TGV ديوبلكس كامل أن يستوعب نحو 1000 راكب."
+      },
+      "source": "https://www.google.com/search?q=TGV+Duplex+capacity+passengers"
+    },
+    {
+      "id": "ferry_medium",
+      "label": { "en": "Medium Ferry", "ar": "عبّارة متوسطة" },
+      "value": 1200,
+      "unit": "passengers",
+      "category": "transport",
+      "context": {
+        "en": "A medium passenger ferry often carries around 1,000–1,200 people.",
+        "ar": "تحمل العبّارة المتوسطة غالبًا حوالي 1000–1200 شخص."
+      },
+      "source": "https://www.google.com/search?q=passenger+ferry+capacity+average"
+    },
+    {
+      "id": "lusail_stadium",
+      "label": { "en": "Lusail Stadium (Qatar)", "ar": "ملعب لوسيل (قطر)" },
+      "value": 88966,
+      "unit": "seats",
+      "category": "venues",
+      "context": {
+        "en": "Lusail Stadium hosted the 2022 World Cup Final with an attendance near 88,966.",
+        "ar": "استضاف ملعب لوسيل نهائي كأس العالم 2022 بحضور يقارب 88,966 متفرجًا."
+      },
+      "source": "https://www.google.com/search?q=Lusail+Stadium+capacity+attendance+World+Cup+final"
+    },
+    {
+      "id": "wembley_stadium",
+      "label": { "en": "Wembley Stadium", "ar": "ملعب ويمبلي" },
+      "value": 90000,
+      "unit": "seats",
+      "category": "venues",
+      "context": {
+        "en": "Wembley Stadium in London seats about 90,000 spectators.",
+        "ar": "يتسع ملعب ويمبلي في لندن لحوالي 90,000 متفرج."
+      },
+      "source": "https://www.google.com/search?q=Wembley+Stadium+capacity"
+    },
+    {
+      "id": "camp_nou",
+      "label": { "en": "Camp Nou (Spotify Camp Nou)", "ar": "كامب نو (سبوتيفاي كامب نو)" },
+      "value": 99000,
+      "unit": "seats",
+      "category": "venues",
+      "context": {
+        "en": "Barcelona’s Camp Nou historically seated around 99,000 spectators.",
+        "ar": "يتسع كامب نو في برشلونة تاريخيًا لنحو 99,000 متفرج."
+      },
+      "source": "https://www.google.com/search?q=Camp+Nou+capacity"
+    },
+    {
+      "id": "madison_square_garden",
+      "label": { "en": "Madison Square Garden", "ar": "مديسون سكوير غاردن" },
+      "value": 20789,
+      "unit": "seats",
+      "category": "venues",
+      "context": {
+        "en": "Madison Square Garden’s basketball capacity is about 20,789 seats.",
+        "ar": "سعة مديسون سكوير غاردن لكرة السلة تبلغ حوالي 20,789 مقعدًا."
+      },
+      "source": "https://www.google.com/search?q=Madison+Square+Garden+capacity+basketball"
+    },
+    {
+      "id": "o2_arena_london",
+      "label": { "en": "The O2 Arena (London)", "ar": "ذا أوتو أرينا (لندن)" },
+      "value": 20000,
+      "unit": "seats",
+      "category": "venues",
+      "context": {
+        "en": "The O2 Arena in London seats around 20,000 for concerts.",
+        "ar": "تتسع صالة O2 في لندن لنحو 20,000 متفرج في الحفلات."
+      },
+      "source": "https://www.google.com/search?q=O2+Arena+capacity+concert"
+    },
+    {
+      "id": "education_city_stadium",
+      "label": { "en": "Education City Stadium", "ar": "استاد المدينة التعليمية" },
+      "value": 45000,
+      "unit": "seats",
+      "category": "venues",
+      "context": {
+        "en": "Education City Stadium in Qatar seats around 45,000.",
+        "ar": "يتسع استاد المدينة التعليمية في قطر لحوالي 45,000 متفرج."
+      },
+      "source": "https://www.google.com/search?q=Education+City+Stadium+capacity"
+    },
+    {
+      "id": "khalifa_international_stadium",
+      "label": { "en": "Khalifa International Stadium", "ar": "استاد خليفة الدولي" },
+      "value": 40000,
+      "unit": "seats",
+      "category": "venues",
+      "context": {
+        "en": "Khalifa International Stadium in Doha has a capacity near 40,000.",
+        "ar": "تبلغ سعة استاد خليفة الدولي في الدوحة حوالي 40,000."
+      },
+      "source": "https://www.google.com/search?q=Khalifa+International+Stadium+capacity"
+    },
+    {
+      "id": "yankee_stadium",
+      "label": { "en": "Yankee Stadium", "ar": "ملعب يانكي" },
+      "value": 54000,
+      "unit": "seats",
+      "category": "venues",
+      "context": {
+        "en": "Yankee Stadium in New York seats roughly 54,000 for baseball.",
+        "ar": "يتسع ملعب يانكي في نيويورك لنحو 54,000 لمباريات البيسبول."
+      },
+      "source": "https://www.google.com/search?q=Yankee+Stadium+capacity"
+    },
+    {
+      "id": "fenway_park",
+      "label": { "en": "Fenway Park", "ar": "فينواي بارك" },
+      "value": 38000,
+      "unit": "seats",
+      "category": "venues",
+      "context": {
+        "en": "Fenway Park’s baseball capacity is around 37,000–38,000.",
+        "ar": "تبلغ سعة فينواي بارك للبيسبول حوالي 37,000–38,000."
+      },
+      "source": "https://www.google.com/search?q=Fenway+Park+capacity"
+    },
+    {
+      "id": "sydney_opera_house",
+      "label": { "en": "Sydney Opera House (Concert Hall)", "ar": "دار أوبرا سيدني (قاعة الحفلات)" },
+      "value": 5700,
+      "unit": "seats",
+      "category": "venues",
+      "context": {
+        "en": "Sydney Opera House venues combined host around 5,000–6,000 seats; the Concert Hall is the largest.",
+        "ar": "تستوعب قاعات دار أوبرا سيدني مجتمعة نحو 5,000–6,000 مقعد؛ قاعة الحفلات هي الأكبر."
+      },
+      "source": "https://www.google.com/search?q=Sydney+Opera+House+Concert+Hall+capacity"
+    },
+    {
+      "id": "broadway_theater",
+      "label": { "en": "Broadway Theater (Typical)", "ar": "مسرح برودواي (نموذجي)" },
+      "value": 1200,
+      "unit": "seats",
+      "category": "venues",
+      "context": {
+        "en": "A typical Broadway theater seats roughly 1,000–1,200 people.",
+        "ar": "يتسع المسرح النموذجي في برودواي لنحو 1,000–1,200 شخص."
+      },
+      "source": "https://www.google.com/search?q=typical+Broadway+theater+capacity"
+    },
+    {
+      "id": "rafah_population",
+      "label": { "en": "Rafah (Gaza) Population", "ar": "سكان رفح (غزة)" },
+      "value": 270000,
+      "unit": "people",
+      "category": "cities",
+      "context": {
+        "en": "Rafah city’s pre-war population was roughly 270,000.",
+        "ar": "بلغ عدد سكان مدينة رفح قبل الحرب حوالي 270,000."
+      },
+      "source": "https://www.google.com/search?q=Rafah+population+Gaza"
+    },
+    {
+      "id": "khan_younis_population",
+      "label": { "en": "Khan Younis Population", "ar": "سكان خان يونس" },
+      "value": 200000,
+      "unit": "people",
+      "category": "cities",
+      "context": {
+        "en": "Khan Younis had a population around 200,000 before the war.",
+        "ar": "كان عدد سكان خان يونس حوالي 200,000 قبل الحرب."
+      },
+      "source": "https://www.google.com/search?q=Khan+Younis+population"
+    },
+    {
+      "id": "gaza_strip_population",
+      "label": { "en": "Gaza Strip Population", "ar": "سكان قطاع غزة" },
+      "value": 2200000,
+      "unit": "people",
+      "category": "cities",
+      "context": {
+        "en": "The Gaza Strip’s population is about 2.2 million people.",
+        "ar": "يبلغ عدد سكان قطاع غزة حوالي 2.2 مليون نسمة."
+      },
+      "source": "https://www.google.com/search?q=Gaza+Strip+population+2.2+million"
+    },
+    {
+      "id": "ramallah_population",
+      "label": { "en": "Ramallah Population", "ar": "سكان رام الله" },
+      "value": 40000,
+      "unit": "people",
+      "category": "cities",
+      "context": {
+        "en": "Ramallah’s city population is on the order of ~40,000.",
+        "ar": "يبلغ عدد سكان مدينة رام الله نحو 40,000."
+      },
+      "source": "https://www.google.com/search?q=Ramallah+city+population"
+    },
+    {
+      "id": "bethlehem_population",
+      "label": { "en": "Bethlehem Population", "ar": "سكان بيت لحم" },
+      "value": 30000,
+      "unit": "people",
+      "category": "cities",
+      "context": {
+        "en": "Bethlehem has a population around 30,000.",
+        "ar": "يبلغ عدد سكان بيت لحم حوالي 30,000."
+      },
+      "source": "https://www.google.com/search?q=Bethlehem+population+city"
+    },
+    {
+      "id": "jericho_population",
+      "label": { "en": "Jericho Population", "ar": "سكان أريحا" },
+      "value": 25000,
+      "unit": "people",
+      "category": "cities",
+      "context": {
+        "en": "Jericho’s city population is roughly 25,000.",
+        "ar": "يبلغ عدد سكان مدينة أريحا نحو 25,000."
+      },
+      "source": "https://www.google.com/search?q=Jericho+city+population"
+    },
+    {
+      "id": "doha_population",
+      "label": { "en": "Doha Population", "ar": "سكان الدوحة" },
+      "value": 2400000,
+      "unit": "people",
+      "category": "cities",
+      "context": {
+        "en": "Doha’s metropolitan population is roughly 2.4 million.",
+        "ar": "يبلغ عدد سكان منطقة الدوحة الحضرية حوالي 2.4 مليون."
+      },
+      "source": "https://www.google.com/search?q=Doha+population+metro"
+    },
+    {
+      "id": "london_population",
+      "label": { "en": "London Population", "ar": "سكان لندن" },
+      "value": 9000000,
+      "unit": "people",
+      "category": "cities",
+      "context": {
+        "en": "Greater London has a population close to 9 million.",
+        "ar": "يبلغ عدد سكان لندن الكبرى قرابة 9 ملايين."
+      },
+      "source": "https://www.google.com/search?q=Greater+London+population"
+    },
+    {
+      "id": "new_york_city_population",
+      "label": { "en": "New York City Population", "ar": "سكان مدينة نيويورك" },
+      "value": 8500000,
+      "unit": "people",
+      "category": "cities",
+      "context": {
+        "en": "New York City’s population is roughly 8.5 million.",
+        "ar": "يبلغ عدد سكان مدينة نيويورك نحو 8.5 ملايين."
+      },
+      "source": "https://www.google.com/search?q=New+York+City+population"
+    },
+    {
+      "id": "nine_eleven",
+      "label": { "en": "9/11 Attacks", "ar": "هجمات 11 سبتمبر" },
+      "value": 2977,
+      "unit": "people",
+      "category": "historic_event",
+      "context": {
+        "en": "The September 11, 2001 attacks killed 2,977 people.",
+        "ar": "أسفرت هجمات 11 سبتمبر 2001 عن مقتل 2,977 شخصًا."
+      },
+      "source": "https://www.google.com/search?q=9/11+death+toll+2977"
+    },
+    {
+      "id": "titanic",
+      "label": { "en": "RMS Titanic", "ar": "آر إم إس تيتانيك" },
+      "value": 1517,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "The Titanic disaster in 1912 caused about 1,517 deaths.",
+        "ar": "تسبب غرق تيتانيك عام 1912 بحوالي 1,517 وفاة."
+      },
+      "source": "https://www.google.com/search?q=Titanic+deaths+1912+1517"
+    },
+    {
+      "id": "hiroshima_day_one",
+      "label": { "en": "Hiroshima (Day One)", "ar": "هيروشيما (اليوم الأول)" },
+      "value": 70000,
+      "unit": "people",
+      "category": "historic_event",
+      "context": {
+        "en": "Approximate deaths on the first day of the Hiroshima bombing were ~70,000.",
+        "ar": "تقدَّر الوفيات في اليوم الأول لقصف هيروشيما بحوالي 70,000."
+      },
+      "source": "https://www.google.com/search?q=Hiroshima+deaths+first+day+70000"
+    },
+    {
+      "id": "nagasaki_day_one",
+      "label": { "en": "Nagasaki (Day One)", "ar": "ناغاساكي (اليوم الأول)" },
+      "value": 40000,
+      "unit": "people",
+      "category": "historic_event",
+      "context": {
+        "en": "Approximate deaths on the first day in Nagasaki were around 40,000.",
+        "ar": "قُدِّرت وفيات اليوم الأول في ناغاساكي بحوالي 40,000."
+      },
+      "source": "https://www.google.com/search?q=Nagasaki+deaths+first+day+40000"
+    },
+    {
+      "id": "srebrenica_massacre",
+      "label": { "en": "Srebrenica Massacre", "ar": "مجزرة سربرنيتسا" },
+      "value": 8000,
+      "unit": "people",
+      "category": "historic_event",
+      "context": {
+        "en": "Around 8,000 people were killed in the Srebrenica massacre (1995).",
+        "ar": "قُتل حوالي 8,000 شخص في مجزرة سربرنيتسا (1995)."
+      },
+      "source": "https://www.google.com/search?q=Srebrenica+massacre+8000"
+    },
+    {
+      "id": "rwanda_genocide_daily",
+      "label": { "en": "Rwanda Genocide (Daily Avg.)", "ar": "إبادة رواندا (متوسط يومي)" },
+      "value": 8000,
+      "unit": "people_per_day",
+      "category": "historic_event",
+      "context": {
+        "en": "During 1994, the Rwanda genocide averaged roughly 8,000 deaths per day at peak.",
+        "ar": "خلال عام 1994 بلغ متوسط الوفيات يوميًا في إبادة رواندا نحو 8,000 عند الذروة."
+      },
+      "source": "https://www.google.com/search?q=Rwanda+genocide+daily+deaths+average"
+    },
+    {
+      "id": "london_blitz_total",
+      "label": { "en": "London Blitz (Total)", "ar": "قصف لندن (الإجمالي)" },
+      "value": 43000,
+      "unit": "people",
+      "category": "historic_event",
+      "context": {
+        "en": "The Blitz on London (1940–41) caused about 43,000 civilian deaths.",
+        "ar": "أسفر القصف الجوي على لندن (1941–1940) عن نحو 43,000 وفاة مدنية."
+      },
+      "source": "https://www.google.com/search?q=London+Blitz+deaths+43000"
+    },
+    {
+      "id": "dresden_bombing",
+      "label": { "en": "Bombing of Dresden", "ar": "قصف دريسدن" },
+      "value": 25000,
+      "unit": "people",
+      "category": "historic_event",
+      "context": {
+        "en": "The bombing of Dresden in 1945 killed around 25,000 people.",
+        "ar": "أسفر قصف دريسدن عام 1945 عن مقتل نحو 25,000 شخص."
+      },
+      "source": "https://www.google.com/search?q=Bombing+of+Dresden+deaths+25000"
+    },
+    {
+      "id": "guernica_bombing",
+      "label": { "en": "Guernica Bombing", "ar": "قصف غيرنيكا" },
+      "value": 1650,
+      "unit": "people",
+      "category": "historic_event",
+      "context": {
+        "en": "Estimates for the 1937 bombing of Guernica are around 1,600+ deaths.",
+        "ar": "تقدَّر وفيات قصف غيرنيكا عام 1937 بأكثر من 1,600 وفاة."
+      },
+      "source": "https://www.google.com/search?q=Guernica+bombing+death+toll"
+    },
+    {
+      "id": "my_lai_massacre",
+      "label": { "en": "My Lai Massacre", "ar": "مجزرة ماي لاي" },
+      "value": 500,
+      "unit": "people",
+      "category": "historic_event",
+      "context": {
+        "en": "The My Lai massacre (1968) killed around 500 civilians.",
+        "ar": "أودت مجزرة ماي لاي (1968) بحياة نحو 500 مدني."
+      },
+      "source": "https://www.google.com/search?q=My+Lai+massacre+deaths+500"
+    },
+    {
+      "id": "sabra_shatila",
+      "label": { "en": "Sabra and Shatila Massacre", "ar": "مجزرة صبرا وشاتيلا" },
+      "value": 2000,
+      "unit": "people",
+      "category": "historic_event",
+      "context": {
+        "en": "The Sabra and Shatila massacre (1982) resulted in roughly 2,000 deaths.",
+        "ar": "أدت مجزرة صبرا وشاتيلا (1982) إلى نحو 2,000 وفاة."
+      },
+      "source": "https://www.google.com/search?q=Sabra+and+Shatila+massacre+death+toll"
+    },
+    {
+      "id": "tenerife_airport_disaster",
+      "label": { "en": "Tenerife Airport Disaster", "ar": "كارثة مطار تينيريفي" },
+      "value": 583,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "The 1977 Tenerife airport collision killed 583 people.",
+        "ar": "أسفر اصطدام مطار تينيريفي عام 1977 عن مقتل 583 شخصًا."
+      },
+      "source": "https://www.google.com/search?q=Tenerife+airport+disaster+583"
+    },
+    {
+      "id": "challenger_disaster",
+      "label": { "en": "Space Shuttle Challenger", "ar": "مكوك الفضاء تشالنجر" },
+      "value": 7,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "The Space Shuttle Challenger explosion in 1986 killed 7 astronauts.",
+        "ar": "أسفر انفجار مكوك الفضاء تشالنجر عام 1986 عن مقتل 7 رواد فضاء."
+      },
+      "source": "https://www.google.com/search?q=Space+Shuttle+Challenger+deaths+7"
+    },
+    {
+      "id": "columbia_disaster",
+      "label": { "en": "Space Shuttle Columbia", "ar": "مكوك الفضاء كولومبيا" },
+      "value": 7,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "The Space Shuttle Columbia disaster in 2003 killed 7 astronauts.",
+        "ar": "أسفرت كارثة مكوك الفضاء كولومبيا عام 2003 عن مقتل 7 رواد فضاء."
+      },
+      "source": "https://www.google.com/search?q=Space+Shuttle+Columbia+deaths+7"
+    },
+    {
+      "id": "lockerbie_bombing",
+      "label": { "en": "Lockerbie Bombing (Pan Am 103)", "ar": "تفجير لوكربي (بان آم 103)" },
+      "value": 270,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "The 1988 Lockerbie bombing killed 270 people.",
+        "ar": "أسفر تفجير لوكربي عام 1988 عن مقتل 270 شخصًا."
+      },
+      "source": "https://www.google.com/search?q=Lockerbie+bombing+deaths+270"
+    },
+    {
+      "id": "air_india_182",
+      "label": { "en": "Air India Flight 182", "ar": "الخطوط الهندية الرحلة 182" },
+      "value": 329,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "The bombing of Air India Flight 182 in 1985 killed 329 people.",
+        "ar": "أدى تفجير الرحلة 182 للخطوط الهندية عام 1985 إلى مقتل 329 شخصًا."
+      },
+      "source": "https://www.google.com/search?q=Air+India+Flight+182+deaths+329"
+    },
+    {
+      "id": "mh17",
+      "label": { "en": "Malaysia Airlines Flight MH17", "ar": "الخطوط الماليزية الرحلة MH17" },
+      "value": 298,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "Malaysia Airlines Flight MH17 was shot down in 2014, killing 298 people.",
+        "ar": "أُسقطت طائرة الخطوط الماليزية الرحلة MH17 عام 2014 ما أدى إلى مقتل 298 شخصًا."
+      },
+      "source": "https://www.google.com/search?q=MH17+deaths+298"
+    },
+    {
+      "id": "ethiopian_302",
+      "label": { "en": "Ethiopian Airlines Flight 302", "ar": "الخطوط الإثيوبية الرحلة 302" },
+      "value": 157,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "Ethiopian Airlines Flight 302 crashed in 2019, killing 157 people.",
+        "ar": "تحطمت طائرة الخطوط الإثيوبية الرحلة 302 عام 2019 ما أسفر عن مقتل 157 شخصًا."
+      },
+      "source": "https://www.google.com/search?q=Ethiopian+Airlines+Flight+302+deaths+157"
+    },
+    {
+      "id": "bhopal_disaster",
+      "label": { "en": "Bhopal Gas Disaster", "ar": "كارثة غاز بوبال" },
+      "value": 15000,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "The 1984 Bhopal gas disaster caused an estimated 15,000 deaths (long-term).",
+        "ar": "تسببت كارثة غاز بوبال عام 1984 في نحو 15,000 وفاة (على المدى الطويل)."
+      },
+      "source": "https://www.google.com/search?q=Bhopal+disaster+death+toll"
+    },
+    {
+      "id": "indian_ocean_tsunami_2004",
+      "label": { "en": "Indian Ocean Tsunami (2004)", "ar": "تسونامي المحيط الهندي (2004)" },
+      "value": 227000,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "The 2004 Indian Ocean tsunami killed approximately 227,000 people.",
+        "ar": "أسفر تسونامي المحيط الهندي عام 2004 عن مقتل ما يقرب من 227,000 شخص."
+      },
+      "source": "https://www.google.com/search?q=2004+Indian+Ocean+tsunami+death+toll+227,000"
+    },
+    {
+      "id": "cyclone_nargis",
+      "label": { "en": "Cyclone Nargis (2008)", "ar": "إعصار نرجس (2008)" },
+      "value": 138000,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "Cyclone Nargis in Myanmar caused about 138,000 deaths.",
+        "ar": "تسبب إعصار نرجس في ميانمار بحوالي 138,000 وفاة."
+      },
+      "source": "https://www.google.com/search?q=Cyclone+Nargis+death+toll+138,000"
+    },
+    {
+      "id": "turkey_syria_earthquake_2023",
+      "label": { "en": "Turkey–Syria Earthquakes (2023)", "ar": "زلزالا تركيا–سوريا (2023)" },
+      "value": 59000,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "The 2023 earthquakes in Turkey and Syria killed around 59,000 people.",
+        "ar": "أسفرت زلازل 2023 في تركيا وسوريا عن مقتل حوالي 59,000 شخص."
+      },
+      "source": "https://www.google.com/search?q=Turkey+Syria+earthquake+2023+death+toll"
+    },
+    {
+      "id": "haiti_earthquake_2010",
+      "label": { "en": "Haiti Earthquake (2010)", "ar": "زلزال هايتي (2010)" },
+      "value": 220000,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "The 2010 Haiti earthquake caused an estimated 220,000 deaths.",
+        "ar": "أسفر زلزال هايتي عام 2010 عن نحو 220,000 وفاة."
+      },
+      "source": "https://www.google.com/search?q=Haiti+earthquake+2010+death+toll+220,000"
+    },
+    {
+      "id": "bhola_cyclone_1970",
+      "label": { "en": "Bhola Cyclone (1970)", "ar": "إعصار بولا (1970)" },
+      "value": 300000,
+      "unit": "people",
+      "category": "disaster",
+      "context": {
+        "en": "The 1970 Bhola cyclone killed an estimated 300,000–500,000 people; a conservative figure is ~300,000.",
+        "ar": "تسبب إعصار بولا عام 1970 في وفاة تُقدّر بين 300,000 و500,000 شخص؛ يُستخدم تقدير محافظ يقارب 300,000."
+      },
+      "source": "https://www.google.com/search?q=Bhola+cyclone+1970+death+toll"
+    }
+  ]
+  
