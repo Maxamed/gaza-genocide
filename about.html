@@ -61,7 +61,14 @@
     <!-- Floating Navigation -->
     <nav class="main-navigation">
         <div class="nav-container">
-            <ul class="nav-list">
+            <!-- Mobile Navigation Toggle -->
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-list" id="nav-list">
                 <li class="nav-item">
                     <a href="./index.html" class="nav-link">
                         <span class="en">Home</span>
@@ -320,6 +327,34 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize language manager first
             window.languageManager = new LanguageManager();
+            
+            // Mobile Navigation Toggle
+            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+            const navList = document.getElementById('nav-list');
+            
+            if (mobileNavToggle && navList) {
+                mobileNavToggle.addEventListener('click', function() {
+                    mobileNavToggle.classList.toggle('active');
+                    navList.classList.toggle('active');
+                });
+                
+                // Close mobile menu when clicking on a link
+                const navLinks = navList.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileNavToggle.classList.remove('active');
+                        navList.classList.remove('active');
+                    });
+                });
+                
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileNavToggle.contains(event.target) && !navList.contains(event.target)) {
+                        mobileNavToggle.classList.remove('active');
+                        navList.classList.remove('active');
+                    }
+                });
+            }
         });
     </script>
 </body>
