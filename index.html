@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaza Genocide - Memorial & Tracker</title>
+    
+    <!-- Meta tags for sharing -->
+    <meta name="description" content="Gaza Genocide Memorial & Tracker - Honoring every life lost with comprehensive data and relatability comparisons">
+    <meta name="keywords" content="Gaza, genocide, memorial, tracker, casualties, martyrs, Palestine">
+    <meta name="author" content="Gaza Memorial Project">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.github.io/">
+    <meta property="og:title" content="Gaza Genocide - Memorial & Tracker">
+    <meta property="og:description" content="Honoring every life lost with comprehensive data and relatability comparisons">
+    <meta property="og:image" content="https://your-domain.github.io/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-domain.github.io/">
+    <meta property="twitter:title" content="Gaza Genocide - Memorial & Tracker">
+    <meta property="twitter:description" content="Honoring every life lost with comprehensive data and relatability comparisons">
+    <meta property="twitter:image" content="https://your-domain.github.io/og-image.jpg">
+    
+    <!-- Preload fonts for performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+    <!-- Floating Navigation -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <span class="en">Home</span>
+                        <span class="ar" style="display: none;">الرئيسية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="en">Memorial Wall</span>
+                        <span class="ar" style="display: none;">جدار الذكرى</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="en">Journalists</span>
+                        <span class="ar" style="display: none;">الصحفيون</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="en">Timeline</span>
+                        <span class="ar" style="display: none;">الجدول الزمني</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="en">About</span>
+                        <span class="ar" style="display: none;">حول</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Language Toggle in Nav -->
+            <button class="nav-language-toggle" id="nav-language-toggle">
+                <span class="en">العربية</span>
+                <span class="ar" style="display: none;">English</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-header">
+                <h1 class="en">Gaza Genocide</h1>
+                <h1 class="ar" style="display: none;">إبادة غزة</h1>
+            </div>
+            
+            <!-- Big Relatability Card -->
+            <div class="hero-comparison fact-card fact-card-animate">
+                <div class="fact-card-quote en" id="fact-quote-en">63,633 martyred = nearly half the population of Cambridge, UK</div>
+                <div class="fact-card-quote ar" style="display: none;" id="fact-quote-ar">٦٣٬٦٣٣ شهيد = ما يقرب من نصف سكان كامبريدج، المملكة المتحدة</div>
+                <div class="fact-card-context en" id="fact-context-en">The entire population of Cambridge, UK is about 145,000 people. This means the number of people martyred in Gaza represents nearly half of Cambridge's population.</div>
+                <div class="fact-card-context ar" style="display: none;" id="fact-context-ar">إجمالي سكان كامبريدج، المملكة المتحدة حوالي 145,000 شخص. هذا يعني أن عدد الشهداء في غزة يمثل ما يقرب من نصف سكان كامبريدج.</div>
+
+            </div>
+            
+            <div class="hero-controls">
+                <button class="btn btn-secondary" id="learn-more-btn" style="display: none;">
+                    <span class="en">Learn more about this comparison</span>
+                    <span class="ar" style="display: none;">اعرف المزيد عن هذه المقارنة</span>
+                </button>
+                <button class="btn btn-primary" id="see-another-btn">
+                    <span class="en">See Another</span>
+                    <span class="ar" style="display: none;">شاهد آخر</span>
+                </button>
+            </div>
+            
+            <div class="last-update">
+                <span class="en">Last updated: September 2, 2025</span>
+                <span class="ar" style="display: none;">آخر تحديث: 2 سبتمبر 2025</span>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Scripts -->
+    <script src="logic/relatability.js"></script>
+    <script src="logic/formatters.js"></script>
+    <script src="logic/calculations.js"></script>
+    
+    <!-- Main App Script -->
+    <script>
+        // Initialize the relatability engine
+        const relatabilityEngine = new RelatabilityEngine();
+        
+        // Initialize language state
+        window.currentLanguage = 'en';
+        
+        // Load data and display comparison
+        async function initializeApp() {
+            try {
+                // Load benchmarks
+                await relatabilityEngine.loadBenchmarks();
+                
+                // Load summary data
+                const response = await fetch('data/summary.json');
+                const summaryData = await response.json();
+                
+                // Get total killed from Gaza
+                const totalKilled = summaryData.gaza.killed.total;
+                
+                // Find best comparison using the engine
+                const comparison = relatabilityEngine.findBestComparison(totalKilled, 'cities', 'cumulative');
+                
+                                if (comparison) {
+                    // Convert benchmark numbers to Arabic numerals when in Arabic
+                    const benchmarkNumberEn = comparison.equivalent.toLocaleString();
+                    const benchmarkNumberAr = comparison.equivalent.toLocaleString('ar-EG');
+                    
+                    // Format the comparison based on type
+                    let quoteEn, quoteAr;
+                    
+                    if (comparison.comparisonType === 'percentage') {
+                        // Percentage comparison (e.g., "44% of Cambridge, UK")
+                        quoteEn = `<span class="number">63,633</span><span class="equals">martyred =</span><span class="comparison">${comparison.equivalent}% of ${comparison.label.en}</span>`;
+                        quoteAr = `<span class="number">٦٣٬٦٣٣</span><span class="equals">شهيد =</span><span class="comparison">${comparison.equivalent}% من ${comparison.label.ar}</span>`;
+                    } else {
+                        // Multiple comparison (e.g., "1 Boeing 737")
+                        quoteEn = `<span class="number">63,633</span><span class="equals">martyred =</span><span class="comparison">${benchmarkNumberEn} ${comparison.label.en}${comparison.equivalent > 1 ? 's' : ''}</span>`;
+                        quoteAr = `<span class="number">٦٣٬٦٣٣</span><span class="equals">شهيد =</span><span class="comparison">${benchmarkNumberAr} ${comparison.label.ar}</span>`;
+                    }
+                    
+                    // Update the fact card
+                    document.getElementById('fact-quote-en').innerHTML = quoteEn;
+                    document.getElementById('fact-quote-ar').innerHTML = quoteAr;
+                    document.getElementById('fact-context-en').textContent = comparison.context.en;
+                    document.getElementById('fact-context-ar').textContent = comparison.context.ar;
+                    
+                    // Show and configure learn more button
+                    const learnMoreBtn = document.getElementById('learn-more-btn');
+                    if (comparison.source && learnMoreBtn) {
+                        learnMoreBtn.style.display = 'inline-block';
+                        learnMoreBtn.onclick = () => window.open(comparison.source, '_blank');
+                        
+                        // Update button text based on current language
+                        const currentLang = window.currentLanguage || 'en';
+                        const learnMoreEn = learnMoreBtn.querySelector('.en');
+                        const learnMoreAr = learnMoreBtn.querySelector('.ar');
+                        if (learnMoreEn && learnMoreAr) {
+                            learnMoreEn.style.display = currentLang === 'en' ? 'inline' : 'none';
+                            learnMoreAr.style.display = currentLang === 'ar' ? 'inline' : 'none';
+                        }
+                    } else if (learnMoreBtn) {
+                        learnMoreBtn.style.display = 'none';
+                    }
+                }
+                
+            } catch (error) {
+                console.error('Failed to initialize app:', error);
+                // Show error message to user
+                document.getElementById('fact-quote-en').innerHTML = '<span class="number">63,633</span><span class="equals">martyred</span><span class="comparison">Error loading comparison</span>';
+                document.getElementById('fact-quote-ar').innerHTML = '<span class="number">٦٣٬٦٣٣</span><span class="equals">شهيد</span><span class="comparison">خطأ في تحميل المقارنة</span>';
+                document.getElementById('fact-context-en').textContent = 'Please refresh the page to try again.';
+                document.getElementById('fact-context-ar').textContent = 'يرجى تحديث الصفحة والمحاولة مرة أخرى.';
+                
+                // Hide learn more button on error
+                const learnMoreBtn = document.getElementById('learn-more-btn');
+                if (learnMoreBtn) {
+                    learnMoreBtn.style.display = 'none';
+                }
+            }
+        }
+        
+        // See Another button functionality
+        document.getElementById('see-another-btn').addEventListener('click', async function() {
+            try {
+                const response = await fetch('data/summary.json');
+                const summaryData = await response.json();
+                const totalKilled = summaryData.gaza.killed.total;
+                
+                // Get a random comparison
+                const comparison = relatabilityEngine.getRandomComparison(totalKilled);
+                
+                                if (comparison) {
+                    // Convert benchmark numbers to Arabic numerals when in Arabic
+                    const benchmarkNumberEn = comparison.equivalent.toLocaleString();
+                    const benchmarkNumberAr = comparison.equivalent.toLocaleString('ar-EG');
+                    
+                    // Format the comparison based on type
+                    let quoteEn, quoteAr;
+                    
+                    if (comparison.comparisonType === 'percentage') {
+                        // Percentage comparison (e.g., "44% of Cambridge, UK")
+                        quoteEn = `<span class="number">63,633</span><span class="equals">martyred =</span><span class="comparison">${comparison.equivalent}% of ${comparison.label.en}</span>`;
+                        quoteAr = `<span class="number">٦٣٬٦٣٣</span><span class="equals">شهيد =</span><span class="comparison">${comparison.equivalent}% من ${comparison.label.ar}</span>`;
+                    } else {
+                        // Multiple comparison (e.g., "1 Boeing 737")
+                        quoteEn = `<span class="number">63,633</span><span class="equals">martyred =</span><span class="comparison">${benchmarkNumberEn} ${comparison.label.en}${comparison.equivalent > 1 ? 's' : ''}</span>`;
+                        quoteAr = `<span class="number">٦٣٬٦٣٣</span><span class="equals">شهيد =</span><span class="comparison">${benchmarkNumberAr} ${comparison.label.ar}</span>`;
+                    }
+                    
+                    document.getElementById('fact-quote-en').innerHTML = quoteEn;
+                    document.getElementById('fact-quote-ar').innerHTML = quoteAr;
+                    document.getElementById('fact-context-ar').textContent = comparison.context.ar;
+                    document.getElementById('fact-context-en').textContent = comparison.context.en;
+                    
+                    // Show and configure learn more button
+                    const learnMoreBtn = document.getElementById('learn-more-btn');
+                    if (comparison.source && learnMoreBtn) {
+                        learnMoreBtn.style.display = 'inline-block';
+                        learnMoreBtn.onclick = () => window.open(comparison.source, '_blank');
+                        
+                        // Update button text based on current language
+                        const currentLang = window.currentLanguage || 'en';
+                        const learnMoreEn = learnMoreBtn.querySelector('.en');
+                        const learnMoreAr = learnMoreBtn.querySelector('.ar');
+                        if (learnMoreEn && learnMoreAr) {
+                            learnMoreEn.style.display = currentLang === 'en' ? 'inline' : 'none';
+                            learnMoreAr.style.display = currentLang === 'ar' ? 'inline' : 'none';
+                        }
+                    } else if (learnMoreBtn) {
+                        learnMoreBtn.style.display = 'none';
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to get new comparison:', error);
+                // Show error message to user
+                document.getElementById('fact-quote-ar').innerHTML = '<span class="number">٦٣٬٦٣٣</span><span class="equals">شهيد</span><span class="comparison">خطأ في تحميل المقارنة</span>';
+                document.getElementById('fact-quote-en').innerHTML = '<span class="number">63,633</span><span class="equals">martyred</span><span class="comparison">Error loading comparison</span>';
+                document.getElementById('fact-context-ar').textContent = 'يرجى تحديث الصفحة والمحاولة مرة أخرى.';
+                document.getElementById('fact-context-en').textContent = 'Please refresh the page to try again.';
+                
+                // Hide learn more button on error
+                const learnMoreBtn = document.getElementById('learn-more-btn');
+                if (learnMoreBtn) {
+                    learnMoreBtn.style.display = 'none';
+                }
+            }
+        });
+        
+        // Language Toggle Script
+        document.getElementById('nav-language-toggle').addEventListener('click', function() {
+            const englishElements = document.querySelectorAll('.en');
+            const arabicElements = document.querySelectorAll('.ar');
+            const html = document.documentElement;
+            const body = document.body;
+            
+            const isCurrentlyEnglish = englishElements[0].style.display !== 'none';
+            
+            if (isCurrentlyEnglish) {
+                // Switch to Arabic
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                body.setAttribute('dir', 'rtl');
+                
+                englishElements.forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                arabicElements.forEach(el => {
+                    el.style.display = 'inline';
+                });
+            } else {
+                // Switch to English
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', 'en');
+                body.setAttribute('dir', 'ltr');
+                
+                englishElements.forEach(el => {
+                    el.style.display = 'inline';
+                });
+                
+                arabicElements.forEach(el => {
+                    el.style.display = 'none';
+                });
+            }
+            
+            // Update button text
+            const enSpan = this.querySelector('.en');
+            const arSpan = this.querySelector('.ar');
+            
+            if (enSpan && arSpan) {
+                enSpan.style.display = isCurrentlyEnglish ? 'inline' : 'none';
+                arSpan.style.display = isCurrentlyEnglish ? 'none' : 'inline';
+            }
+            
+            // Update learn more button text
+            const learnMoreBtn = document.getElementById('learn-more-btn');
+            if (learnMoreBtn) {
+                const learnMoreEn = learnMoreBtn.querySelector('.en');
+                const learnMoreAr = learnMoreBtn.querySelector('.ar');
+                if (learnMoreEn && learnMoreAr) {
+                    learnMoreEn.style.display = isCurrentlyEnglish ? 'inline' : 'none';
+                    learnMoreAr.style.display = isCurrentlyEnglish ? 'none' : 'inline';
+                }
+            }
+            
+            // Also update the learn more button text when it becomes visible later
+            // Store the current language state for when the button appears
+            window.currentLanguage = isCurrentlyEnglish ? 'en' : 'ar';
+            
+            // Force reflow for RTL/LTR changes
+            document.body.offsetHeight;
+        });
+        
+        // Initialize the app when page loads
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+</body>
+</html> 

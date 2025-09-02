@@ -1,0 +1,272 @@
+[
+  {
+    "id": "school_bus",
+    "label": {
+      "en": "School Bus",
+      "ar": "حافلة مدرسية"
+    },
+    "value": 50,
+    "unit": "children",
+    "category": "education",
+    "context": {
+      "en": "One full school bus typically carries about 50 children.",
+      "ar": "الحافلة المدرسية الممتلئة تحمل عادة حوالي 50 طفلاً."
+    },
+    "source": "https://www.google.com/search?q=school+bus+capacity+children+passengers"
+  },
+  {
+    "id": "classroom_us",
+    "label": {
+      "en": "US Classroom",
+      "ar": "فصل دراسي أمريكي"
+    },
+    "value": 25,
+    "unit": "students",
+    "category": "education",
+    "context": {
+      "en": "The average U.S. classroom has about 25 students.",
+      "ar": "متوسط الفصل الدراسي الأمريكي يحتوي على حوالي 25 طالباً."
+    },
+    "source": "https://www.google.com/search?q=average+US+classroom+size+students+2024"
+  },
+  {
+    "id": "classroom_uk",
+    "label": {
+      "en": "UK Classroom",
+      "ar": "فصل دراسي بريطاني"
+    },
+    "value": 27,
+    "unit": "students",
+    "category": "education",
+    "context": {
+      "en": "The average UK classroom has about 27 students.",
+      "ar": "متوسط الفصل الدراسي البريطاني يحتوي على حوالي 27 طالباً."
+    },
+    "source": "https://www.google.com/search?q=average+UK+classroom+size+students+2024"
+  },
+  {
+    "id": "classroom_gaza",
+    "label": {
+      "en": "Gaza Classroom",
+      "ar": "فصل دراسي في غزة"
+    },
+    "value": 40,
+    "unit": "students",
+    "category": "education",
+    "context": {
+      "en": "The average Gaza classroom before the war had about 40 students.",
+      "ar": "متوسط الفصل الدراسي في غزة قبل الحرب كان حوالي 40 طالباً."
+    },
+    "source": "https://www.google.com/search?q=Gaza+classroom+size+students+UNRWA+education"
+  },
+  {
+    "id": "primary_school",
+    "label": {
+      "en": "Primary School",
+      "ar": "مدرسة ابتدائية"
+    },
+    "value": 500,
+    "unit": "pupils",
+    "category": "education",
+    "context": {
+      "en": "A typical primary school serves about 500 pupils.",
+      "ar": "المدرسة الابتدائية النموذجية تخدم حوالي 500 تلميذ."
+    },
+    "source": "https://www.google.com/search?q=primary+school+enrollment+capacity+students+typical"
+  },
+  {
+    "id": "high_school",
+    "label": {
+      "en": "High School",
+      "ar": "مدرسة ثانوية"
+    },
+    "value": 1000,
+    "unit": "students",
+    "category": "education",
+    "context": {
+      "en": "A typical high school serves about 1,000 students.",
+      "ar": "المدرسة الثانوية النموذجية تخدم حوالي 1,000 طالب."
+    },
+    "source": "https://www.google.com/search?q=high+school+enrollment+capacity+students+typical"
+  },
+  {
+    "id": "kindergarten_class",
+    "label": {
+      "en": "Kindergarten Class",
+      "ar": "فصل روضة أطفال"
+    },
+    "value": 20,
+    "unit": "children",
+    "category": "education",
+    "context": {
+      "en": "A typical kindergarten class has about 20 children.",
+      "ar": "فصل الروضة النموذجي يحتوي على حوالي 20 طفلاً."
+    },
+    "source": "https://www.google.com/search?q=kindergarten+class+size+children+typical+2024"
+  },
+  {
+    "id": "playground",
+    "label": {
+      "en": "Playground Full",
+      "ar": "ملعب ممتلئ"
+    },
+    "value": 50,
+    "unit": "children",
+    "category": "education",
+    "context": {
+      "en": "A playground full of children typically has about 50 kids.",
+      "ar": "الملعب الممتلئ بالأطفال يحتوي عادة على حوالي 50 طفلاً."
+    },
+    "source": "https://www.google.com/search?q=playground+capacity+children+capacity+design+standards"
+  },
+  {
+    "id": "kindergarten_graduation",
+    "label": {
+      "en": "Kindergarten Graduation",
+      "ar": "تخرج روضة أطفال"
+    },
+    "value": 100,
+    "unit": "children",
+    "category": "education",
+    "context": {
+      "en": "A typical kindergarten graduation ceremony has about 100 children.",
+      "ar": "حفل تخرج الروضة النموذجي يحتوي على حوالي 100 طفل."
+    },
+    "source": "https://www.google.com/search?q=kindergarten+graduation+ceremony+attendance+children"
+  },
+  {
+    "id": "village_school",
+    "label": {
+      "en": "Village Primary School",
+      "ar": "مدرسة قرية ابتدائية"
+    },
+    "value": 300,
+    "unit": "students",
+    "category": "education",
+    "context": {
+      "en": "A village primary school in rural Palestine typically serves about 300 students.",
+      "ar": "المدرسة الابتدائية في القرية الفلسطينية الريفية تخدم عادة حوالي 300 طالب."
+    },
+    "source": "https://www.google.com/search?q=village+primary+school+enrollment+Palestine+rural+education"
+  },
+  {
+    "id": "gaza_secondary_school",
+    "label": {
+      "en": "Gaza Secondary School",
+      "ar": "مدرسة ثانوية في غزة"
+    },
+    "value": 800,
+    "unit": "students",
+    "category": "education",
+    "context": {
+      "en": "A typical secondary school in Gaza City serves about 800 students.",
+      "ar": "المدرسة الثانوية النموذجية في مدينة غزة تخدم حوالي 800 طالب."
+    },
+    "source": "https://www.google.com/search?q=Gaza+secondary+school+enrollment+UNRWA+education+capacity"
+  },
+  {
+    "id": "university_faculty",
+    "label": {
+      "en": "University Faculty Annual Intake",
+      "ar": "قبول سنوي لكلية جامعية"
+    },
+    "value": 2000,
+    "unit": "students",
+    "category": "education",
+    "context": {
+      "en": "A major university faculty typically admits about 2,000 new students annually.",
+      "ar": "كلية الجامعة الكبرى تقبل عادة حوالي 2,000 طالب جديد سنوياً."
+    },
+    "source": "https://www.google.com/search?q=university+faculty+annual+intake+enrollment+students+typical"
+  },
+  {
+    "id": "harvard_undergraduates",
+    "label": {
+      "en": "Harvard Undergraduate Class",
+      "ar": "فصل جامعي في هارفارد"
+    },
+    "value": 2000,
+    "unit": "students",
+    "category": "education",
+    "context": {
+      "en": "Harvard University typically admits about 2,000 undergraduate students per year.",
+      "ar": "جامعة هارفارد تقبل عادة حوالي 2,000 طالب جامعي سنوياً."
+    },
+    "source": "https://www.google.com/search?q=Harvard+University+undergraduate+class+size+enrollment+2024"
+  },
+  {
+    "id": "boeing_737",
+    "label": {
+      "en": "Boeing 737",
+      "ar": "طائرة بوينغ 737"
+    },
+    "value": 200,
+    "unit": "passengers",
+    "category": "transport",
+    "context": {
+      "en": "A Boeing 737 aircraft typically carries about 200 passengers.",
+      "ar": "طائرة بوينغ 737 تحمل عادة حوالي 200 راكب."
+    },
+    "source": "https://www.google.com/search?q=Boeing+737+passenger+capacity+seating+configuration"
+  },
+  {
+    "id": "cambridge_uk",
+    "label": {
+      "en": "Cambridge, UK",
+      "ar": "كامبريدج، المملكة المتحدة"
+    },
+    "value": 145000,
+    "unit": "people",
+    "category": "cities",
+    "context": {
+      "en": "The entire population of Cambridge, UK is about 145,000 people.",
+      "ar": "إجمالي سكان كامبريدج، المملكة المتحدة حوالي 145,000 شخص."
+    },
+    "source": "https://www.google.com/search?q=Cambridge+UK+population+2024+official+statistics"
+  },
+  {
+    "id": "football_stadium",
+    "label": {
+      "en": "Football Stadium",
+      "ar": "ملعب كرة القدم"
+    },
+    "value": 50000,
+    "unit": "seats",
+    "category": "venues",
+    "context": {
+      "en": "A typical football stadium holds about 50,000 spectators.",
+      "ar": "ملعب كرة القدم النموذجي يتسع لحوالي 50,000 متفرج."
+    },
+    "source": "https://www.google.com/search?q=football+stadium+capacity+seating+spectators+typical"
+  },
+  {
+    "id": "concert_hall",
+    "label": {
+      "en": "Concert Hall",
+      "ar": "قاعة حفلات موسيقية"
+    },
+    "value": 2000,
+    "unit": "seats",
+    "category": "venues",
+    "context": {
+      "en": "A large concert hall typically seats about 2,000 people.",
+      "ar": "قاعة الحفلات الموسيقية الكبيرة تتسع عادة لحوالي 2,000 شخص."
+    },
+    "source": "https://www.google.com/search?q=concert+hall+capacity+seating+audience+typical"
+  },
+  {
+    "id": "shopping_mall",
+    "label": {
+      "en": "Shopping Mall",
+      "ar": "مركز تسوق"
+    },
+    "value": 1000,
+    "unit": "people",
+    "category": "venues",
+    "context": {
+      "en": "A busy shopping mall typically has about 1,000 shoppers at peak times.",
+      "ar": "مركز التسوق المزدحم يحتوي عادة على حوالي 1,000 متسوق في أوقات الذروة."
+    },
+    "source": "https://www.google.com/search?q=shopping+mall+peak+capacity+shoppers+foot+traffic"
+  }
+] 
