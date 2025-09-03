@@ -142,6 +142,12 @@
                 </button>
             </div>
             
+            <!-- Card Interaction Hint -->
+            <div class="card-hint">
+                <span class="en">Tap the card to explore</span>
+                <span class="ar" style="display: none;">انقر على البطاقة للاستكشاف</span>
+            </div>
+            
             <!-- Big Relatability Card -->
             <div class="hero-comparison fact-card fact-card-animate" id="factCard" style="cursor: pointer;">
                 <!-- Fixed 3-Line Layout -->
@@ -387,6 +393,17 @@
                 if (seeAnotherEn && seeAnotherAr) {
                     seeAnotherEn.style.display = isCurrentlyEnglish ? 'inline' : 'none';
                     seeAnotherAr.style.display = isCurrentlyEnglish ? 'none' : 'inline';
+                }
+            }
+            
+            // Update card hint text
+            const cardHint = document.querySelector('.card-hint');
+            if (cardHint) {
+                const hintEn = cardHint.querySelector('.en');
+                const hintAr = cardHint.querySelector('.ar');
+                if (hintEn && hintAr) {
+                    hintEn.style.display = isCurrentlyEnglish ? 'inline' : 'none';
+                    hintAr.style.display = isCurrentlyEnglish ? 'none' : 'inline';
                 }
             }
             

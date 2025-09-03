@@ -264,6 +264,62 @@ body {
   display: none; /* Hide the summary counters for now */
 }
 
+/* ===== CARD HINT ===== */
+.card-hint {
+  margin-bottom: var(--spacing-md);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  opacity: 0.9;
+  transition: all var(--transition-normal);
+  text-align: center;
+  animation: subtlePulse 3s ease-in-out infinite;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  background: #f0f0f0;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 20px;
+  border: 2px solid #e0e0e0;
+  display: inline-block;
+  min-width: 200px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.card-hint:hover {
+  opacity: 1;
+  animation: none;
+  color: var(--accent-red);
+  transform: translateY(-1px);
+}
+
+.card-hint .en,
+.card-hint .ar {
+  display: none;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+}
+
+.card-hint .en {
+  display: inline;
+}
+
+/* RTL support for card hint */
+[dir="rtl"] .card-hint {
+  text-align: right;
+}
+
+/* Subtle pulse animation for card hint */
+@keyframes subtlePulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.9; }
+}
+
 /* ===== FACT CARDS ===== */
 .hero-comparison {
   max-width: 90vw;
@@ -272,6 +328,18 @@ body {
   opacity: 0;
   animation: fadeInUp 1s var(--ease-out) 0.4s forwards;
   position: relative; /* For positioning the action buttons */
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.hero-comparison:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.hero-comparison:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Action Buttons - COMPLETELY OUTSIDE AND UNDERNEATH the card */
