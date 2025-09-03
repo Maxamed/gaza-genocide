@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Scale Explorer — Gaza Genocide Memorial - Human Scale</title>
+    
+    <!-- Meta tags for social sharing -->
+    <meta name="description" content="Explore the human scale of Gaza casualties in your city or country. Interactive world map showing the impact of 63,633 lives lost." />
+    <meta name="keywords" content="Gaza, genocide, human scale, interactive map, casualties, population impact, world cities">
+    <meta name="author" content="Gaza Genocide Memorial Project">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://maxamed.github.io/gaza-genocide/explorer.html" />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Gaza Genocide Memorial - Human Scale" />
+    <meta property="og:title" content="Human Scale Explorer" />
+    <meta property="og:description" content="Explore the human scale of Gaza casualties in your city or country. Interactive world map showing the impact of 63,633 lives lost." />
+    <meta property="og:url" content="https://maxamed.github.io/gaza-genocide/explorer.html" />
+    <meta property="og:image" content="https://maxamed.github.io/gaza-genocide/og/og-explorer-1200x630.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ar_AR" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Human Scale Explorer" />
+    <meta name="twitter:description" content="Explore the human scale of Gaza casualties in your city or country. Interactive world map showing the impact of 63,633 lives lost." />
+    <meta name="twitter:image" content="https://maxamed.github.io/gaza-genocide/og/og-explorer-1200x630.png" />
+    
+    <!-- Preload fonts for performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/theme.css">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"WebPage",
+      "name":"Human Scale Explorer",
+      "url":"https://maxamed.github.io/gaza-genocide/explorer.html",
+      "inLanguage":["en","ar"],
+      "description":"Explore the human scale of Gaza casualties in your city or country. Interactive world map showing the impact of 63,633 lives lost.",
+      "isPartOf":{
+        "@type":"WebSite",
+        "name":"Gaza Genocide Memorial - Human Scale",
+        "url":"https://maxamed.github.io/gaza-genocide/"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Floating Navigation -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <!-- Mobile Navigation Toggle -->
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-list" id="nav-list">
+                <li class="nav-item">
+                    <a href="./index.html" class="nav-link">
+                        <span class="en">Home</span>
+                        <span class="ar" style="display: none;">الرئيسية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./explorer.html" class="nav-link active">
+                        <span class="en">Explorer</span>
+                        <span class="ar" style="display: none;">المستكشف</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./memorial.html" class="nav-link">
+                        <span class="en">Memorial Wall</span>
+                        <span class="ar" style="display: none;">جدار الذكرى</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./journalists.html" class="nav-link">
+                        <span class="en">Journalists</span>
+                        <span class="ar" style="display: none;">الصحفيون</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./timeline.html" class="nav-link">
+                        <span class="en">Timeline</span>
+                        <span class="ar" style="display: none;">الجدول الزمني</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./about.html" class="nav-link">
+                        <span class="en">About</span>
+                        <span class="ar" style="display: none;">حول</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Language Toggle in Nav -->
+            <button class="nav-language-toggle" id="nav-language-toggle">
+                <span class="en">العربية</span>
+                <span class="ar" style="display: none;">English</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="explorer-container">
+        <!-- Search Overlay -->
+        <div class="search-overlay">
+            <div class="search-container">
+                <input type="text" id="city-search" class="city-search-input" placeholder="Search for a city or country..." />
+                <button id="search-btn" class="search-btn">
+                    <span class="en">Search</span>
+                    <span class="ar" style="display: none;">بحث</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Map Container -->
+        <div id="map" class="full-map"></div>
+    </main>
+
+    <!-- Impact Modal -->
+    <div id="impact-modal" class="impact-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title" class="en">Impact on <span id="location-name">City</span></h2>
+                <h2 id="modal-title-ar" class="ar" style="display: none;">التأثير على <span id="location-name-ar">المدينة</span></h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Location Info -->
+                <div class="location-info">
+                    <div class="location-details">
+                        <div class="location-item">
+                            <span class="en">Region: </span>
+                            <span class="ar" style="display: none;">المنطقة: </span>
+                            <span id="location-region" class="location-value">N/A</span>
+                        </div>
+                        <div class="location-item">
+                            <span class="en">Capital: </span>
+                            <span class="ar" style="display: none;">العاصمة: </span>
+                            <span id="location-capital" class="location-value">N/A</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="population-info">
+                    <div class="calculation-note">
+                        <span class="en">💡 Impact scaled proportionally to city size (Gaza population: ~2.3M)</span>
+                        <span class="ar" style="display: none;">💡 التأثير محسوب نسبياً حسب حجم المدينة (سكان غزة: ~2.3 مليون)</span>
+                    </div>
+                    <div class="pop-before">
+                        <span class="en">Population: </span>
+                        <span class="ar" style="display: none;">عدد السكان: </span>
+                        <span id="pop-before" class="pop-number">0</span>
+                    </div>
+                    <div class="pop-after">
+                        <span class="en">After proportional Gaza impact: </span>
+                        <span class="ar" style="display: none;">بعد التأثير النسبي لغزة: </span>
+                        <span id="pop-after" class="pop-number">0</span>
+                    </div>
+                    <div class="pop-decrease">
+                        <span class="en">Decrease: </span>
+                        <span class="ar" style="display: none;">انخفاض: </span>
+                        <span id="pop-decrease" class="pop-decrease-number">0</span>
+                        <span id="pop-percentage" class="pop-percentage">(0%)</span>
+                    </div>
+                </div>
+                
+                <div class="human-impact">
+                    <h3 class="en">What This Means</h3>
+                    <h3 class="ar" style="display: none;">ماذا يعني هذا</h3>
+                    
+                    <div class="impact-comparison">
+                        <div class="comparison-item">
+                            <div class="comparison-icon">👨‍👩‍👧‍👦</div>
+                            <div class="comparison-text">
+                                <span class="en">This represents losing <strong id="families-lost">0</strong> families</span>
+                                <span class="ar" style="display: none;">هذا يمثل فقدان <strong id="families-lost-ar">0</strong> أسرة</span>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <div class="comparison-icon">🏫</div>
+                            <div class="comparison-text">
+                                <span class="en">Or emptying <strong id="schools-emptied">0</strong> schools</span>
+                                <span class="ar" style="display: none;">أو إفراغ <strong id="schools-emptied-ar">0</strong> مدرسة</span>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <div class="comparison-icon">🚌</div>
+                            <div class="comparison-text">
+                                <span class="en">Or filling <strong id="buses-filled">0</strong> school buses</span>
+                                <span class="ar" style="display: none;">أو ملء <strong id="buses-filled-ar">0</strong> حافلة مدرسية</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="perspective-note">
+                        <span class="en">These numbers show the proportional impact if Gaza's casualty rate happened in a city of this size.</span>
+                        <span class="ar" style="display: none;">هذه الأرقام تظهر التأثير النسبي إذا حدث معدل ضحايا غزة في مدينة بهذا الحجم.</span>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="share-impact-btn" id="share-impact-btn">
+                        <span class="en">Share Impact</span>
+                        <span class="ar" style="display: none;">شارك التأثير</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/logic/languageManager.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Main App Script -->
+    <script>
+        // Initialize map and functionality
+        let map;
+        let currentMarker = null;
+        let currentLocationData = null;
+        
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMap();
+            initializeSearch();
+            initializeModal();
+            initializeLanguageManager();
+        });
+        
+        // Initialize the map
+        function initializeMap() {
+            // Create map centered on world
+            map = L.map('map', {
+                zoomControl: false, // We'll position it manually
+                attributionControl: false // Remove default attribution
+            }).setView([20, 0], 2);
+            
+            // Add custom themed map tiles (CartoDB Positron - clean, light theme)
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OpenStreetMap contributors, © CartoDB'
+            }).addTo(map);
+            
+            // Add custom positioned zoom control
+            L.control.zoom({
+                position: 'topright'
+            }).addTo(map);
+            
+            // Custom map styling
+            map.on('load', function() {
+                // Add custom CSS for map elements
+                const mapContainer = document.querySelector('.leaflet-container');
+                if (mapContainer) {
+                    mapContainer.style.fontFamily = 'Inter, sans-serif';
+                }
+            });
+            
+            // Add click handler for map
+            map.on('click', function(e) {
+                // Remove existing marker
+                if (currentMarker) {
+                    map.removeLayer(currentMarker);
+                    currentMarker = null;
+                }
+                
+                // Add new marker with custom styling
+                currentMarker = L.marker(e.latlng, {
+                    icon: createCustomMarker()
+                }).addTo(map);
+                
+                // Get location data for this point
+                getLocationData(e.latlng.lat, e.latlng.lng);
+            });
+        }
+        
+        // Create custom marker icon
+        function createCustomMarker() {
+            return L.divIcon({
+                className: 'custom-marker',
+                html: '<div class="marker-pin"></div>',
+                iconSize: [30, 30],
+                iconAnchor: [15, 30]
+            });
+        }
+        
+        // Show/hide search loading state
+        function showSearchLoading(show) {
+            const searchBtn = document.getElementById('search-btn');
+            const searchInput = document.getElementById('city-search');
+            
+            if (show) {
+                searchBtn.innerHTML = '<span class="en">Searching...</span><span class="ar" style="display: none;">جاري البحث...</span>';
+                searchBtn.disabled = true;
+                searchInput.disabled = true;
+                searchBtn.classList.add('loading');
+            } else {
+                searchBtn.innerHTML = '<span class="en">Search</span><span class="ar" style="display: none;">بحث</span>';
+                searchBtn.disabled = false;
+                searchInput.disabled = false;
+                searchBtn.classList.remove('loading');
+            }
+        }
+        
+        // Show search result messages
+        function showSearchMessage(message, type = 'info') {
+            // Remove existing message
+            const existingMessage = document.querySelector('.search-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            // Create new message
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `search-message search-message-${type}`;
+            messageDiv.innerHTML = `
+                <span class="en">${message}</span>
+                <span class="ar" style="display: none;">${getArabicMessage(message, type)}</span>
+            `;
+            
+            // Insert after search overlay
+            const searchOverlay = document.querySelector('.search-overlay');
+            searchOverlay.parentNode.insertBefore(messageDiv, searchOverlay.nextSibling);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.remove();
+                }
+            }, 5000);
+        }
+        
+        // Get Arabic translation for common messages
+        function getArabicMessage(message, type) {
+            const translations = {
+                'Location not found. Try a different search term.': 'لم يتم العثور على الموقع. جرب مصطلح بحث مختلف.',
+                'Search failed. Please check your connection and try again.': 'فشل البحث. يرجى التحقق من الاتصال والمحاولة مرة أخرى.',
+                'Found': 'تم العثور على',
+                'Capital:': 'العاصمة:'
+            };
+            
+            // Simple translation logic
+            if (message.includes('Found')) {
+                const countryName = message.match(/Found (.+)!/)?.[1] || '';
+                const capitalMatch = message.match(/Capital: (.+)\)/);
+                if (capitalMatch) {
+                    return `تم العثور على ${countryName} (العاصمة: ${capitalMatch[1]})!`;
+                }
+                return `تم العثور على ${countryName}!`;
+            }
+            
+            return translations[message] || message;
+        }
+        
+        // Initialize search functionality
+        function initializeSearch() {
+            const searchInput = document.getElementById('city-search');
+            const searchBtn = document.getElementById('search-btn');
+            
+            // Search on button click
+            searchBtn.addEventListener('click', performSearch);
+            
+            // Search on Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // Add search suggestions
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim();
+                if (query.length > 2) {
+                    showSearchSuggestions(query);
+                } else {
+                    hideSearchSuggestions();
+                }
+            });
+            
+            function performSearch() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    searchLocation(query);
+                } else {
+                    showSearchMessage('Please enter a city or country name.', 'warning');
+                }
+            }
+        }
+        
+        // Show search loading state
+        function showSearchLoading(show) {
+            const searchBtn = document.getElementById('search-btn');
+            const searchInput = document.getElementById('city-search');
+            
+            if (show) {
+                searchBtn.innerHTML = '<span class="en">Searching...</span><span class="ar" style="display: none;">جاري البحث...</span>';
+                searchBtn.disabled = true;
+                searchInput.disabled = true;
+                searchBtn.style.opacity = '0.7';
+            } else {
+                searchBtn.innerHTML = '<span class="en">Search</span><span class="ar" style="display: none;">بحث</span>';
+                searchBtn.disabled = false;
+                searchInput.disabled = false;
+                searchBtn.style.opacity = '1';
+            }
+        }
+        
+        // Show search message
+        function showSearchMessage(message, type = 'info') {
+            // Remove existing message
+            hideSearchMessage();
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `search-message search-message-${type}`;
+            messageDiv.innerHTML = `
+                <span class="en">${message}</span>
+                <span class="ar" style="display: none;">${getArabicMessage(message)}</span>
+            `;
+            
+            // Insert after search container
+            const searchContainer = document.querySelector('.search-container');
+            searchContainer.parentNode.insertBefore(messageDiv, searchContainer.nextSibling);
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                hideSearchMessage();
+            }, 5000);
+        }
+        
+        // Hide search message
+        function hideSearchMessage() {
+            const existingMessage = document.querySelector('.search-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+        }
+        
+        // Show search suggestions
+        function showSearchSuggestions(query) {
+            // This could be enhanced with a real suggestions API
+            // For now, we'll show some common examples
+            const suggestions = [
+                'United States', 'United Kingdom', 'Germany', 'France', 'Japan',
+                'Canada', 'Australia', 'Brazil', 'India', 'China', 'Russia'
+            ].filter(country => 
+                country.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            if (suggestions.length > 0) {
+                hideSearchSuggestions();
+                
+                const suggestionsDiv = document.createElement('div');
+                suggestionsDiv.className = 'search-suggestions';
+                suggestionsDiv.innerHTML = suggestions.map(country => 
+                    `<div class="suggestion-item" onclick="selectSuggestion('${country}')">${country}</div>`
+                ).join('');
+                
+                const searchContainer = document.querySelector('.search-container');
+                searchContainer.parentNode.insertBefore(suggestionsDiv, searchContainer.nextSibling);
+            }
+        }
+        
+        // Hide search suggestions
+        function hideSearchSuggestions() {
+            const existingSuggestions = document.querySelector('.search-suggestions');
+            if (existingSuggestions) {
+                existingSuggestions.remove();
+            }
+        }
+        
+        // Select suggestion
+        function selectSuggestion(country) {
+            document.getElementById('city-search').value = country;
+            hideSearchSuggestions();
+            searchLocation(country);
+        }
+        
+        // Get Arabic message (simplified)
+        function getArabicMessage(englishMessage) {
+            const translations = {
+                'Location not found. Try a different search term.': 'لم يتم العثور على الموقع. جرب مصطلح بحث مختلف.',
+                'Search failed. Please check your connection and try again.': 'فشل البحث. يرجى التحقق من اتصالك والمحاولة مرة أخرى.',
+                'Please enter a city or country name.': 'يرجى إدخال اسم مدينة أو بلد.',
+                'Found ': 'تم العثور على ',
+                '!': '!',
+                ' (Capital: ': ' (العاصمة: ',
+                ')': ')'
+            };
+            
+            let arabicMessage = englishMessage;
+            Object.entries(translations).forEach(([eng, ar]) => {
+                arabicMessage = arabicMessage.replace(eng, ar);
+            });
+            
+            return arabicMessage;
+        }
+        
+        // Search for a location using REST Countries API
+        async function searchLocation(query) {
+            try {
+                // Show loading state
+                showSearchLoading(true);
+                
+                // First try to find by country name
+                const response = await fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(query)}`);
+                
+                if (response.ok) {
+                    const countries = await response.json();
+                    if (countries.length > 0) {
+                        const country = countries[0];
+                        const latlng = country.latlng;
+                        
+                        // Remove existing marker
+                        if (currentMarker) {
+                            map.removeLayer(currentMarker);
+                        }
+                        
+                        // Add new marker with custom styling
+                        currentMarker = L.marker(latlng, {
+                            icon: createCustomMarker()
+                        }).addTo(map);
+                        
+                        // Center map on location with smooth animation
+                        map.flyTo(latlng, 6, {
+                            duration: 1.5,
+                            easeLinearity: 0.25
+                        });
+                        
+                        // Get and display location data
+                        currentLocationData = {
+                            name: country.name.common,
+                            population: country.population,
+                            latlng: latlng,
+                            region: country.region,
+                            capital: country.capital?.[0] || 'N/A'
+                        };
+                        
+                        // Show success message
+                        showSearchMessage(`Found ${country.name.common}!`, 'success');
+                        
+                        // Show modal with data after map animation
+                        setTimeout(() => {
+                            showImpactModal();
+                        }, 1500);
+                        
+                        return;
+                    }
+                }
+                
+                // Try searching by capital city
+                const capitalResponse = await fetch(`https://restcountries.com/v3.1/capital/${encodeURIComponent(query)}`);
+                
+                if (capitalResponse.ok) {
+                    const capitalCountries = await capitalResponse.json();
+                    if (capitalCountries.length > 0) {
+                        const country = capitalCountries[0];
+                        const latlng = country.latlng;
+                        
+                        // Remove existing marker
+                        if (currentMarker) {
+                            map.removeLayer(currentMarker);
+                        }
+                        
+                        // Add new marker with custom styling
+                        currentMarker = L.marker(latlng, {
+                            icon: createCustomMarker()
+                        }).addTo(map);
+                        
+                        // Center map on location with smooth animation
+                        map.flyTo(latlng, 8, {
+                            duration: 1.5,
+                            easeLinearity: 0.25
+                        });
+                        
+                        // Get and display location data
+                        currentLocationData = {
+                            name: country.name.common,
+                            population: country.population,
+                            latlng: latlng,
+                            region: country.region,
+                            capital: country.capital?.[0] || 'N/A'
+                        };
+                        
+                        // Show success message
+                        showSearchMessage(`Found ${country.name.common} (Capital: ${country.capital?.[0]})!`, 'success');
+                        
+                        // Show modal with data after map animation
+                        setTimeout(() => {
+                            showImpactModal();
+                        }, 1500);
+                        
+                        return;
+                    }
+                }
+                
+                // If we get here, no location was found
+                showSearchMessage('Location not found. Try a different search term.', 'error');
+                
+            } catch (error) {
+                console.error('Search error:', error);
+                showSearchMessage('Search failed. Please check your connection and try again.', 'error');
+            } finally {
+                // Hide loading state
+                showSearchLoading(false);
+            }
+        }
+        
+        // Get location data for coordinates
+        async function getLocationData(lat, lng) {
+            try {
+                // Use reverse geocoding to get country info
+                const response = await fetch(`https://restcountries.com/v3.1/alpha?codes=${await getCountryCode(lat, lng)}`);
+                
+                if (response.ok) {
+                    const countries = await response.json();
+                    if (countries.length > 0) {
+                        const country = countries[0];
+                        
+                        currentLocationData = {
+                            name: country.name.common,
+                            population: country.population,
+                            latlng: [lat, lng],
+                            region: country.region,
+                            capital: country.capital?.[0] || 'N/A'
+                        };
+                        
+                        // Show modal with data
+                        showImpactModal();
+                    }
+                }
+            } catch (error) {
+                console.error('Location data error:', error);
+            }
+        }
+        
+        // Get country code from coordinates (simplified)
+        async function getCountryCode(lat, lng) {
+            // This is a simplified approach - in production you'd use a proper geocoding service
+            // For now, we'll use a basic country detection based on coordinates
+            if (lat > 50 && lng > -10 && lng < 40) return 'GB'; // UK
+            if (lat > 25 && lat < 50 && lng > -125 && lng < -65) return 'US'; // USA
+            if (lat > -60 && lat < 15 && lng > -80 && lng < -35) return 'BR'; // Brazil
+            if (lat > 35 && lat < 70 && lng > 20 && lng < 190) return 'RU'; // Russia
+            if (lat > 10 && lat < 55 && lng > 70 && lng < 140) return 'CN'; // China
+            if (lat > -35 && lat < 10 && lng > 110 && lng < 155) return 'AU'; // Australia
+            return 'US'; // Default to US
+        }
+        
+        // Show impact modal
+        function showImpactModal() {
+            if (!currentLocationData) {
+                console.error('No location data available');
+                return;
+            }
+            
+            console.log('Showing modal with data:', currentLocationData);
+            
+            // Update modal content (with safety checks)
+            const locationNameEl = document.getElementById('location-name');
+            const locationNameArEl = document.getElementById('location-name-ar');
+            
+            if (locationNameEl) locationNameEl.textContent = currentLocationData.name;
+            if (locationNameArEl) locationNameArEl.textContent = currentLocationData.name;
+            
+            // Update location details (with safety checks)
+            const locationRegionEl = document.getElementById('location-region');
+            const locationCapitalEl = document.getElementById('location-capital');
+            
+            console.log('Location elements found:', { locationRegionEl, locationCapitalEl });
+            
+            if (locationRegionEl) locationRegionEl.textContent = currentLocationData.region || 'N/A';
+            if (locationCapitalEl) locationCapitalEl.textContent = currentLocationData.capital || 'N/A';
+            
+                        const population = currentLocationData.population;
+            const gazaCasualties = 63633; // Total Gaza casualties
+            
+            // Calculate proportional impact for this city (scaled down proportionally)
+            // This makes it more relatable - if Gaza had the same population as this city
+            const proportionalCasualties = Math.round((gazaCasualties / 2300000) * population); // Gaza population ~2.3M
+            const remaining = population - proportionalCasualties;
+            const decrease = proportionalCasualties;
+            const percentage = ((proportionalCasualties / population) * 100).toFixed(2);
+
+            // Update the span elements with the numbers (with safety checks)
+            const popBeforeEl = document.getElementById('pop-before');
+            const popAfterEl = document.getElementById('pop-after');
+            const popDecreaseEl = document.getElementById('pop-decrease');
+            const popPercentageEl = document.getElementById('pop-percentage');
+            
+            console.log('Population elements found:', { popBeforeEl, popAfterEl, popDecreaseEl, popPercentageEl });
+            
+            if (popBeforeEl) popBeforeEl.textContent = population.toLocaleString();
+            if (popAfterEl) popAfterEl.textContent = remaining.toLocaleString();
+            if (popDecreaseEl) popDecreaseEl.textContent = decrease.toLocaleString();
+            if (popPercentageEl) popPercentageEl.textContent = `(${percentage}%)`;
+            
+            // Calculate human-scale comparisons based on PROPORTIONAL impact
+            const familiesLost = Math.round(proportionalCasualties / 4); // Average family size of 4
+            const schoolsEmptied = Math.round(proportionalCasualties / 500); // Average school size of 500
+            const busesFilled = Math.round(proportionalCasualties / 50); // School bus capacity of 50
+            
+            console.log('Calculated comparisons:', { familiesLost, schoolsEmptied, busesFilled });
+            
+            // Update human impact comparisons with safety checks
+            const familiesLostEl = document.getElementById('families-lost');
+            const familiesLostArEl = document.getElementById('families-lost-ar');
+            const schoolsEmptiedEl = document.getElementById('schools-emptied');
+            const schoolsEmptiedArEl = document.getElementById('schools-emptied-ar');
+            const busesFilledEl = document.getElementById('buses-filled');
+            const busesFilledArEl = document.getElementById('buses-filled-ar');
+            
+            console.log('Human impact elements found:', { familiesLostEl, familiesLostArEl, schoolsEmptiedEl, schoolsEmptiedArEl, busesFilledEl, busesFilledArEl });
+            
+            if (familiesLostEl) familiesLostEl.textContent = familiesLost.toLocaleString();
+            if (familiesLostArEl) familiesLostArEl.textContent = familiesLost.toLocaleString('ar-EG');
+            if (schoolsEmptiedEl) schoolsEmptiedEl.textContent = schoolsEmptied.toLocaleString();
+            if (schoolsEmptiedArEl) schoolsEmptiedArEl.textContent = schoolsEmptied.toLocaleString('ar-EG');
+            if (busesFilledEl) busesFilledEl.textContent = busesFilled.toLocaleString();
+            if (busesFilledArEl) busesFilledArEl.textContent = busesFilled.toLocaleString('ar-EG');
+            
+            // Show modal
+            document.getElementById('impact-modal').style.display = 'flex';
+        }
+        
+        // Initialize modal functionality
+        function initializeModal() {
+            const modal = document.getElementById('impact-modal');
+            const closeBtn = document.getElementById('modal-close');
+            const shareBtn = document.getElementById('share-impact-btn');
+            
+            // Close modal
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Share functionality
+            shareBtn.addEventListener('click', function() {
+                if (currentLocationData) {
+                    const proportionalCasualties = Math.round((63633 / 2300000) * currentLocationData.population);
+                    const shareText = `If Gaza casualties happened in ${currentLocationData.name}, the population would decrease by ${((proportionalCasualties / currentLocationData.population) * 100).toFixed(2)}%`;
+                    const shareUrl = window.location.href;
+                    
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Gaza Impact on ' + currentLocationData.name,
+                            text: shareText,
+                            url: shareUrl
+                        });
+                    } else {
+                        // Fallback to copying to clipboard
+                        navigator.clipboard.writeText(shareText + ' ' + shareUrl);
+                        alert('Impact data copied to clipboard!');
+                    }
+                }
+            });
+        }
+        
+        // Initialize language manager
+        function initializeLanguageManager() {
+            // Initialize language state
+            window.currentLanguage = 'en';
+            
+            // Language toggle functionality
+            document.getElementById('nav-language-toggle').addEventListener('click', function() {
+                const englishElements = document.querySelectorAll('.en');
+                const arabicElements = document.querySelectorAll('.ar');
+                const html = document.documentElement;
+                const body = document.body;
+                
+                const isCurrentlyEnglish = englishElements[0].style.display !== 'none';
+                
+                if (isCurrentlyEnglish) {
+                    // Switch to Arabic
+                    html.setAttribute('dir', 'rtl');
+                    html.setAttribute('lang', 'ar');
+                    body.setAttribute('dir', 'rtl');
+                    
+                    englishElements.forEach(el => {
+                        el.style.display = 'none';
+                    });
+                    
+                    arabicElements.forEach(el => {
+                        el.style.display = 'inline';
+                    });
+                } else {
+                    // Switch to English
+                    html.setAttribute('dir', 'ltr');
+                    html.setAttribute('lang', 'en');
+                    body.setAttribute('dir', 'ltr');
+                    
+                    englishElements.forEach(el => {
+                        el.style.display = 'inline';
+                    });
+                    
+                    arabicElements.forEach(el => {
+                        el.style.display = 'none';
+                    });
+                }
+                
+                // Update button text
+                const enSpan = this.querySelector('.en');
+                const arSpan = this.querySelector('.ar');
+                
+                if (enSpan && arSpan) {
+                    enSpan.style.display = isCurrentlyEnglish ? 'inline' : 'none';
+                    arSpan.style.display = isCurrentlyEnglish ? 'none' : 'inline';
+                }
+                
+                // Store current language state
+                window.currentLanguage = isCurrentlyEnglish ? 'en' : 'ar';
+                
+                // Force reflow for RTL/LTR changes
+                document.body.offsetHeight;
+            });
+            
+            // Mobile Navigation Toggle
+            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+            const navList = document.getElementById('nav-list');
+            
+            if (mobileNavToggle && navList) {
+                mobileNavToggle.addEventListener('click', function() {
+                    mobileNavToggle.classList.toggle('active');
+                    navList.classList.toggle('active');
+                });
+                
+                // Close mobile menu when clicking on a link
+                const navLinks = navList.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileNavToggle.classList.remove('active');
+                        navList.classList.remove('active');
+                    });
+                });
+                
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileNavToggle.contains(event.target) && !navList.contains(event.target)) {
+                        mobileNavToggle.classList.remove('active');
+                        navList.classList.remove('active');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html> 
