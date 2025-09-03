@@ -138,7 +138,7 @@
             </div>
             
             <!-- Big Relatability Card -->
-            <div class="hero-comparison fact-card fact-card-animate">
+            <div class="hero-comparison fact-card fact-card-animate" id="factCard" style="cursor: pointer;">
                 <!-- Fixed 3-Line Layout -->
                 <div class="fact-card-layout">
                     <!-- Line 1: Number + Statistic Type -->
@@ -168,7 +168,7 @@
             
             <!-- Action Buttons - COMPLETELY OUTSIDE AND UNDERNEATH the card -->
             <div class="action-buttons">
-                <button class="action-btn learn-btn" id="learn-more-btn">
+                                <button class="action-btn learn-btn" id="learn-more-btn">
                     <span class="en">Learn</span>
                     <span class="ar" style="display: none;">اعرف</span>
                 </button>
@@ -502,6 +502,13 @@
                     const shareText = `Gaza Memorial: ${factNumber} ${factStat} = ${factComparison} - ${tabName} Statistics`;
                     const shareUrl = window.location.href;
                     
+                    // Create share URLs for different platforms
+                    const shareUrls = {
+                        twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
+                        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareText)}`,
+                        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent('Gaza Memorial Statistics')}&summary=${encodeURIComponent(shareText)}`
+                    };
+                    
                     // Try to use native sharing if available
                     if (navigator.share) {
                         navigator.share({
@@ -510,25 +517,85 @@
                             url: shareUrl
                         });
                     } else {
-                        // Fallback: copy to clipboard
-                        const fullShareText = `${shareText}\n\n${shareUrl}`;
-                        navigator.clipboard.writeText(fullShareText).then(() => {
-                            // Show feedback
-                            const originalText = shareBtn.querySelector('.en').textContent;
-                            const originalTextAr = shareBtn.querySelector('.ar').textContent;
-                            
-                            shareBtn.querySelector('.en').textContent = 'Copied!';
-                            shareBtn.querySelector('.ar').textContent = 'تم النسخ!';
-                            
-                            setTimeout(() => {
-                                shareBtn.querySelector('.en').textContent = originalText;
-                                shareBtn.querySelector('.ar').textContent = originalTextAr;
-                            }, 2000);
-                        });
+                        // Show platform options
+                        showShareOptions(shareUrls, shareText, shareUrl);
                     }
                 });
             }
         });
+        
+        // Function to show share platform options
+        function showShareOptions(shareUrls, shareText, shareUrl) {
+            // Create share options overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'share-overlay';
+            overlay.innerHTML = `
+                <div class="share-modal">
+                    <div class="share-header">
+                        <h3 class="en">Share via</h3>
+                        <h3 class="ar" style="display: none;">شارك عبر</h3>
+                        <button class="close-share" id="closeShare">&times;</button>
+                    </div>
+                    <div class="share-options">
+                        <a href="${shareUrls.twitter}" target="_blank" class="share-option twitter-share">
+                            <span class="en">Twitter</span>
+                            <span class="ar" style="display: none;">تويتر</span>
+                        </a>
+                        <a href="${shareUrls.facebook}" target="_blank" class="share-option facebook-share">
+                            <span class="en">Facebook</span>
+                            <span class="ar" style="display: none;">فيسبوك</span>
+                        </a>
+                        <a href="${shareUrls.linkedin}" target="_blank" class="share-option linkedin-share">
+                            <span class="en">LinkedIn</span>
+                            <span class="ar" style="display: none;">لينكد إن</span>
+                        </a>
+                        <button class="share-option copy-share" id="copyShare">
+                            <span class="en">Copy Link</span>
+                            <span class="ar" style="display: none;">نسخ الرابط</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+            
+            // Handle close button
+            document.getElementById('closeShare').addEventListener('click', () => {
+                document.body.removeChild(overlay);
+            });
+            
+            // Handle copy link
+            document.getElementById('copyShare').addEventListener('click', () => {
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    const copyBtn = document.getElementById('copyShare');
+                    const originalText = copyBtn.querySelector('.en').textContent;
+                    const originalTextAr = copyBtn.querySelector('.ar').textContent;
+                    
+                    copyBtn.querySelector('.en').textContent = 'Copied!';
+                    copyBtn.querySelector('.ar').textContent = 'تم النسخ!';
+                    
+                    setTimeout(() => {
+                        copyBtn.querySelector('.en').textContent = originalText;
+                        copyBtn.querySelector('.ar').textContent = originalTextAr;
+                    }, 2000);
+                });
+            });
+            
+            // Close on overlay click
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    document.body.removeChild(overlay);
+                }
+            });
+            
+            // Update language display
+            if (window.currentLanguage === 'ar') {
+                overlay.querySelectorAll('.en').forEach(el => el.style.display = 'none');
+                overlay.querySelectorAll('.ar').forEach(el => el.style.display = 'inline');
+            }
+        }
+        
+
         
         // Initialize the app when page loads
         document.addEventListener('DOMContentLoaded', function() {
@@ -537,6 +604,18 @@
             
             // Initialize the app
             initializeApp();
+            
+            // Make fact card clickable for next comparison
+            const factCard = document.getElementById('factCard');
+            if (factCard) {
+                factCard.addEventListener('click', function() {
+                    // Trigger the existing "Next Card" button functionality
+                    const nextCardBtn = document.getElementById('see-another-btn');
+                    if (nextCardBtn) {
+                        nextCardBtn.click();
+                    }
+                });
+            }
             
             // Mobile Navigation Toggle
             const mobileNavToggle = document.getElementById('mobile-nav-toggle');

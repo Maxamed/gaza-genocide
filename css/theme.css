@@ -1018,9 +1018,10 @@ select:focus {
 .memorial-context {
   font-family: 'Inter', sans-serif;
   font-size: var(--font-size-sm);
-  color: var(--text-muted);
+  color: var(--accent-red);
   line-height: 1.4;
   margin-bottom: var(--spacing-xs);
+  font-weight: 500;
 }
 
 .memorial-details {
@@ -1034,6 +1035,11 @@ select:focus {
 .memorial-details span {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
+}
+
+.memorial-details span:first-child {
+  color: var(--accent-red);
+  font-weight: 600;
 }
 
 /* Responsive grid adjustments */
@@ -1642,6 +1648,116 @@ select:focus {
 }
 
 
+
+/* ===== SHARE OVERLAY STYLES ===== */
+.share-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.share-modal {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.share-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--bg-tertiary);
+  padding-bottom: var(--spacing-sm);
+}
+
+.share-header h3 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+}
+
+.close-share {
+  background: none;
+  border: none;
+  font-size: var(--font-size-2xl);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all var(--transition-fast);
+}
+
+.close-share:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.share-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.share-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--bg-tertiary);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.share-option:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.twitter-share:hover {
+  background: #1DA1F2;
+  color: white;
+  border-color: #1DA1F2;
+}
+
+.facebook-share:hover {
+  background: #4267B2;
+  color: white;
+  border-color: #4267B2;
+}
+
+.linkedin-share:hover {
+  background: #0077B5;
+  color: white;
+  border-color: #0077B5;
+}
+
+.copy-share:hover {
+  background: var(--accent-red);
+  color: white;
+  border-color: var(--accent-red);
+}
 
 /* About Page Styles */
 .about-content {
