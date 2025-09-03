@@ -328,6 +328,144 @@ body {
   margin-top: 80px; /* Push content below navigation */
 }
 
+/* Welcome Modal */
+.welcome-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.welcome-modal-content {
+  text-align: center;
+  max-width: 600px;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e5e7eb;
+  animation: modalSlideIn 0.3s ease-out;
+  color: #000000;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.welcome-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.welcome-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.step-number {
+  background: var(--accent-red);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.step-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.accept-btn {
+  background: var(--accent-red);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+}
+
+.accept-btn:hover {
+  background: var(--accent-red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+}
+
+.accept-btn:active {
+  transform: translateY(0);
+}
+
+/* Mobile responsiveness for welcome modal */
+@media (max-width: 768px) {
+  .welcome-modal-content {
+    padding: 30px 20px;
+    margin: 20px;
+  }
+  
+  .welcome-title {
+    font-size: 2.5rem;
+  }
+  
+  .welcome-description {
+    font-size: 1.1rem;
+  }
+  
+  .step {
+    padding: 12px 15px;
+  }
+  
+  .step-text {
+    font-size: 1rem;
+  }
+  
+  .accept-btn {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+  }
+}
+
 /* Search Overlay */
 .search-overlay {
   position: absolute;

@@ -120,8 +120,49 @@
 
     <!-- Main Container -->
     <main class="explorer-container">
+        <!-- Welcome modal -->
+        <div class="welcome-modal" id="welcome-modal">
+            <div class="welcome-modal-content">
+                <h1 class="welcome-title">
+                    <span class="en">Human Scale Explorer</span>
+                    <span class="ar" style="display: none;">مستكشف المقياس البشري</span>
+                </h1>
+                <p class="welcome-description">
+                    <span class="en">See how Gaza's casualties would impact cities around the world. Search for any city or country to understand the human scale of tragedy.</span>
+                    <span class="ar" style="display: none;">شاهد كيف يمكن أن يؤثر عدد ضحايا غزة على مدن حول العالم. ابحث عن أي مدينة أو دولة لفهم المقياس البشري للمأساة.</span>
+                </p>
+                <div class="welcome-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <span class="step-text">
+                            <span class="en">Search for a city or country</span>
+                            <span class="ar" style="display: none;">ابحث عن مدينة أو دولة</span>
+                        </span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <span class="step-text">
+                            <span class="en">See the population comparison</span>
+                            <span class="ar" style="display: none;">شاهد مقارنة عدد السكان</span>
+                        </span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <span class="step-text">
+                            <span class="en">Understand the human impact</span>
+                            <span class="ar" style="display: none;">افهم التأثير البشري</span>
+                        </span>
+                    </div>
+                </div>
+                <button class="accept-btn" onclick="acceptWelcome()">
+                    <span class="en">Continue</span>
+                    <span class="ar" style="display: none;">متابعة</span>
+                </button>
+            </div>
+        </div>
+
         <!-- Search Overlay -->
-        <div class="search-overlay">
+        <div class="search-overlay" id="search-overlay" style="display: none;">
             <div class="search-container">
                 <input type="text" id="city-search" class="city-search-input" placeholder="Search for a city or country..." />
                 <button id="search-btn" class="search-btn">
@@ -227,6 +268,12 @@
     
     <!-- Main App Script -->
     <script>
+        // Accept welcome modal and show search
+        function acceptWelcome() {
+            document.getElementById('welcome-modal').style.display = 'none';
+            document.getElementById('search-overlay').style.display = 'block';
+        }
+
         // Initialize map and functionality
         let map;
         let currentMarker = null;

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaza Genocide - Understanding the Human Cost</title>
+    <meta name="description" content="Transform statistics into human stories. Explore the real impact of Gaza casualties through relatable comparisons.">
+    
+    <!-- Preload fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/theme.css">
+    
+    <style>
+        /* Intro-specific styles */
+        .intro-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            overflow: hidden;
+        }
+        
+        .skip-button {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: transparent;
+            border: 2px solid #e0e0e0;
+            color: #666;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+        
+        .skip-button:hover {
+            border-color: #333;
+            color: #333;
+            transform: translateY(-2px);
+        }
+        
+        .intro-content {
+            text-align: center;
+            color: #1a1a1a;
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+
+        
+        .data-transformation {
+            margin: 0;
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+        }
+        
+        .data-stage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        
+        .data-stage.active {
+            opacity: 1;
+        }
+        
+        .numbers-scatter {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        .number-item {
+            position: absolute;
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            font-weight: 600;
+            color: #000000;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .number-item.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .number-item.human {
+            color: #000000;
+            font-weight: 700;
+            font-size: 32px;
+        }
+        
+        .name-item {
+            position: absolute;
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 500;
+            color: #000000;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: scale(0.5);
+            text-align: center;
+            max-width: 200px;
+            line-height: 1.2;
+        }
+        
+        .name-item.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+
+        
+        .message-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .message-text.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .enter-button {
+            background: var(--accent-color, #dc2626);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0;
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%) translateY(30px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.2);
+            z-index: 3;
+        }
+        
+        .enter-button:hover {
+            background: var(--accent-hover, #b91c1c);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(220, 38, 38, 0.3);
+        }
+        
+        .enter-button.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .intro-title {
+                font-size: 3rem;
+            }
+            
+            .intro-subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 40px;
+            }
+            
+            .data-transformation {
+                height: 300px;
+                margin: 40px 0;
+            }
+            
+            .numbers-scatter {
+                height: 250px;
+            }
+            
+            .number-item {
+                font-size: 24px;
+            }
+            
+            .name-item {
+                font-size: 18px;
+                max-width: 150px;
+            }
+            
+            .skip-button {
+                top: 20px;
+                right: 20px;
+                padding: 12px 25px;
+                font-size: 14px;
+            }
+            
+            .enter-button {
+                padding: 18px 40px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-container">
+        <button class="skip-button" onclick="skipIntro()">Skip Intro</button>
+        
+        <div class="intro-content">
+            <div class="data-transformation">
+                <!-- Stage 1: Scattered Numbers -->
+                <div class="data-stage active" id="stage-1">
+                    <div class="numbers-scatter">
+                        <div class="number-item show" style="top: 5%; left: 5%;">63,633</div>
+                        <div class="number-item show" style="top: 8%; left: 15%;">15,908</div>
+                        <div class="number-item show" style="top: 12%; left: 25%;">127</div>
+                        <div class="number-item show" style="top: 6%; left: 35%;">1,273</div>
+                        <div class="number-item show" style="top: 10%; left: 45%;">2,500</div>
+                        <div class="number-item show" style="top: 14%; left: 55%;">8,900</div>
+                        <div class="number-item show" style="top: 7%; left: 65%;">456</div>
+                        <div class="number-item show" style="top: 11%; left: 75%;">3,200</div>
+                        <div class="number-item show" style="top: 9%; left: 85%;">7,800</div>
+                        <div class="number-item show" style="top: 13%; left: 95%;">4,100</div>
+                        
+                        <div class="number-item show" style="top: 20%; left: 8%;">12,400</div>
+                        <div class="number-item show" style="top: 24%; left: 18%;">6,700</div>
+                        <div class="number-item show" style="top: 28%; left: 28%;">9,300</div>
+                        <div class="number-item show" style="top: 22%; left: 38%;">5,600</div>
+                        <div class="number-item show" style="top: 26%; left: 48%;">11,200</div>
+                        <div class="number-item show" style="top: 30%; left: 58%;">3,800</div>
+                        <div class="number-item show" style="top: 25%; left: 68%;">8,400</div>
+                        <div class="number-item show" style="top: 29%; left: 78%;">2,900</div>
+                        <div class="number-item show" style="top: 23%; left: 88%;">7,100</div>
+                        <div class="number-item show" style="top: 27%; left: 98%;">4,600</div>
+                        
+                        <div class="number-item show" style="top: 35%; left: 12%;">13,800</div>
+                        <div class="number-item show" style="top: 39%; left: 22%;">6,200</div>
+                        <div class="number-item show" style="top: 43%; left: 32%;">9,700</div>
+                        <div class="number-item show" style="top: 37%; left: 42%;">5,300</div>
+                        <div class="number-item show" style="top: 41%; left: 52%;">11,600</div>
+                        <div class="number-item show" style="top: 45%; left: 62%;">3,400</div>
+                        <div class="number-item show" style="top: 40%; left: 72%;">8,800</div>
+                        <div class="number-item show" style="top: 44%; left: 82%;">2,700</div>
+                        <div class="number-item show" style="top: 38%; left: 92%;">7,300</div>
+                        <div class="number-item show" style="top: 42%; left: 2%;">4,800</div>
+                        
+                        <div class="number-item show" style="top: 50%; left: 16%;">14,200</div>
+                        <div class="number-item show" style="top: 54%; left: 26%;">6,800</div>
+                        <div class="number-item show" style="top: 58%; left: 36%;">9,100</div>
+                        <div class="number-item show" style="top: 52%; left: 46%;">5,700</div>
+                        <div class="number-item show" style="top: 56%; left: 56%;">11,400</div>
+                        <div class="number-item show" style="top: 60%; left: 66%;">3,600</div>
+                        <div class="number-item show" style="top: 55%; left: 76%;">8,200</div>
+                        <div class="number-item show" style="top: 59%; left: 86%;">2,500</div>
+                        <div class="number-item show" style="top: 53%; left: 96%;">7,500</div>
+                        <div class="number-item show" style="top: 57%; left: 6%;">4,900</div>
+                        
+                        <div class="number-item show" style="top: 65%; left: 10%;">15,600</div>
+                        <div class="number-item show" style="top: 69%; left: 20%;">6,400</div>
+                        <div class="number-item show" style="top: 73%; left: 30%;">9,500</div>
+                        <div class="number-item show" style="top: 67%; left: 40%;">5,100</div>
+                        <div class="number-item show" style="top: 71%; left: 50%;">11,800</div>
+                        <div class="number-item show" style="top: 75%; left: 60%;">3,200</div>
+                        <div class="number-item show" style="top: 70%; left: 70%;">8,600</div>
+                        <div class="number-item show" style="top: 74%; left: 80%;">2,300</div>
+                        <div class="number-item show" style="top: 68%; left: 90%;">7,700</div>
+                        <div class="number-item show" style="top: 72%; left: 0%;">4,700</div>
+                        
+                        <div class="number-item show" style="top: 20%; left: 14%;">16,400</div>
+                        <div class="number-item show" style="top: 84%; left: 24%;">6,600</div>
+                        <div class="number-item show" style="top: 88%; left: 34%;">9,900</div>
+                        <div class="number-item show" style="top: 82%; left: 44%;">5,900</div>
+                        <div class="number-item show" style="top: 86%; left: 54%;">12,000</div>
+                        <div class="number-item show" style="top: 90%; left: 64%;">3,000</div>
+                        <div class="number-item show" style="top: 85%; left: 74%;">8,000</div>
+                        <div class="number-item show" style="top: 89%; left: 84%;">2,100</div>
+                        <div class="number-item show" style="top: 83%; left: 94%;">7,900</div>
+                        <div class="number-item show" style="top: 87%; left: 4%;">4,500</div>
+                        
+                        <div class="number-item show" style="top: 95%; left: 18%;">17,200</div>
+                        <div class="number-item show" style="top: 99%; left: 28%;">6,000</div>
+                        <div class="number-item show" style="top: 3%; left: 38%;">10,300</div>
+                        <div class="number-item show" style="top: 97%; left: 48%;">6,100</div>
+                        <div class="number-item show" style="top: 1%; left: 58%;">12,200</div>
+                        <div class="number-item show" style="top: 5%; left: 68%;">2,800</div>
+                        <div class="number-item show" style="top: 93%; left: 78%;">7,800</div>
+                        <div class="number-item show" style="top: 1%; left: 88%;">1,900</div>
+                        <div class="number-item show" style="top: 95%; left: 98%;">8,100</div>
+                        <div class="number-item show" style="top: 3%; left: 8%;">4,300</div>
+                    </div>
+                    <p class="message-text show">Raw statistics. Cold numbers.</p>
+                </div>
+                
+                <!-- Stage 2: Numbers with Context -->
+                <div class="data-stage" id="stage-2">
+                    <div class="numbers-scatter">
+                        <div class="number-item human" style="top: 5%; left: 5%;">63,633</div>
+                        <div class="number-item human" style="top: 8%; left: 15%;">15,908</div>
+                        <div class="number-item human" style="top: 12%; left: 25%;">127</div>
+                        <div class="number-item human" style="top: 6%; left: 35%;">1,273</div>
+                        <div class="number-item human" style="top: 10%; left: 45%;">2,500</div>
+                        <div class="number-item human" style="top: 14%; left: 55%;">8,900</div>
+                        <div class="number-item human" style="top: 7%; left: 65%;">456</div>
+                        <div class="number-item human" style="top: 11%; left: 75%;">3,200</div>
+                        <div class="number-item human" style="top: 9%; left: 85%;">7,800</div>
+                        <div class="number-item human" style="top: 13%; left: 95%;">4,100</div>
+                        
+                        <div class="number-item human" style="top: 20%; left: 8%;">12,400</div>
+                        <div class="number-item human" style="top: 24%; left: 18%;">6,700</div>
+                        <div class="number-item human" style="top: 28%; left: 28%;">9,300</div>
+                        <div class="number-item human" style="top: 22%; left: 38%;">5,600</div>
+                        <div class="number-item human" style="top: 26%; left: 48%;">11,200</div>
+                        <div class="number-item human" style="top: 30%; left: 58%;">3,800</div>
+                        <div class="number-item human" style="top: 25%; left: 68%;">8,400</div>
+                        <div class="number-item human" style="top: 29%; left: 78%;">2,900</div>
+                        <div class="number-item human" style="top: 23%; left: 88%;">7,100</div>
+                        <div class="number-item human" style="top: 27%; left: 98%;">4,600</div>
+                        
+                        <div class="number-item human" style="top: 35%; left: 12%;">13,800</div>
+                        <div class="number-item human" style="top: 39%; left: 22%;">6,200</div>
+                        <div class="number-item human" style="top: 43%; left: 32%;">9,700</div>
+                        <div class="number-item human" style="top: 37%; left: 42%;">5,300</div>
+                        <div class="number-item human" style="top: 41%; left: 52%;">11,600</div>
+                        <div class="number-item human" style="top: 45%; left: 62%;">3,400</div>
+                        <div class="number-item human" style="top: 40%; left: 72%;">8,800</div>
+                        <div class="number-item human" style="top: 44%; left: 82%;">2,700</div>
+                        <div class="number-item human" style="top: 38%; left: 92%;">7,300</div>
+                        <div class="number-item human" style="top: 42%; left: 2%;">4,800</div>
+                        
+                        <div class="number-item human" style="top: 50%; left: 16%;">14,200</div>
+                        <div class="number-item human" style="top: 54%; left: 26%;">6,800</div>
+                        <div class="number-item human" style="top: 58%; left: 36%;">9,100</div>
+                        <div class="number-item human" style="top: 52%; left: 46%;">5,700</div>
+                        <div class="number-item human" style="top: 56%; left: 56%;">11,400</div>
+                        <div class="number-item human" style="top: 60%; left: 66%;">3,600</div>
+                        <div class="number-item human" style="top: 55%; left: 76%;">8,200</div>
+                        <div class="number-item human" style="top: 59%; left: 86%;">2,500</div>
+                        <div class="number-item human" style="top: 53%; left: 96%;">7,500</div>
+                        <div class="number-item human" style="top: 57%; left: 6%;">4,900</div>
+                        
+                        <div class="number-item human" style="top: 65%; left: 10%;">15,600</div>
+                        <div class="number-item human" style="top: 69%; left: 20%;">6,400</div>
+                        <div class="number-item human" style="top: 73%; left: 30%;">9,500</div>
+                        <div class="number-item human" style="top: 67%; left: 40%;">5,100</div>
+                        <div class="number-item human" style="top: 71%; left: 50%;">11,800</div>
+                        <div class="number-item human" style="top: 75%; left: 60%;">3,200</div>
+                        <div class="number-item human" style="top: 70%; left: 70%;">8,600</div>
+                        <div class="number-item human" style="top: 74%; left: 80%;">2,300</div>
+                        <div class="number-item human" style="top: 68%; left: 90%;">7,700</div>
+                        <div class="number-item human" style="top: 72%; left: 0%;">4,700</div>
+                        
+                        <div class="number-item human" style="top: 80%; left: 14%;">16,400</div>
+                        <div class="number-item human" style="top: 84%; left: 24%;">6,600</div>
+                        <div class="number-item human" style="top: 88%; left: 34%;">9,900</div>
+                        <div class="number-item human" style="top: 82%; left: 44%;">5,900</div>
+                        <div class="number-item human" style="top: 86%; left: 54%;">12,000</div>
+                        <div class="number-item human" style="top: 90%; left: 64%;">3,000</div>
+                        <div class="number-item human" style="top: 85%; left: 74%;">8,000</div>
+                        <div class="number-item human" style="top: 89%; left: 84%;">2,100</div>
+                        <div class="number-item human" style="top: 83%; left: 94%;">7,900</div>
+                        <div class="number-item human" style="top: 87%; left: 4%;">4,500</div>
+                        
+                        <div class="number-item human" style="top: 95%; left: 18%;">17,200</div>
+                        <div class="number-item human" style="top: 99%; left: 28%;">6,000</div>
+                        <div class="number-item human" style="top: 3%; left: 38%;">10,300</div>
+                        <div class="number-item human" style="top: 97%; left: 48%;">6,100</div>
+                        <div class="number-item human" style="top: 1%; left: 58%;">12,200</div>
+                        <div class="number-item human" style="top: 5%; left: 68%;">2,800</div>
+                        <div class="number-item human" style="top: 93%; left: 78%;">7,800</div>
+                        <div class="number-item human" style="top: 1%; left: 88%;">1,900</div>
+                        <div class="number-item human" style="top: 95%; left: 98%;">8,100</div>
+                        <div class="number-item human" style="top: 3%; left: 8%;">4,300</div>
+                    </div>
+                    <p class="message-text show">Numbers that represent lives...</p>
+                </div>
+                
+                <!-- Stage 3: Names Appearing -->
+                <div class="data-stage" id="stage-3">
+                    <div class="numbers-scatter">
+                        <div class="name-item" style="top: 5%; left: 5%;">Ahmed Al-Masri</div>
+                        <div class="name-item" style="top: 8%; left: 15%;">Fatima Hassan</div>
+                        <div class="name-item" style="top: 12%; left: 25%;">Omar Khalil</div>
+                        <div class="name-item" style="top: 6%; left: 35%;">Layla Ahmed</div>
+                        <div class="name-item" style="top: 10%; left: 45%;">Yusuf Ibrahim</div>
+                        <div class="name-item" style="top: 14%; left: 55%;">Aisha Mahmoud</div>
+                        <div class="name-item" style="top: 7%; left: 65%;">Khalid Omar</div>
+                        <div class="name-item" style="top: 11%; left: 75%;">Nour Al-Zahra</div>
+                        <div class="name-item" style="top: 9%; left: 85%;">Zainab Ali</div>
+                        <div class="name-item" style="top: 13%; left: 95%;">Hassan Saleh</div>
+                        
+                        <div class="name-item" style="top: 20%; left: 8%;">Mariam Khalil</div>
+                        <div class="name-item" style="top: 24%; left: 18%;">Adam Al-Rashid</div>
+                        <div class="name-item" style="top: 28%; left: 28%;">Sara Mahmoud</div>
+                        <div class="name-item" style="top: 22%; left: 38%;">Ibrahim Hassan</div>
+                        <div class="name-item" style="top: 26%; left: 48%;">Amina Omar</div>
+                        <div class="name-item" style="top: 30%; left: 58%;">Khalil Al-Masri</div>
+                        <div class="name-item" style="top: 25%; left: 68%;">Nadia Ahmed</div>
+                        <div class="name-item" style="top: 29%; left: 78%;">Rashid Saleh</div>
+                        <div class="name-item" style="top: 23%; left: 88%;">Layla Khalil</div>
+                        <div class="name-item" style="top: 27%; left: 98%;">Omar Hassan</div>
+                        
+                        <div class="name-item" style="top: 35%; left: 12%;">Fatima Al-Rashid</div>
+                        <div class="name-item" style="top: 39%; left: 22%;">Ahmed Mahmoud</div>
+                        <div class="name-item" style="top: 43%; left: 32%;">Aisha Omar</div>
+                        <div class="name-item" style="top: 37%; left: 42%;">Yusuf Khalil</div>
+                        <div class="name-item" style="top: 41%; left: 52%;">Nour Hassan</div>
+                        <div class="name-item" style="top: 45%; left: 62%;">Khalid Ahmed</div>
+                        <div class="name-item" style="top: 40%; left: 72%;">Mariam Saleh</div>
+                        <div class="name-item" style="top: 44%; left: 82%;">Adam Al-Masri</div>
+                        <div class="name-item" style="top: 38%; left: 92%;">Sara Khalil</div>
+                        <div class="name-item" style="top: 42%; left: 2%;">Ibrahim Omar</div>
+                        
+                        <div class="name-item" style="top: 50%; left: 16%;">Amina Hassan</div>
+                        <div class="name-item" style="top: 54%; left: 26%;">Khalil Mahmoud</div>
+                        <div class="name-item" style="top: 58%; left: 36%;">Nadia Al-Rashid</div>
+                        <div class="name-item" style="top: 52%; left: 46%;">Rashid Ahmed</div>
+                        <div class="name-item" style="top: 56%; left: 56%;">Layla Omar</div>
+                        <div class="name-item" style="top: 60%; left: 66%;">Omar Khalil</div>
+                        <div class="name-item" style="top: 55%; left: 76%;">Fatima Hassan</div>
+                        <div class="name-item" style="top: 59%; left: 86%;">Ahmed Saleh</div>
+                        <div class="name-item" style="top: 53%; left: 96%;">Aisha Al-Masri</div>
+                        <div class="name-item" style="top: 57%; left: 6%;">Yusuf Mahmoud</div>
+                        
+                        <div class="name-item" style="top: 65%; left: 10%;">Nour Omar</div>
+                        <div class="name-item" style="top: 69%; left: 20%;">Khalid Khalil</div>
+                        <div class="name-item" style="top: 73%; left: 30%;">Mariam Hassan</div>
+                        <div class="name-item" style="top: 67%; left: 40%;">Adam Ahmed</div>
+                        <div class="name-item" style="top: 71%; left: 50%;">Sara Saleh</div>
+                        <div class="name-item" style="top: 75%; left: 60%;">Ibrahim Al-Masri</div>
+                        <div class="name-item" style="top: 70%; left: 70%;">Amina Khalil</div>
+                        <div class="name-item" style="top: 74%; left: 80%;">Khalil Omar</div>
+                        <div class="name-item" style="top: 68%; left: 90%;">Nadia Hassan</div>
+                        <div class="name-item" style="top: 72%; left: 0%;">Rashid Mahmoud</div>
+                        
+                        <div class="name-item" style="top: 80%; left: 14%;">Layla Al-Rashid</div>
+                        <div class="name-item" style="top: 84%; left: 24%;">Omar Ahmed</div>
+                        <div class="name-item" style="top: 88%; left: 34%;">Fatima Saleh</div>
+                        <div class="name-item" style="top: 82%; left: 44%;">Ahmed Khalil</div>
+                        <div class="name-item" style="top: 86%; left: 54%;">Aisha Hassan</div>
+                        <div class="name-item" style="top: 90%; left: 64%;">Yusuf Omar</div>
+                        <div class="name-item" style="top: 85%; left: 74%;">Nour Mahmoud</div>
+                        <div class="name-item" style="top: 89%; left: 84%;">Khalid Al-Rashid</div>
+                        <div class="name-item" style="top: 83%; left: 94%;">Mariam Ahmed</div>
+                        <div class="name-item" style="top: 87%; left: 4%;">Adam Saleh</div>
+                        
+                        <div class="name-item" style="top: 95%; left: 18%;">Sara Khalil</div>
+                        <div class="name-item" style="top: 99%; left: 28%;">Ibrahim Hassan</div>
+                        <div class="name-item" style="top: 3%; left: 38%;">Amina Omar</div>
+                        <div class="name-item" style="top: 97%; left: 48%;">Khalil Mahmoud</div>
+                        <div class="name-item" style="top: 1%; left: 58%;">Nadia Al-Rashid</div>
+                        <div class="name-item" style="top: 5%; left: 68%;">Rashid Ahmed</div>
+                        <div class="name-item" style="top: 93%; left: 78%;">Layla Omar</div>
+                        <div class="name-item" style="top: 1%; left: 88%;">Omar Khalil</div>
+                        <div class="name-item" style="top: 95%; left: 98%;">Fatima Hassan</div>
+                        <div class="name-item" style="top: 3%; left: 8%;">Ahmed Saleh</div>
+                    </div>
+                    <p class="message-text show">Every number has a name, every name has a story</p>
+                </div>
+                
+                <!-- Stage 4: Final Message -->
+                <div class="data-stage" id="stage-4">
+                    <div class="numbers-scatter">
+                        <div class="name-item show" style="top: 5%; left: 5%;">Ahmed Al-Masri</div>
+                        <div class="name-item show" style="top: 8%; left: 15%;">Fatima Hassan</div>
+                        <div class="name-item show" style="top: 12%; left: 25%;">Omar Khalil</div>
+                        <div class="name-item show" style="top: 6%; left: 35%;">Layla Ahmed</div>
+                        <div class="name-item show" style="top: 10%; left: 45%;">Yusuf Ibrahim</div>
+                        <div class="name-item show" style="top: 14%; left: 55%;">Aisha Mahmoud</div>
+                        <div class="name-item show" style="top: 7%; left: 65%;">Khalid Omar</div>
+                        <div class="name-item show" style="top: 11%; left: 75%;">Nour Al-Zahra</div>
+                        <div class="name-item show" style="top: 9%; left: 85%;">Zainab Ali</div>
+                        <div class="name-item show" style="top: 13%; left: 95%;">Hassan Saleh</div>
+                        
+                        <div class="name-item show" style="top: 20%; left: 8%;">Mariam Khalil</div>
+                        <div class="name-item show" style="top: 24%; left: 18%;">Adam Al-Rashid</div>
+                        <div class="name-item show" style="top: 28%; left: 28%;">Sara Mahmoud</div>
+                        <div class="name-item show" style="top: 22%; left: 38%;">Ibrahim Hassan</div>
+                        <div class="name-item show" style="top: 26%; left: 48%;">Amina Omar</div>
+                        <div class="name-item show" style="top: 30%; left: 58%;">Khalil Al-Masri</div>
+                        <div class="name-item show" style="top: 25%; left: 68%;">Nadia Ahmed</div>
+                        <div class="name-item show" style="top: 29%; left: 78%;">Rashid Saleh</div>
+                        <div class="name-item show" style="top: 23%; left: 88%;">Layla Khalil</div>
+                        <div class="name-item show" style="top: 27%; left: 98%;">Omar Hassan</div>
+                        
+                        <div class="name-item show" style="top: 35%; left: 12%;">Fatima Al-Rashid</div>
+                        <div class="name-item show" style="top: 39%; left: 22%;">Ahmed Mahmoud</div>
+                        <div class="name-item show" style="top: 43%; left: 32%;">Aisha Omar</div>
+                        <div class="name-item show" style="top: 37%; left: 42%;">Yusuf Khalil</div>
+                        <div class="name-item show" style="top: 41%; left: 52%;">Nour Hassan</div>
+                        <div class="name-item show" style="top: 45%; left: 62%;">Khalid Ahmed</div>
+                        <div class="name-item show" style="top: 40%; left: 72%;">Mariam Saleh</div>
+                        <div class="name-item show" style="top: 44%; left: 82%;">Adam Al-Masri</div>
+                        <div class="name-item show" style="top: 38%; left: 92%;">Sara Khalil</div>
+                        <div class="name-item show" style="top: 42%; left: 2%;">Ibrahim Omar</div>
+                        
+                        <div class="name-item show" style="top: 50%; left: 16%;">Amina Hassan</div>
+                        <div class="name-item show" style="top: 54%; left: 26%;">Khalil Mahmoud</div>
+                        <div class="name-item show" style="top: 58%; left: 36%;">Nadia Al-Rashid</div>
+                        <div class="name-item show" style="top: 52%; left: 46%;">Rashid Ahmed</div>
+                        <div class="name-item show" style="top: 56%; left: 56%;">Layla Omar</div>
+                        <div class="name-item show" style="top: 60%; left: 66%;">Omar Khalil</div>
+                        <div class="name-item show" style="top: 55%; left: 76%;">Fatima Hassan</div>
+                        <div class="name-item show" style="top: 59%; left: 86%;">Ahmed Saleh</div>
+                        <div class="name-item show" style="top: 53%; left: 96%;">Aisha Al-Masri</div>
+                        <div class="name-item show" style="top: 57%; left: 6%;">Yusuf Mahmoud</div>
+                        
+                        <div class="name-item show" style="top: 65%; left: 10%;">Nour Omar</div>
+                        <div class="name-item show" style="top: 69%; left: 20%;">Khalid Khalil</div>
+                        <div class="name-item show" style="top: 73%; left: 30%;">Mariam Hassan</div>
+                        <div class="name-item show" style="top: 67%; left: 40%;">Adam Ahmed</div>
+                        <div class="name-item show" style="top: 71%; left: 50%;">Sara Saleh</div>
+                        <div class="name-item show" style="top: 75%; left: 60%;">Ibrahim Al-Masri</div>
+                        <div class="name-item show" style="top: 70%; left: 70%;">Amina Khalil</div>
+                        <div class="name-item show" style="top: 74%; left: 80%;">Khalil Omar</div>
+                        <div class="name-item show" style="top: 68%; left: 90%;">Nadia Hassan</div>
+                        <div class="name-item show" style="top: 72%; left: 0%;">Rashid Mahmoud</div>
+                        
+                        <div class="name-item show" style="top: 80%; left: 14%;">Layla Al-Rashid</div>
+                        <div class="name-item show" style="top: 84%; left: 24%;">Omar Ahmed</div>
+                        <div class="name-item show" style="top: 88%; left: 34%;">Fatima Saleh</div>
+                        <div class="name-item show" style="top: 82%; left: 44%;">Ahmed Khalil</div>
+                        <div class="name-item show" style="top: 86%; left: 54%;">Aisha Hassan</div>
+                        <div class="name-item show" style="top: 90%; left: 64%;">Yusuf Omar</div>
+                        <div class="name-item show" style="top: 85%; left: 74%;">Nour Mahmoud</div>
+                        <div class="name-item show" style="top: 89%; left: 84%;">Khalid Al-Rashid</div>
+                        <div class="name-item show" style="top: 83%; left: 94%;">Mariam Ahmed</div>
+                        <div class="name-item show" style="top: 87%; left: 4%;">Adam Saleh</div>
+                        
+                        <div class="name-item show" style="top: 95%; left: 18%;">Sara Khalil</div>
+                        <div class="name-item show" style="top: 99%; left: 28%;">Ibrahim Hassan</div>
+                        <div class="name-item show" style="top: 3%; left: 38%;">Amina Omar</div>
+                        <div class="name-item show" style="top: 97%; left: 48%;">Khalil Mahmoud</div>
+                        <div class="name-item show" style="top: 1%; left: 58%;">Nadia Al-Rashid</div>
+                        <div class="name-item show" style="top: 5%; left: 68%;">Rashid Ahmed</div>
+                        <div class="name-item show" style="top: 93%; left: 78%;">Layla Omar</div>
+                        <div class="name-item show" style="top: 1%; left: 88%;">Omar Khalil</div>
+                        <div class="name-item show" style="top: 95%; left: 98%;">Fatima Hassan</div>
+                        <div class="name-item show" style="top: 3%; left: 8%;">Ahmed Saleh</div>
+                    </div>
+                    
+                    <p class="message-text show">Behind every number is a name, a family, a future</p>
+                    <p class="message-text show">Explore the human scale of tragedy</p>
+                </div>
+            </div>
+            
+            <button class="enter-button" onclick="enterSite()">Enter Site</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStage = 1;
+        const totalStages = 4;
+        
+        // Auto-advance through stages
+        function nextStage() {
+            if (currentStage < totalStages) {
+                // Hide current stage
+                document.getElementById(`stage-${currentStage}`).classList.remove('active');
+                
+                // Show next stage
+                currentStage++;
+                const nextStageEl = document.getElementById(`stage-${currentStage}`);
+                nextStageEl.classList.add('active');
+                
+                // Special animations for stage 3
+                if (currentStage === 3) {
+                    setTimeout(() => {
+                        const names = document.querySelectorAll('#stage-3 .name-item');
+                        names.forEach((name, index) => {
+                            setTimeout(() => {
+                                name.classList.add('show');
+                            }, index * 300);
+                        });
+                    }, 500);
+                }
+                
+                // Special animations for stage 4
+                if (currentStage === 4) {
+                    setTimeout(() => {
+                        const names = document.querySelectorAll('#stage-4 .name-item');
+                        names.forEach((name, index) => {
+                            setTimeout(() => {
+                                name.classList.add('show');
+                            }, index * 200);
+                        });
+                        
+                        setTimeout(() => {
+                            const messages = document.querySelectorAll('#stage-4 .message-text');
+                            messages.forEach((msg, index) => {
+                                setTimeout(() => {
+                                    msg.classList.add('show');
+                                }, index * 500);
+                            });
+                        }, 1000);
+                        
+                        setTimeout(() => {
+                            document.querySelector('.enter-button').classList.add('show');
+                        }, 2000);
+                    }, 500);
+                }
+                
+                // Schedule next stage - much slower transitions
+                if (currentStage < totalStages) {
+                    setTimeout(nextStage, 6000);
+                }
+            }
+        }
+        
+        // Start the sequence - much slower to see the numbers
+        setTimeout(nextStage, 8000);
+        
+        // Skip intro
+        function skipIntro() {
+            window.location.href = 'index.html';
+        }
+        
+        // Enter site
+        function enterSite() {
+            window.location.href = 'index.html';
+        }
+        
+        // Add some interactivity
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.data-transformation')) {
+                // Allow users to click to advance
+                if (currentStage < totalStages) {
+                    nextStage();
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
