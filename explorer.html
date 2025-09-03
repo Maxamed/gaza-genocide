@@ -139,87 +139,78 @@
     <div id="impact-modal" class="impact-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modal-title" class="en">Impact on <span id="location-name">City</span></h2>
-                <h2 id="modal-title-ar" class="ar" style="display: none;">التأثير على <span id="location-name-ar">المدينة</span></h2>
+                <div class="header-content">
+                    <h2 id="modal-title" class="en">Impact on <span id="location-name">City</span></h2>
+                    <h2 id="modal-title-ar" class="ar" style="display: none;">التأثير على <span id="location-name-ar">المدينة</span></h2>
+                    <div class="location-subtitle">
+                        <span class="en">Capital: <span id="location-capital">N/A</span></span>
+                        <span class="ar" style="display: none;">العاصمة: <span id="location-capital-ar">N/A</span></span>
+                    </div>
+                </div>
                 <button class="modal-close" id="modal-close">&times;</button>
             </div>
             
             <div class="modal-body">
-                <!-- Location Info -->
-                <div class="location-info">
-                    <div class="location-details">
-                        <div class="location-item">
-                            <span class="en">Region: </span>
-                            <span class="ar" style="display: none;">المنطقة: </span>
-                            <span id="location-region" class="location-value">N/A</span>
+                <!-- Two Column Layout -->
+                <div class="modal-left-column">
+                    <div class="population-info">
+                        <div class="calculation-note">
+                            <span class="en">Impact scaled proportionally to city size (Gaza population: ~2.3M)</span>
+                            <span class="ar" style="display: none;">التأثير محسوب نسبياً حسب حجم المدينة (سكان غزة: ~2.3 مليون)</span>
                         </div>
-                        <div class="location-item">
-                            <span class="en">Capital: </span>
-                            <span class="ar" style="display: none;">العاصمة: </span>
-                            <span id="location-capital" class="location-value">N/A</span>
+                        <div class="pop-before">
+                            <span class="en">Population: </span>
+                            <span class="ar" style="display: none;">عدد السكان: </span>
+                            <span id="pop-before" class="pop-number">0</span>
+                        </div>
+                        <div class="pop-after">
+                            <span class="en">After proportional Gaza impact: </span>
+                            <span class="ar" style="display: none;">بعد التأثير النسبي لغزة: </span>
+                            <span id="pop-after" class="pop-number">0</span>
+                        </div>
+                        <div class="pop-decrease">
+                            <span class="en">Decrease: </span>
+                            <span class="ar" style="display: none;">انخفاض: </span>
+                            <span id="pop-decrease" class="pop-decrease-number">0</span>
+                            <span id="pop-percentage" class="pop-percentage">(0%)</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="population-info">
-                    <div class="calculation-note">
-                        <span class="en">💡 Impact scaled proportionally to city size (Gaza population: ~2.3M)</span>
-                        <span class="ar" style="display: none;">💡 التأثير محسوب نسبياً حسب حجم المدينة (سكان غزة: ~2.3 مليون)</span>
-                    </div>
-                    <div class="pop-before">
-                        <span class="en">Population: </span>
-                        <span class="ar" style="display: none;">عدد السكان: </span>
-                        <span id="pop-before" class="pop-number">0</span>
-                    </div>
-                    <div class="pop-after">
-                        <span class="en">After proportional Gaza impact: </span>
-                        <span class="ar" style="display: none;">بعد التأثير النسبي لغزة: </span>
-                        <span id="pop-after" class="pop-number">0</span>
-                    </div>
-                    <div class="pop-decrease">
-                        <span class="en">Decrease: </span>
-                        <span class="ar" style="display: none;">انخفاض: </span>
-                        <span id="pop-decrease" class="pop-decrease-number">0</span>
-                        <span id="pop-percentage" class="pop-percentage">(0%)</span>
-                    </div>
-                </div>
-                
-                <div class="human-impact">
-                    <h3 class="en">What This Means</h3>
-                    <h3 class="ar" style="display: none;">ماذا يعني هذا</h3>
-                    
-                    <div class="impact-comparison">
-                        <div class="comparison-item">
-                            <div class="comparison-icon">👨‍👩‍👧‍👦</div>
-                            <div class="comparison-text">
-                                <span class="en">This represents losing <strong id="families-lost">0</strong> families</span>
-                                <span class="ar" style="display: none;">هذا يمثل فقدان <strong id="families-lost-ar">0</strong> أسرة</span>
+                <div class="modal-right-column">
+                    <div class="human-impact">
+                        <h3 class="en">What This Means</h3>
+                        <h3 class="ar" style="display: none;">ماذا يعني هذا</h3>
+                        
+                        <div class="impact-comparison">
+                            <div class="comparison-item">
+                                <div class="comparison-text">
+                                    <span class="en">This represents losing <strong id="families-lost">0</strong> families</span>
+                                    <span class="ar" style="display: none;">هذا يمثل فقدان <strong id="families-lost-ar">0</strong> أسرة</span>
+                                </div>
+                            </div>
+                            
+                            <div class="comparison-item">
+                                <div class="comparison-text">
+                                    <span class="en">Or emptying <strong id="schools-emptied">0</strong> schools</span>
+                                    <span class="ar" style="display: none;">أو إفراغ <strong id="schools-emptied-ar">0</strong> مدرسة</span>
+                                </div>
+                            </div>
+                            
+                            <div class="comparison-item">
+                                <div class="comparison-text">
+                                    <span class="en">Or filling <strong id="buses-filled">0</strong> school buses</span>
+                                    <span class="ar" style="display: none;">أو ملء <strong id="buses-filled-ar">0</strong> حافلة مدرسية</span>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="comparison-item">
-                            <div class="comparison-icon">🏫</div>
-                            <div class="comparison-text">
-                                <span class="en">Or emptying <strong id="schools-emptied">0</strong> schools</span>
-                                <span class="ar" style="display: none;">أو إفراغ <strong id="schools-emptied-ar">0</strong> مدرسة</span>
-                            </div>
-                        </div>
-                        
-                        <div class="comparison-item">
-                            <div class="comparison-icon">🚌</div>
-                            <div class="comparison-text">
-                                <span class="en">Or filling <strong id="buses-filled">0</strong> school buses</span>
-                                <span class="ar" style="display: none;">أو ملء <strong id="buses-filled-ar">0</strong> حافلة مدرسية</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="perspective-note">
-                        <span class="en">These numbers show the proportional impact if Gaza's casualty rate happened in a city of this size.</span>
-                        <span class="ar" style="display: none;">هذه الأرقام تظهر التأثير النسبي إذا حدث معدل ضحايا غزة في مدينة بهذا الحجم.</span>
+
                     </div>
                 </div>
-                
+            </div>
+            
+            <div class="modal-footer">
                 <div class="modal-actions">
                     <button class="share-impact-btn" id="share-impact-btn">
                         <span class="en">Share Impact</span>
