@@ -54,6 +54,20 @@
     </script>
 </head>
 <body>
+    <!-- Intro Overlay -->
+    <div class="intro-overlay" id="intro-overlay">
+        <button class="intro-skip-button" onclick="skipIntro()">Skip</button>
+        
+        <div class="intro-container">
+            <div class="poetic-line">Behind every <span class="highlight">number</span> is a <span class="highlight">name</span>, every <span class="highlight">name</span> has a <span class="highlight">story</span></div>
+            <!-- Single centered museum display -->
+            <div class="museum-display">
+                <div class="counter-display" id="intro-counter">0</div>
+                <div class="name-display" id="intro-name"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Floating Navigation -->
     <nav class="main-navigation">
         <div class="nav-container">
@@ -673,6 +687,239 @@
                 });
             }
         });
+
+        // ===== INTRO FUNCTIONALITY =====
+        
+        // Names and corresponding numbers for museum displays
+        const introData = [
+            { number: 63633, name: 'Ahmed Al-Masri' },
+            { number: 17487, name: 'Fatima Hassan' },
+            { number: 11500, name: 'Omar Saleh' },
+            { number: 4300, name: 'Aisha Mahmoud' }
+        ];
+        
+        let currentCycle = 0;
+        let totalCycles = 4;
+        
+        // Start the intro sequence when page loads
+        setTimeout(startMuseumCycle, 1000);
+        
+        function startMuseumCycle() {
+            if (currentCycle >= totalCycles) {
+                // All cycles complete, hide intro and show homepage
+                hideIntro();
+                return;
+            }
+            
+            const counter = document.getElementById('intro-counter');
+            const name = document.getElementById('intro-name');
+            
+            // Reset for new cycle
+            counter.style.opacity = '1';
+            counter.style.filter = 'none';
+            name.classList.remove('show');
+            name.textContent = '';
+            
+            // Use hardcoded meaningful numbers
+            const targetNumber = introData[currentCycle].number;
+            animateIntroCounter(counter, 0, targetNumber, 1500, () => {
+                // Counter complete, transform to name in same position
+                setTimeout(() => {
+                    transformToIntroName(counter, name, introData[currentCycle].name);
+                }, 300);
+            });
+        }
+        
+        function animateIntroCounter(counterElement, start, end, duration, callback) {
+            const startTime = Date.now();
+            
+            function updateCounter() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function for smooth animation
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (end - start) * easeOut);
+                
+                counterElement.textContent = current.toLocaleString();
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    callback();
+                }
+            }
+            
+            updateCounter();
+        }
+        
+        function transformToIntroName(counterElement, nameElement, nameText) {
+            // Blur and fade out counter
+            counterElement.style.filter = 'blur(8px)';
+            counterElement.style.opacity = '0';
+            
+            // Show name in exact same position
+            nameElement.textContent = nameText;
+            nameElement.classList.add('show');
+            
+            // Move to next cycle after delay
+            setTimeout(() => {
+                currentCycle++;
+                startMuseumCycle();
+            }, 2500);
+        }
+        
+        function hideIntro() {
+            const introOverlay = document.getElementById('intro-overlay');
+            introOverlay.style.opacity = '0';
+            setTimeout(() => {
+                introOverlay.style.display = 'none';
+            }, 1000);
+        }
+        
+        function skipIntro() {
+            hideIntro();
+        }
     </script>
+
+    <style>
+        /* ===== INTRO OVERLAY STYLES ===== */
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #ffffff;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease-out;
+        }
+        
+        .intro-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .poetic-line {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #666666;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 60px;
+            text-align: center;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out 0.5s forwards;
+        }
+        
+        .highlight {
+            color: var(--accent-red, #dc2626);
+            font-weight: 600;
+        }
+        
+        .museum-display {
+            position: relative;
+            width: 600px;
+            height: 200px;
+        }
+        
+        .intro-overlay .counter-display {
+            font-size: 5rem;
+            font-weight: 700;
+            color: #000000;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.5s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+        }
+        
+        .intro-overlay .name-display {
+            font-size: 3rem;
+            font-weight: 600;
+            color: #000000;
+            font-family: 'Inter', sans-serif;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            transition: all 0.8s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            white-space: nowrap;
+        }
+        
+        .intro-overlay .name-display.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .intro-skip-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-red, #dc2626);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+        
+        .intro-skip-button:hover {
+            background: var(--accent-red-dark, #b91c1c);
+            transform: translateY(-1px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .poetic-line {
+                font-size: 1.1rem;
+                margin-bottom: 40px;
+                padding: 0 20px;
+            }
+            
+            .museum-display {
+                width: 90%;
+            }
+            
+            .intro-overlay .counter-display {
+                font-size: 3.5rem;
+            }
+            
+            .intro-overlay .name-display {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </body>
 </html> 
