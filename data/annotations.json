@@ -1,0 +1,492 @@
+[
+  {
+    "date": "2023-10-13",
+    "en": "Mass displacement escalates; heavy strikes across the north.",
+    "ar": "تصاعد النزوح الجماعي وسط قصف شديد في الشمال."
+  },
+  {
+    "date": "2023-10-17",
+    "en": "Al-Ahli Hospital strike; international outcry over civilian casualties.",
+    "ar": "قصف مستشفى الأهلي؛ احتجاج دولي على ضحايا المدنيين."
+  },
+  {
+    "date": "2023-10-22",
+    "en": "Intense bombardment of residential areas; multiple neighborhoods targeted.",
+    "ar": "قصف مكثف للمناطق السكنية؛ استهداف عدة أحياء."
+  },
+  {
+    "date": "2023-10-25",
+    "en": "Ground operations begin; heavy artillery and air strikes.",
+    "ar": "بدء العمليات البرية؛ قصف مدفعي وجوي مكثف."
+  },
+  {
+    "date": "2023-10-28",
+    "en": "Massive strikes on refugee camps; humanitarian crisis deepens.",
+    "ar": "قصف مكثف على مخيمات اللاجئين؛ تعمق الأزمة الإنسانية."
+  },
+  {
+    "date": "2023-11-01",
+    "en": "Siege of Gaza City intensifies; critical infrastructure destroyed.",
+    "ar": "تشديد حصار مدينة غزة؛ تدمير البنية التحتية الحيوية."
+  },
+  {
+    "date": "2023-11-05",
+    "en": "Northern Gaza evacuation orders; mass displacement continues.",
+    "ar": "أوامر إخلاء شمال غزة؛ استمرار النزوح الجماعي."
+  },
+  {
+    "date": "2023-11-10",
+    "en": "Shifa Hospital siege; medical facilities under attack.",
+    "ar": "حصار مستشفى الشفاء؛ مرافق طبية تحت الهجوم."
+  },
+  {
+    "date": "2023-11-15",
+    "en": "Khan Younis bombardment; southern areas heavily targeted.",
+    "ar": "قصف خان يونس؛ استهداف مكثف للمناطق الجنوبية."
+  },
+  {
+    "date": "2023-11-20",
+    "en": "Refugee camp strikes; civilian casualties mount.",
+    "ar": "قصف مخيمات اللاجئين؛ ارتفاع عدد الضحايا المدنيين."
+  },
+  {
+    "date": "2023-12-01",
+    "en": "Resumption of hostilities; ceasefire ends with renewed intensity.",
+    "ar": "استئناف الأعمال العدائية؛ انتهاء الهدنة بكثافة متجددة."
+  },
+  {
+    "date": "2023-12-05",
+    "en": "Southern Gaza evacuation; Khan Younis under heavy fire.",
+    "ar": "إخلاء جنوب غزة؛ خان يونس تحت نيران كثيفة."
+  },
+  {
+    "date": "2023-12-10",
+    "en": "Central Gaza strikes; residential areas devastated.",
+    "ar": "قصف وسط غزة؛ تدمير المناطق السكنية."
+  },
+  {
+    "date": "2023-12-15",
+    "en": "Humanitarian corridor attacks; aid delivery blocked.",
+    "ar": "هجمات على الممرات الإنسانية؛ منع تسليم المساعدات."
+  },
+  {
+    "date": "2023-12-20",
+    "en": "Christmas Eve bombardment; civilian areas targeted.",
+    "ar": "قصف ليلة عيد الميلاد؛ استهداف المناطق المدنية."
+  },
+  {
+    "date": "2024-01-01",
+    "en": "New Year begins with intense strikes; no respite for civilians.",
+    "ar": "بداية السنة الجديدة بقصف مكثف؛ لا راحة للمدنيين."
+  },
+  {
+    "date": "2024-01-05",
+    "en": "Central Gaza evacuation; population squeezed into smaller areas.",
+    "ar": "إخلاء وسط غزة؛ ضغط السكان في مناطق أصغر."
+  },
+  {
+    "date": "2024-01-10",
+    "en": "Rafah border area strikes; last refuge under attack.",
+    "ar": "قصف منطقة حدود رفح؛ آخر ملاذ تحت الهجوم."
+  },
+  {
+    "date": "2024-01-15",
+    "en": "Humanitarian crisis peaks; starvation and disease spread.",
+    "ar": "ذروة الأزمة الإنسانية؛ انتشار الجوع والأمراض."
+  },
+  {
+    "date": "2024-01-20",
+    "en": "Medical facilities destroyed; healthcare system collapses.",
+    "ar": "تدمير المرافق الطبية؛ انهيار النظام الصحي."
+  },
+  {
+    "date": "2024-02-01",
+    "en": "Southern offensive intensifies; Rafah under siege.",
+    "ar": "تشديد الهجوم الجنوبي؛ رفح تحت الحصار."
+  },
+  {
+    "date": "2024-02-05",
+    "en": "Mass displacement continues; population density critical.",
+    "ar": "استمرار النزوح الجماعي؛ الكثافة السكانية حرجة."
+  },
+  {
+    "date": "2024-02-10",
+    "en": "Aid delivery blocked; humanitarian access denied.",
+    "ar": "منع تسليم المساعدات؛ رفض الوصول الإنساني."
+  },
+  {
+    "date": "2024-02-15",
+    "en": "Civilian casualties mount; international pressure increases.",
+    "ar": "ارتفاع عدد الضحايا المدنيين؛ زيادة الضغط الدولي."
+  },
+  {
+    "date": "2024-03-01",
+    "en": "Spring begins with renewed violence; no end in sight.",
+    "ar": "بداية الربيع بعنف متجدد؛ لا نهاية في الأفق."
+  },
+  {
+    "date": "2024-03-05",
+    "en": "Central Gaza destruction; infrastructure completely destroyed.",
+    "ar": "تدمير وسط غزة؛ البنية التحتية مدمرة بالكامل."
+  },
+  {
+    "date": "2024-03-10",
+    "en": "Humanitarian catastrophe; basic services collapse.",
+    "ar": "كارثة إنسانية؛ انهيار الخدمات الأساسية."
+  },
+  {
+    "date": "2024-03-15",
+    "en": "International court rulings; legal pressure mounts.",
+    "ar": "أحكام المحكمة الدولية؛ زيادة الضغط القانوني."
+  },
+  {
+    "date": "2024-04-01",
+    "en": "Six months of war; civilian suffering unprecedented.",
+    "ar": "ستة أشهر من الحرب؛ معاناة مدنية غير مسبوقة."
+  },
+  {
+    "date": "2024-04-05",
+    "en": "Medical workers targeted; healthcare system destroyed.",
+    "ar": "استهداف العاملين الطبيين؛ تدمير النظام الصحي."
+  },
+  {
+    "date": "2024-04-10",
+    "en": "Journalists killed; press freedom under attack.",
+    "ar": "قتل الصحفيين؛ حرية الصحافة تحت الهجوم."
+  },
+  {
+    "date": "2024-04-15",
+    "en": "Humanitarian aid blocked; starvation crisis deepens.",
+    "ar": "منع المساعدات الإنسانية؛ تعمق أزمة الجوع."
+  },
+  {
+    "date": "2024-05-01",
+    "en": "Seven months of conflict; civilian toll devastating.",
+    "ar": "سبعة أشهر من الصراع؛ الخسائر المدنية مدمرة."
+  },
+  {
+    "date": "2024-05-05",
+    "en": "Southern Gaza offensive; last safe zones eliminated.",
+    "ar": "هجوم جنوب غزة؛ إزالة آخر المناطق الآمنة."
+  },
+  {
+    "date": "2024-05-10",
+    "en": "Mass displacement continues; population density critical.",
+    "ar": "استمرار النزوح الجماعي؛ الكثافة السكانية حرجة."
+  },
+  {
+    "date": "2024-05-15",
+    "en": "International pressure mounts; ceasefire calls ignored.",
+    "ar": "زيادة الضغط الدولي؛ تجاهل دعوات وقف إطلاق النار."
+  },
+  {
+    "date": "2024-06-01",
+    "en": "Eight months of war; humanitarian crisis unprecedented.",
+    "ar": "ثمانية أشهر من الحرب؛ أزمة إنسانية غير مسبوقة."
+  },
+  {
+    "date": "2024-06-05",
+    "en": "Central Gaza destruction; infrastructure completely destroyed.",
+    "ar": "تدمير وسط غزة؛ البنية التحتية مدمرة بالكامل."
+  },
+  {
+    "date": "2024-06-10",
+    "en": "Humanitarian catastrophe; basic services collapse.",
+    "ar": "كارثة إنسانية؛ انهيار الخدمات الأساسية."
+  },
+  {
+    "date": "2024-06-15",
+    "en": "International court rulings; legal pressure mounts.",
+    "ar": "أحكام المحكمة الدولية؛ زيادة الضغط القانوني."
+  },
+  {
+    "date": "2024-07-01",
+    "en": "Nine months of conflict; civilian suffering continues.",
+    "ar": "تسعة أشهر من الصراع؛ استمرار معاناة المدنيين."
+  },
+  {
+    "date": "2024-07-05",
+    "en": "Southern offensive intensifies; Rafah under siege.",
+    "ar": "تشديد الهجوم الجنوبي؛ رفح تحت الحصار."
+  },
+  {
+    "date": "2024-07-10",
+    "en": "Mass displacement continues; population density critical.",
+    "ar": "استمرار النزوح الجماعي؛ الكثافة السكانية حرجة."
+  },
+  {
+    "date": "2024-07-15",
+    "en": "Aid delivery blocked; humanitarian access denied.",
+    "ar": "منع تسليم المساعدات؛ رفض الوصول الإنساني."
+  },
+  {
+    "date": "2024-08-01",
+    "en": "Ten months of war; no end in sight.",
+    "ar": "عشرة أشهر من الحرب؛ لا نهاية في الأفق."
+  },
+  {
+    "date": "2024-08-05",
+    "en": "Civilian casualties mount; international pressure increases.",
+    "ar": "ارتفاع عدد الضحايا المدنيين؛ زيادة الضغط الدولي."
+  },
+  {
+    "date": "2024-08-10",
+    "en": "Humanitarian crisis peaks; starvation and disease spread.",
+    "ar": "ذروة الأزمة الإنسانية؛ انتشار الجوع والأمراض."
+  },
+  {
+    "date": "2024-08-15",
+    "en": "Medical facilities destroyed; healthcare system collapses.",
+    "ar": "تدمير المرافق الطبية؛ انهيار النظام الصحي."
+  },
+  {
+    "date": "2024-09-01",
+    "en": "Eleven months of conflict; civilian toll devastating.",
+    "ar": "أحد عشر شهراً من الصراع؛ الخسائر المدنية مدمرة."
+  },
+  {
+    "date": "2024-09-05",
+    "en": "Southern Gaza offensive; last safe zones eliminated.",
+    "ar": "هجوم جنوب غزة؛ إزالة آخر المناطق الآمنة."
+  },
+  {
+    "date": "2024-09-10",
+    "en": "Mass displacement continues; population density critical.",
+    "ar": "استمرار النزوح الجماعي؛ الكثافة السكانية حرجة."
+  },
+  {
+    "date": "2024-09-15",
+    "en": "International pressure mounts; ceasefire calls ignored.",
+    "ar": "زيادة الضغط الدولي؛ تجاهل دعوات وقف إطلاق النار."
+  },
+  {
+    "date": "2024-10-01",
+    "en": "One year of war; humanitarian crisis unprecedented.",
+    "ar": "سنة من الحرب؛ أزمة إنسانية غير مسبوقة."
+  },
+  {
+    "date": "2024-10-05",
+    "en": "Anniversary of conflict; civilian suffering continues.",
+    "ar": "ذكرى الصراع؛ استمرار معاناة المدنيين."
+  },
+  {
+    "date": "2024-10-10",
+    "en": "Central Gaza destruction; infrastructure completely destroyed.",
+    "ar": "تدمير وسط غزة؛ البنية التحتية مدمرة بالكامل."
+  },
+  {
+    "date": "2024-10-15",
+    "en": "Humanitarian catastrophe; basic services collapse.",
+    "ar": "كارثة إنسانية؛ انهيار الخدمات الأساسية."
+  },
+  {
+    "date": "2024-11-01",
+    "en": "Thirteen months of conflict; no end in sight.",
+    "ar": "ثلاثة عشر شهراً من الصراع؛ لا نهاية في الأفق."
+  },
+  {
+    "date": "2024-11-05",
+    "en": "Southern offensive intensifies; Rafah under siege.",
+    "ar": "تشديد الهجوم الجنوبي؛ رفح تحت الحصار."
+  },
+  {
+    "date": "2024-11-10",
+    "en": "Mass displacement continues; population density critical.",
+    "ar": "استمرار النزوح الجماعي؛ الكثافة السكانية حرجة."
+  },
+  {
+    "date": "2024-11-15",
+    "en": "Aid delivery blocked; humanitarian access denied.",
+    "ar": "منع تسليم المساعدات؛ رفض الوصول الإنساني."
+  },
+  {
+    "date": "2024-12-01",
+    "en": "Fourteen months of war; civilian toll devastating.",
+    "ar": "أربعة عشر شهراً من الحرب؛ الخسائر المدنية مدمرة."
+  },
+  {
+    "date": "2024-12-05",
+    "en": "International pressure mounts; ceasefire calls ignored.",
+    "ar": "زيادة الضغط الدولي؛ تجاهل دعوات وقف إطلاق النار."
+  },
+  {
+    "date": "2024-12-10",
+    "en": "Humanitarian crisis peaks; starvation and disease spread.",
+    "ar": "ذروة الأزمة الإنسانية؛ انتشار الجوع والأمراض."
+  },
+  {
+    "date": "2024-12-15",
+    "en": "Medical facilities destroyed; healthcare system collapses.",
+    "ar": "تدمير المرافق الطبية؛ انهيار النظام الصحي."
+  },
+  {
+    "date": "2025-01-01",
+    "en": "Fifteen months of conflict; new year brings no peace.",
+    "ar": "خمسة عشر شهراً من الصراع؛ السنة الجديدة لا تجلب سلاماً."
+  },
+  {
+    "date": "2025-01-05",
+    "en": "Southern Gaza offensive; last safe zones eliminated.",
+    "ar": "هجوم جنوب غزة؛ إزالة آخر المناطق الآمنة."
+  },
+  {
+    "date": "2025-01-10",
+    "en": "Mass displacement continues; population density critical.",
+    "ar": "استمرار النزوح الجماعي؛ الكثافة السكانية حرجة."
+  },
+  {
+    "date": "2025-01-15",
+    "en": "International pressure mounts; ceasefire calls ignored.",
+    "ar": "زيادة الضغط الدولي؛ تجاهل دعوات وقف إطلاق النار."
+  },
+  {
+    "date": "2025-02-01",
+    "en": "Sixteen months of war; humanitarian crisis unprecedented.",
+    "ar": "ستة عشر شهراً من الحرب؛ أزمة إنسانية غير مسبوقة."
+  },
+  {
+    "date": "2025-02-05",
+    "en": "Central Gaza destruction; infrastructure completely destroyed.",
+    "ar": "تدمير وسط غزة؛ البنية التحتية مدمرة بالكامل."
+  },
+  {
+    "date": "2025-02-10",
+    "en": "Humanitarian catastrophe; basic services collapse.",
+    "ar": "كارثة إنسانية؛ انهيار الخدمات الأساسية."
+  },
+  {
+    "date": "2025-02-15",
+    "en": "International court rulings; legal pressure mounts.",
+    "ar": "أحكام المحكمة الدولية؛ زيادة الضغط القانوني."
+  },
+  {
+    "date": "2025-03-01",
+    "en": "Seventeen months of conflict; civilian suffering continues.",
+    "ar": "سبعة عشر شهراً من الصراع؛ استمرار معاناة المدنيين."
+  },
+  {
+    "date": "2025-03-05",
+    "en": "Southern offensive intensifies; Rafah under siege.",
+    "ar": "تشديد الهجوم الجنوبي؛ رفح تحت الحصار."
+  },
+  {
+    "date": "2025-03-10",
+    "en": "Mass displacement continues; population density critical.",
+    "ar": "استمرار النزوح الجماعي؛ الكثافة السكانية حرجة."
+  },
+  {
+    "date": "2025-03-15",
+    "en": "Aid delivery blocked; humanitarian access denied.",
+    "ar": "منع تسليم المساعدات؛ رفض الوصول الإنساني."
+  },
+  {
+    "date": "2025-04-01",
+    "en": "Eighteen months of war; no end in sight.",
+    "ar": "ثمانية عشر شهراً من الحرب؛ لا نهاية في الأفق."
+  },
+  {
+    "date": "2025-04-05",
+    "en": "Civilian casualties mount; international pressure increases.",
+    "ar": "ارتفاع عدد الضحايا المدنيين؛ زيادة الضغط الدولي."
+  },
+  {
+    "date": "2025-04-10",
+    "en": "Humanitarian crisis peaks; starvation and disease spread.",
+    "ar": "ذروة الأزمة الإنسانية؛ انتشار الجوع والأمراض."
+  },
+  {
+    "date": "2025-04-15",
+    "en": "Medical facilities destroyed; healthcare system collapses.",
+    "ar": "تدمير المرافق الطبية؛ انهيار النظام الصحي."
+  },
+  {
+    "date": "2025-05-01",
+    "en": "Nineteen months of conflict; civilian toll devastating.",
+    "ar": "تسعة عشر شهراً من الصراع؛ الخسائر المدنية مدمرة."
+  },
+  {
+    "date": "2025-05-05",
+    "en": "Southern Gaza offensive; last safe zones eliminated.",
+    "ar": "هجوم جنوب غزة؛ إزالة آخر المناطق الآمنة."
+  },
+  {
+    "date": "2025-05-10",
+    "en": "Mass displacement continues; population density critical.",
+    "ar": "استمرار النزوح الجماعي؛ الكثافة السكانية حرجة."
+  },
+  {
+    "date": "2025-05-15",
+    "en": "International pressure mounts; ceasefire calls ignored.",
+    "ar": "زيادة الضغط الدولي؛ تجاهل دعوات وقف إطلاق النار."
+  },
+  {
+    "date": "2025-06-01",
+    "en": "Twenty months of war; humanitarian crisis unprecedented.",
+    "ar": "عشرون شهراً من الحرب؛ أزمة إنسانية غير مسبوقة."
+  },
+  {
+    "date": "2025-06-05",
+    "en": "Central Gaza destruction; infrastructure completely destroyed.",
+    "ar": "تدمير وسط غزة؛ البنية التحتية مدمرة بالكامل."
+  },
+  {
+    "date": "2025-06-10",
+    "en": "Humanitarian catastrophe; basic services collapse.",
+    "ar": "كارثة إنسانية؛ انهيار الخدمات الأساسية."
+  },
+  {
+    "date": "2025-06-15",
+    "en": "International court rulings; legal pressure mounts.",
+    "ar": "أحكام المحكمة الدولية؛ زيادة الضغط القانوني."
+  },
+  {
+    "date": "2025-07-01",
+    "en": "Twenty-one months of conflict; civilian suffering continues.",
+    "ar": "واحد وعشرون شهراً من الصراع؛ استمرار معاناة المدنيين."
+  },
+  {
+    "date": "2025-07-05",
+    "en": "Southern offensive intensifies; Rafah under siege.",
+    "ar": "تشديد الهجوم الجنوبي؛ رفح تحت الحصار."
+  },
+  {
+    "date": "2025-07-10",
+    "en": "Mass displacement continues; population density critical.",
+    "ar": "استمرار النزوح الجماعي؛ الكثافة السكانية حرجة."
+  },
+  {
+    "date": "2025-07-15",
+    "en": "Aid delivery blocked; humanitarian access denied.",
+    "ar": "منع تسليم المساعدات؛ رفض الوصول الإنساني."
+  },
+  {
+    "date": "2025-08-01",
+    "en": "Twenty-two months of war; no end in sight.",
+    "ar": "اثنان وعشرون شهراً من الحرب؛ لا نهاية في الأفق."
+  },
+  {
+    "date": "2025-08-05",
+    "en": "Civilian casualties mount; international pressure increases.",
+    "ar": "ارتفاع عدد الضحايا المدنيين؛ زيادة الضغط الدولي."
+  },
+  {
+    "date": "2025-08-10",
+    "en": "Humanitarian crisis peaks; starvation and disease spread.",
+    "ar": "ذروة الأزمة الإنسانية؛ انتشار الجوع والأمراض."
+  },
+  {
+    "date": "2025-08-15",
+    "en": "Medical facilities destroyed; healthcare system collapses.",
+    "ar": "تدمير المرافق الطبية؛ انهيار النظام الصحي."
+  },
+  {
+    "date": "2025-09-01",
+    "en": "Twenty-three months of conflict; civilian toll devastating.",
+    "ar": "ثلاثة وعشرون شهراً من الصراع؛ الخسائر المدنية مدمرة."
+  },
+  {
+    "date": "2025-09-02",
+    "en": "Latest data shows continued civilian casualties; war continues.",
+    "ar": "أحدث البيانات تظهر استمرار الضحايا المدنيين؛ الحرب مستمرة."
+  }
+] 

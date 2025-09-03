@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline — Daily Casualties | Gaza Genocide Memorial - Human Scale</title>
+    
+    <!-- Meta tags for social sharing -->
+    <meta name="description" content="Interactive timeline showing daily casualties and patterns from October 7, 2023 onwards. Explore the human cost day by day with detailed breakdowns and context." />
+    <meta name="keywords" content="Gaza, genocide, timeline, daily casualties, data visualization, patterns, human cost, Palestine, war timeline">
+    <meta name="author" content="Gaza Genocide Memorial Project">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://maxamed.github.io/gaza-genocide/timeline.html" />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Gaza Genocide Memorial - Human Scale" />
+    <meta property="og:title" content="Timeline — Daily Casualties" />
+    <meta property="og:description" content="Interactive timeline showing daily casualties and patterns from October 7, 2023 onwards. Explore the human cost day by day with detailed breakdowns and context." />
+    <meta property="og:url" content="https://maxamed.github.io/gaza-genocide/timeline.html" />
+    <meta property="og:image" content="https://maxamed.github.io/gaza-genocide/og/og-timeline-1200x630.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ar_AR" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Timeline — Daily Casualties" />
+    <meta name="twitter:description" content="Interactive timeline showing daily casualties and patterns from October 7, 2023 onwards. Explore the human cost day by day with detailed breakdowns and context." />
+    <meta name="twitter:image" content="https://maxamed.github.io/gaza-genocide/og/og-timeline-1200x630.png" />
+    
+    <!-- Preload fonts for performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/theme.css">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"WebPage",
+      "name":"Timeline — Daily Casualties",
+      "url":"https://maxamed.github.io/gaza-genocide/timeline.html",
+      "inLanguage":["en","ar"],
+      "description":"Interactive timeline showing daily casualties and patterns from October 7, 2023 onwards. Explore the human cost day by day with detailed breakdowns and context.",
+      "isPartOf":{
+        "@type":"WebSite",
+        "name":"Gaza Genocide Memorial - Human Scale",
+        "url":"https://maxamed.github.io/gaza-genocide/"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Floating Navigation -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <!-- Mobile Navigation Toggle -->
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-list" id="nav-list">
+                <li class="nav-item">
+                    <a href="./index.html" class="nav-link">
+                        <span class="en">Home</span>
+                        <span class="ar" style="display: none;">الرئيسية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./memorial.html" class="nav-link">
+                        <span class="en">Memorial Wall</span>
+                        <span class="ar" style="display: none;">جدار الذكرى</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./journalists.html" class="nav-link">
+                        <span class="en">Journalists</span>
+                        <span class="ar" style="display: none;">الصحفيون</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./timeline.html" class="nav-link active">
+                        <span class="en">Timeline</span>
+                        <span class="ar" style="display: none;">الجدول الزمني</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./about.html" class="nav-link">
+                        <span class="en">About</span>
+                        <span class="ar" style="display: none;">حول</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Language Toggle in Nav -->
+            <button class="nav-language-toggle" id="nav-language-toggle">
+                <span class="en">العربية</span>
+                <span class="ar" style="display: none;">English</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            
+
+
+            <!-- Main Showcase: On This Day of Month -->
+            <div class="main-showcase">
+                <div class="showcase-header">
+                    <h2 class="showcase-title">
+                        <span class="en">On This Day of Month</span>
+                        <span class="ar" style="display: none;">في هذا اليوم من الشهر</span>
+                    </h2>
+                    <p class="showcase-subtitle">
+                        <span class="en">Explore patterns across months - select any day to see how casualties varied on that date throughout the war</span>
+                        <span class="ar" style="display: none;">استكشف الأنماط عبر الأشهر - اختر أي يوم لترى كيف تباينت الضحايا في ذلك التاريخ طوال الحرب</span>
+                    </p>
+                </div>
+                
+                <!-- Main Rail Display with Integrated Day Selector -->
+                <div class="main-rail-container">
+                    <!-- Day Selector -->
+                    <div class="day-selector-rail">
+                        <div class="day-buttons" id="day-selector">
+                            <!-- Day buttons 1-31 will be generated here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Day story will be rendered here -->
+                    <div id="day-rail">
+                        <!-- Story content will be rendered here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Peak Days Section -->
+            <div class="peaks-section">
+                <h3 class="peaks-title">
+                    <span class="en">Peak Days</span>
+                    <span class="ar" style="display: none;">أيام الذروة</span>
+                </h3>
+                <div class="peaks-list" id="peaks-list">
+                    <!-- Peak cards will be rendered here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/logic/languageManager.js"></script>
+    <script src="js/logic/timelineData.js"></script>
+    <script src="js/logic/heatmapData.js"></script>
+    <script src="js/logic/timelinePeaks.js"></script>
+    <script src="js/logic/timelineRail.js"></script>
+    <script src="js/timeline.js"></script>
+    
+    <!-- Language Toggle Script -->
+    <script>
+        // Language Toggle Script
+        document.getElementById('nav-language-toggle').addEventListener('click', function() {
+            const englishElements = document.querySelectorAll('.en');
+            const arabicElements = document.querySelectorAll('.ar');
+            const html = document.documentElement;
+            const body = document.body;
+            
+            const isCurrentlyEnglish = englishElements[0].style.display !== 'none';
+            
+            if (isCurrentlyEnglish) {
+                // Switch to Arabic
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                body.setAttribute('dir', 'rtl');
+                
+                englishElements.forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                arabicElements.forEach(el => {
+                    el.style.display = 'inline';
+                });
+            } else {
+                // Switch to English
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', 'en');
+                body.setAttribute('dir', 'ltr');
+                
+                englishElements.forEach(el => {
+                    el.style.display = 'inline';
+                });
+                
+                arabicElements.forEach(el => {
+                    el.style.display = 'none';
+                });
+            }
+            
+            // Update button text
+            const enSpan = this.querySelector('.en');
+            const arSpan = this.querySelector('.ar');
+            
+            if (enSpan && arSpan) {
+                enSpan.style.display = isCurrentlyEnglish ? 'inline' : 'none';
+                arSpan.style.display = isCurrentlyEnglish ? 'none' : 'inline';
+            }
+            
+            // Store language preference in localStorage
+            const newLanguage = isCurrentlyEnglish ? 'ar' : 'en';
+            localStorage.setItem('preferredLanguage', newLanguage);
+            
+            // Update global language variable
+            window.currentLanguage = newLanguage;
+            
+            // Force reflow for RTL/LTR changes
+            document.body.offsetHeight;
+        });
+        
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const storedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            const html = document.documentElement;
+            const body = document.body;
+            const englishElements = document.querySelectorAll('.en');
+            const arabicElements = document.querySelectorAll('.ar');
+            
+            if (storedLanguage === 'ar') {
+                // Apply Arabic
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                body.setAttribute('dir', 'rtl');
+                
+                englishElements.forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                arabicElements.forEach(el => {
+                    el.style.display = 'inline';
+                });
+                
+                // Update button text
+                const toggleButton = document.getElementById('nav-language-toggle');
+                if (toggleButton) {
+                    const enSpan = toggleButton.querySelector('.en');
+                    const arSpan = toggleButton.querySelector('.ar');
+                    if (enSpan && arSpan) {
+                        enSpan.style.display = 'none';
+                        arSpan.style.display = 'inline';
+                    }
+                }
+            } else {
+                // Apply English (default)
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', 'en');
+                body.setAttribute('dir', 'ltr');
+                
+                englishElements.forEach(el => {
+                    el.style.display = 'inline';
+                });
+                
+                arabicElements.forEach(el => {
+                    el.style.display = 'none';
+                });
+            }
+            
+            // Set global language variable
+            window.currentLanguage = storedLanguage;
+        });
+    </script>
+</body>
+</html> 

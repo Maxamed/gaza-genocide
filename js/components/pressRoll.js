@@ -270,7 +270,7 @@ class PressRoll {
         
         if (total === filtered) {
             this.counter.innerHTML = `
-                <span class="en">Journalists and media workers killed: ${total}</span>
+                <span class="en">Journalists and media workers martyred: ${total}</span>
                 <span class="ar" style="display: none;">الصحفيون والعاملون في الإعلام الذين قُتلوا: ${total}</span>
             `;
         } else {
