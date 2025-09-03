@@ -44,9 +44,9 @@ class JournalistsMemorial {
             this.pressFilters = new PressFilters();
             console.log('✅ Press filters component ready');
             
-            console.log('🔄 Initializing press roll component...');
-            this.pressRoll = new PressRoll();
-            console.log('✅ Press roll component ready');
+            console.log('🔄 Press roll component disabled...');
+            this.pressRoll = null; // Disabled for now
+            console.log('✅ Press roll component disabled');
             
             console.log('✅ All components initialized');
         } catch (error) {
@@ -257,17 +257,21 @@ class JournalistsMemorial {
      * Render roll view
      */
     renderRollView() {
-        if (!this.pressRoll) {
-            console.warn('⚠️ Press roll component not ready');
-            return;
-        }
+        // Press roll disabled for now
+        console.log('⚠️ Press roll view disabled');
+        return;
         
-        try {
-            this.pressRoll.setData(this.filteredData);
-            this.pressRoll.updateLanguage(window.currentLanguage);
-        } catch (error) {
-            console.error('Error rendering roll view:', error);
-        }
+        // if (!this.pressRoll) {
+        //     console.warn('⚠️ Press roll component not ready');
+        //     return;
+        // }
+        
+        // try {
+        //     this.pressRoll.setData(this.filteredData);
+        //     this.pressRoll.updateLanguage(window.currentLanguage);
+        // } catch (error) {
+        //     console.error('Error rendering roll view:', error);
+        // }
     }
 
     /**
@@ -284,10 +288,11 @@ class JournalistsMemorial {
         // Update both views
         this.renderCurrentView();
         
+        // Press roll disabled for now
         // Update roll view if active
-        if (this.currentView === 'roll' && this.pressRoll) {
-            this.pressRoll.filterData(filters);
-        }
+        // if (this.currentView === 'roll' && this.pressRoll) {
+        //     this.pressRoll.filterData(filters);
+        // }
     }
 
     /**
